@@ -26,4 +26,12 @@ router.route("/add").post((req, res)=>{
     })
 })
 
+router.route("/").get((req, res)=>{
+    Buyer.find().then((buyer)=>{
+        res.json(buyer);
+    }).catch((err)=>{
+        console.log(err);
+    })
+})
+
 module.exports = router;
