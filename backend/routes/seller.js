@@ -30,4 +30,35 @@ router.route("/").get((req, res)=>{
     })
 })
 
+router.route("/delete/:id").delete(async(req, res)=>{
+    let sellerId = req.params.id;
+
+    await Seller.findByIdAndDelete(sellerId).then(()=>{
+        res.status(200).send({status: "Seller Deleted"});
+    }).catch((err)=>{
+        console.log(err.message);
+        res.status(500).send({status: "Error with delete Seller", error: err.message});
+    })
+})
+
+router.route("/get/:id").get(async(req, res)=>{
+    let sellerId = req.params.id;
+    const seller = await Seller.findById(sellerId).then((seller)=>{
+        res.status(200).send({status: "Seller fetched", seller})
+    }).catch((err)=>{
+        console.log(err.message);
+        res.status(500).send({status: "Error with get seller", error: err.message});
+    })
+})
+
+router.route("/get/email/:email").get(async(req, res)=>{
+    let email = req.params.email;
+    await Seller.find({"email": `${email}`}).then((seller)=>{
+        res.json(seller);
+    }).catch((err)=>{
+        console.log(err.message);
+        res.status(500).send({status: "Error with get the seller", error: err.message});
+    })
+})
+
 module.exports = router;
