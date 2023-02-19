@@ -30,6 +30,9 @@ connection.once("open", ()=>{
 const buyerRouter = require("./routes/buyer.js");
 app.use("/buyer", buyerRouter);
 
+const adminRouter = require("./routes/admin.js");
+app.use("/admin", adminRouter);
+
 
 
 
