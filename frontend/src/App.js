@@ -5,6 +5,7 @@ import Welcome from './components/Welcome';
 import LoginBuyer from './components/LoginBuyer';
 import LoginSeller from './components/LoginSeller';
 import LoginAdmin from './components/LoginAdmin';
+import HomeAdmin from './components/HomeAdmin';
 
 function App() {
   return (
@@ -14,6 +15,8 @@ function App() {
       <Route path = '/buyerlogin' exact component = {LoginBuyer}/>
       <Route path = '/sellerlogin' exact component = {LoginSeller}/>
       <Route path = '/adminlogin' exact component = {LoginAdmin}/>
+
+      <Route path = '/adminhome' exact component={HomeAdmin}/>
     </Router>
   );
 }
