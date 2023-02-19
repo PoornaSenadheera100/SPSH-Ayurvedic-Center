@@ -2,7 +2,9 @@ export default function Welcome(){
     return(
         <div>
             <h1>Welcome to SPSH Ayurvedic Center</h1>
-            <button>Buyer login</button>
+            <a href="/buyerlogin"><button>Buyer Login</button></a>
+            <a href="/sellerlogin"><button>Seller Login</button></a>
+            <a href="/adminlogin"><button>Admin Login</button></a>
         </div>
     )
 }
