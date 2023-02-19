@@ -10,7 +10,7 @@ export default function LoginBuyer(){
         e.preventDefault();
         axios.get(`http://localhost:8070/buyer/get/email/${email}`).then((res)=>{
             if (res.data[0].password === password){
-                console.log("done");
+                window.location.replace(`http://localhost:3000/buyerhome`);
             }
             else{
                 alert("Invalid Credentials !");
