@@ -24,7 +24,7 @@ connection.once("open", ()=>{
 });
 
 
-
+/*type here*/
 
 app.listen(PORT, ()=>{
     console.log(`Server is up and running on PORT : ${PORT}`);
