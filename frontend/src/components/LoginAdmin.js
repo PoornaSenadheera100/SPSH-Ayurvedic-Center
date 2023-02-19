@@ -10,11 +10,11 @@ export default function LoginAdmin(){
         e.preventDefault();
         axios.get(`http://localhost:8070/admin/get/email/${email}`).then((res)=>{
             console.log(res.data);
-            if (res.data[0].password == password){
-                console.log("Done");
+            if (res.data[0].password === password){
+                window.location.replace(`http://localhost:3000/adminhome`);
             }
             else{
-                console.log("err");
+                alert("Invalid Credentials!");
             }
         }).catch((err)=>{
             alert(err.message);
@@ -26,15 +26,19 @@ export default function LoginAdmin(){
             <h1>This is Admin Login</h1>
 
             <form onSubmit={validate}>
-                <label for="email">Email</label>
+                <label htmlFor="email">Email</label>
                 <input type="email" id="email" placeholder="abc@gmail.com" required onChange={(e)=>{
                     setEmail(e.target.value);
                 }}/>
 
-                <label for="password">Password</label>
+                <br></br>
+
+                <label htmlFor="password">Password</label>
                 <input type="password" id="password" placeholder="Password" required onChange={(e)=>{
                     setPassword(e.target.value);
                 }}/>
+
+                <br></br>
 
                 <button type="submit">Submit</button>
             </form>
