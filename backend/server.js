@@ -13,6 +13,8 @@ app.use(bodyParser.json());
 
 const URL = process.env.MONGODB_URL;
 
+mongoose.set('strictQuery', true);
+
 mongoose.connect(URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
