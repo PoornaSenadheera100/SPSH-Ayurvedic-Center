@@ -22,4 +22,12 @@ router.route("/add").post((req, res)=>{
     })
 })
 
+router.route("/").get((req, res)=>{
+    Seller.find().then((seller)=>{
+        res.json(seller);
+    }).catch((err)=>{
+        console.log(err);
+    })
+})
+
 module.exports = router;
