@@ -33,6 +33,9 @@ app.use("/buyer", buyerRouter);
 const adminRouter = require("./routes/admin.js");
 app.use("/admin", adminRouter);
 
+const sellerRouter = require("./routes/seller.js");
+app.use("/seller", sellerRouter);
+
 
 
 
