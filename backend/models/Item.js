@@ -22,12 +22,6 @@ const itemSchema = new mongoose.Schema({
     Number,
     required: true
   }, 
-  date: {
-    type: Date,
-    //displays the current date.
-    default: Date.now,
-    required: true
-  },
   image:{
     type: BinData,
     required: true
