@@ -1,6 +1,11 @@
 const mongoose = require('mongoose');
 
 const itemSchema = new mongoose.Schema({
+
+  productId: {
+    type: String,
+    required: true
+  },
   name: {
     type: String,
     required: true
@@ -19,6 +24,7 @@ const itemSchema = new mongoose.Schema({
   }, 
   date: {
     type: Date,
+    //displays the current date.
     default: Date.now,
     required: true
   },
