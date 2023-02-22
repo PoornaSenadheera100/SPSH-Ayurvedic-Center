@@ -7,6 +7,7 @@ import LoginSeller from './components/LoginSeller';
 import LoginAdmin from './components/LoginAdmin';
 import HomeAdmin from './components/HomeAdmin';
 import HomeBuyer from './components/HomeBuyer';
+import HomeSeller from './components/HomeSeller';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
 
       <Route path = '/adminhome' exact component={HomeAdmin}/>
       <Route path = '/buyerhome' exact component={HomeBuyer}/>
+      <Route path = '/sellerhome' exact component={HomeSeller}/>
     </Router>
   );
 }
