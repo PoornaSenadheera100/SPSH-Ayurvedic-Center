@@ -1,6 +1,25 @@
+import { useState } from "react";
+
 export default function SignupBuyer(){
 
-    
+    const [name, setName] = useState({});
+    const [address, setAddress] = useState({});
+    const [nic, setNic] = useState({});
+    const [email, setEmail] = useState({});
+    const [phone, setPhone] = useState({});
+    const [newPassword, setNewPassword] = useState({});
+    const [rePassword, setRePassword] = useState({});
+
+    function sendData(e){
+        e.preventDefault();
+
+        if (newPassword != rePassword){
+            alert("Re-entered password does not match with the password that you have entered!");
+        }
+        else{
+            
+        }
+    }
 
     return(
         <div>
@@ -39,6 +58,8 @@ export default function SignupBuyer(){
                 <input type="phone" id="phone" placeholder="Phone No" required onChange={(e)=>{
                     setPhone(e.target.value);
                 }}/>
+
+                <br></br>
 
                 <label htmlFor="newpassword">New Password</label>
                 <input type="password" id="newpassword" placeholder="Password" required onChange={(e)=>{
