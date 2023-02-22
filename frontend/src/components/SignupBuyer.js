@@ -10,14 +10,19 @@ export default function SignupBuyer(){
     const [newPassword, setNewPassword] = useState({});
     const [rePassword, setRePassword] = useState({});
 
-    function sendData(e){
+    function sendData(){
+
+    }
+
+    function proceed(e){
         e.preventDefault();
 
         if (newPassword != rePassword){
             alert("Re-entered password does not match with the password that you have entered!");
         }
         else{
-            
+            checkAccount();
+            sendData();
         }
     }
 
@@ -25,7 +30,7 @@ export default function SignupBuyer(){
         <div>
             <h1>Create Your Account</h1>
 
-            <form onSubmit={sendData}>
+            <form onSubmit={proceed}>
                 <label htmlFor="name">Name</label>
                 <input type="text" id="name" placeholder="Enter your name" required onChange={(e)=>{
                     setName(e.target.value);
