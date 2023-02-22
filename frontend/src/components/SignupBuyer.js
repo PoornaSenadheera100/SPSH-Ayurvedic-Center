@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 
 export default function SignupBuyer(){
@@ -9,6 +10,7 @@ export default function SignupBuyer(){
     const [phone, setPhone] = useState({});
     const [newPassword, setNewPassword] = useState({});
     const [rePassword, setRePassword] = useState({});
+    const [account, setAccount] = useState([]);
 
     function sendData(){
 
@@ -21,7 +23,17 @@ export default function SignupBuyer(){
             alert("Re-entered password does not match with the password that you have entered!");
         }
         else{
-            checkAccount();
+            // checkAccount();
+            axios.get(`http://localhost:8070/buyer/get/email/${email}`).then((res)=>{
+                if (res.data[0] === undefined){
+                    console.log('Go ahead');
+                }
+                else{
+                    console.log("Acc have");
+                }
+            }).catch((err)=>{
+                console.log(err);
+            })
             sendData();
         }
     }
