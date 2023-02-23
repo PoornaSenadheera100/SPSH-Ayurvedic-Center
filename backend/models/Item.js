@@ -19,11 +19,12 @@ const itemSchema = new mongoose.Schema({
     required: true
   },
   quantity:{
-    Number,
+    type: Number,
     required: true
   }, 
   image:{
-    type: BinData,
+    data: Buffer,
+    contentType:String,
     required: true
   }
 });

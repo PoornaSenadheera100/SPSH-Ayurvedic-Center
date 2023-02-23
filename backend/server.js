@@ -4,6 +4,12 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
 const app = express();
+const multer = require("multer");
+
+const itemModel = require("./itemModel.model");
+
+
+
 require("dotenv").config();
 
 const PORT = process.env.PORT || 8070;
@@ -20,6 +26,25 @@ mongoose.connect(URL, {
     useUnifiedTopology: true
 });
 
+//multer has option called disk storage.2 parameters --> destination and file name.
+const Storage = multer.diskStorage({
+   //creates a folder called uploads and stores the files in it.
+    destination:'uploads',
+    //cb is the callback.
+    filename:(req,file,cb) => {
+        //since we could receive multiple files, we are going to store it with the original name.
+        cb(null,file.originalname);
+    },
+});
+
+//Specify the storage as multer storage.
+const upload = multer({
+    //Specify the storage as our "Storage" that we created.
+    storage:Storage
+//since we are uploading files one by one, we have to make use of "single".
+//we are going to upload images using this name (testImage).
+}).single('testImage')
+
 const connection = mongoose.connection;
 connection.once("open", ()=>{
     console.log("MongoDB Connection Success!");
@@ -27,6 +52,26 @@ connection.once("open", ()=>{
 
 
 /*type here*/
+
+app.post('/upload',(req,res)=>{
+    upload(req,res,(err)=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            //Create a new instance and save the details.
+            const newImage = new itemModel({
+                name: req.body.name,
+                image:{
+                    //shows the filename being added.
+                    data:req.file.filename,
+                    //type or format of image. Could be jpg,jpeg or png. Doesn't mattrer.
+                    contentType:'image/png'
+                }
+            })
+        }
+    })
+})
 
 app.listen(PORT, ()=>{
     console.log(`Server is up and running on PORT : ${PORT}`);
