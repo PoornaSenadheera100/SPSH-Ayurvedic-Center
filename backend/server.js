@@ -5,11 +5,6 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const app = express();
 const multer = require("multer");
-
-const itemModel = require("./itemModel.model");
-
-
-
 require("dotenv").config();
 
 const PORT = process.env.PORT || 8070;
@@ -43,6 +38,7 @@ const upload = multer({
     storage:Storage
 //since we are uploading files one by one, we have to make use of "single".
 //we are going to upload images using this name (testImage).
+//since we are uploading files one by one, should make use of "single"
 }).single('testImage')
 
 const connection = mongoose.connection;
@@ -60,7 +56,7 @@ app.post('/upload',(req,res)=>{
         }
         else{
             //Create a new instance and save the details.
-            const newImage = new itemModel({
+            const newItem = new Item({
                 name: req.body.name,
                 image:{
                     //shows the filename being added.
@@ -69,6 +65,8 @@ app.post('/upload',(req,res)=>{
                     contentType:'image/png'
                 }
             })
+            newItem.save().then(()=>res,send('Successfully uploaded'))
+            .catch(err=>console.log)
         }
     })
 })
