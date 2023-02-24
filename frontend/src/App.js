@@ -9,6 +9,8 @@ import HomeAdmin from './components/HomeAdmin';
 import HomeBuyer from './components/HomeBuyer';
 import HomeSeller from './components/HomeSeller';
 import SignupBuyer from './components/SignupBuyer';
+import ManageBuyers from './components/ManageBuyers';
+import ManageSellers from './components/ManageSellers';
 
 function App() {
   return (
@@ -24,6 +26,9 @@ function App() {
       <Route path = '/sellerhome' exact component={HomeSeller}/>
 
       <Route path='/buyersignup' exact component={SignupBuyer}/>
+
+      <Route path = '/adminhome/managebuyers' exact component={ManageBuyers}/>
+      <Route path = '/adminhome/managesellers' exact component={ManageSellers}/>
     </Router>
   );
 }
