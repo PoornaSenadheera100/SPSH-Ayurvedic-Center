@@ -8,9 +8,9 @@ export default function SignupBuyer(){
     const [nic, setNic] = useState({});
     const [email, setEmail] = useState({});
     const [phone, setPhone] = useState({});
-    const [newPassword, setNewPassword] = useState({});
+    const [password, setPassword] = useState({});
     const [rePassword, setRePassword] = useState({});
-    const [account, setAccount] = useState([]);
+    // const [account, setAccount] = useState([]);
 
     function sendData(){
 
@@ -19,17 +19,31 @@ export default function SignupBuyer(){
     function proceed(e){
         e.preventDefault();
 
-        if (newPassword != rePassword){
+        if (password !== rePassword){
             alert("Re-entered password does not match with the password that you have entered!");
         }
         else{
             // checkAccount();
             axios.get(`http://localhost:8070/buyer/get/email/${email}`).then((res)=>{
                 if (res.data[0] === undefined){
-                    console.log('Go ahead');
+                    const newBuyer = {
+                        name,
+                        address,
+                        nic,
+                        email,
+                        phone,
+                        password
+                    }
+
+                    axios.post("http://localhost:8070/buyer/add", newBuyer).then(()=>{
+                        alert("Registration Successfull !");
+                        window.location.replace("http://localhost:3000");
+                    }).catch((err)=>{
+                        alert("Something went wrong !");
+                    })
                 }
                 else{
-                    console.log("Acc have");
+                    alert("You already have an account !");
                 }
             }).catch((err)=>{
                 console.log(err);
@@ -80,7 +94,7 @@ export default function SignupBuyer(){
 
                 <label htmlFor="newpassword">New Password</label>
                 <input type="password" id="newpassword" placeholder="Password" required onChange={(e)=>{
-                    setNewPassword(e.target.value);
+                    setPassword(e.target.value);
                 }}/>
 
                 <br></br>
