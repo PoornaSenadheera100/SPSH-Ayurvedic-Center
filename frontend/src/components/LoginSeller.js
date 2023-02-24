@@ -39,7 +39,7 @@ export default function LoginSeller(){
 
                 <br></br>
 
-                <button type="submit">Submit</button>
+                <button type="submit">Login</button>
             </form>
         </div>
     )
