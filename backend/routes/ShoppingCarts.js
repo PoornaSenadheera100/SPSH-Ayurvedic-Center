@@ -6,10 +6,12 @@ let ShoppingCart=require("../models/ShoppingCarts");
 //Data insertion
 router.route("/add").post((req,res)=>{
 
-//have to put the variables 
+    const buyerEmail = req.body.buyerEmail;
+    const itemID = req.body.itemID;
+    const ProductQty = req.body.ProductQty
 
 const newShoppingCart = new ShoppingCart({
-    //put the defined variables 
+    buyerEmail,itemID,ProductQty
 })
 
 newShoppingCart.save().then(()=>{
@@ -21,13 +23,12 @@ newShoppingCart.save().then(()=>{
 
 //Read all the Items of shoppingCarts from the database
 router.route("/").get((req,res)=>{
-    Leave.find().then((ShoppingCart)=>{
+    ShoppingCart.find().then((ShoppingCart)=>{
         res.json(ShoppingCart)
     }).catch((err)=>{
         console.log(err)
     })
 })
-
 
 
 module.exports=router;
