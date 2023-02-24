@@ -10,11 +10,6 @@ export default function SignupBuyer(){
     const [phone, setPhone] = useState({});
     const [password, setPassword] = useState({});
     const [rePassword, setRePassword] = useState({});
-    // const [account, setAccount] = useState([]);
-
-    function sendData(){
-
-    }
 
     function proceed(e){
         e.preventDefault();
@@ -48,7 +43,6 @@ export default function SignupBuyer(){
             }).catch((err)=>{
                 console.log(err);
             })
-            sendData();
         }
     }
 
