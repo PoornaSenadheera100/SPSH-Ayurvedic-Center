@@ -42,17 +42,17 @@ export default function ManageSellers(){
                                     <td><center>{seller.email}</center></td>
                                     <td>
                                         <button className="btn btn-success btn-sm" onClick={()=>{
-                                            window.location.replace(`http://localhost:3000/transport/update/${seller.email}`);
+                                            window.location.replace(`http://localhost:3000/adminhome/managesellers/view/${seller.email}`);
                                         }}>View <i class="fa fa-pencil"></i></button>
                                     </td>
                                     <td>
                                         <button className="btn btn-success btn-sm" onClick={()=>{
-                                            window.location.replace(`http://localhost:3000/transport/update/${seller.email}`);
+                                            window.location.replace(`http://localhost:3000/adminhome/managesellers/update/${seller.email}`);
                                         }}>Update <i class="fa fa-pencil"></i></button>
                                     </td>
                                     <td>
                                         <button className="btn btn-danger btn-sm" onClick={()=>{
-                                            window.location.replace(`http://localhost:3000/transport/delete/${seller.email}`);
+                                            window.location.replace(`http://localhost:3000/adminhome/managesellers/delete/${seller.email}`);
                                         }}>Delete <i class="fa fa-trash-o fa-lg"></i></button>
                                     </td>
                                 </tr>
