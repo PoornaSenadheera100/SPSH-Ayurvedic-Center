@@ -34,9 +34,9 @@ router.route("/").get((req,res)=>{
 })
 
 //update 
-router.route("/update/:id").put(async(req,res)=> {
-    let userId = req.params.id;
-})
+// router.route("/update/:id").put(async(req,res)=> {
+//     let userId = req.params.id;
+// })
 
 
 module.exports=router;
