@@ -20,6 +20,30 @@ export default function AddItem() {
     console.log('Item Image:', itemImage);
   };
 
+  /*
+  app.post('/upload',(req,res)=>{
+    upload(req,res,(err)=>{
+        if(err){
+            console.log(err)
+        }
+        else{
+            //Create a new instance and save the details.
+            const newItem = new Item({
+                name: req.body.name,
+                image:{
+                    //shows the filename being added.
+                    data:req.file.filename,
+                    //type or format of image. Could be jpg,jpeg or png. Doesn't mattrer.
+                    contentType:'image/png'
+                }
+            })
+            newItem.save().then(()=>res,send('Successfully uploaded'))
+            .catch(err=>console.log)
+        }
+    })
+})
+*/
+
   const ItemNameChange = (event) => {
     
     setItemName(event.target.value);
