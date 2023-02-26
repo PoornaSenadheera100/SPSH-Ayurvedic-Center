@@ -1,5 +1,5 @@
 const router = require("express").Router();
-let Seller = require("../models/Item");
+let Item = require("../models/Item");
 
 router.route("/add").post((req, res)=>{
     const productId = req.body.productId;
@@ -14,6 +14,7 @@ router.route("/add").post((req, res)=>{
         productId,
         name,
         description,
+        price,
         quantity,
         image
     })
