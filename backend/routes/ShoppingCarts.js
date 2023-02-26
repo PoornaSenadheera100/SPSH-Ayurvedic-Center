@@ -11,7 +11,9 @@ router.route("/add").post((req,res)=>{
     const ProductQty = req.body.ProductQty
 
 const newShoppingCart = new ShoppingCart({
-    buyerEmail,itemID,ProductQty
+    buyerEmail,
+    itemID,
+    ProductQty
 })
 
 newShoppingCart.save().then(()=>{
@@ -21,6 +23,7 @@ newShoppingCart.save().then(()=>{
     })
 })
 
+//http://localhost:8070/ShoppingCart
 //Read all the Items of shoppingCarts from the database
 router.route("/").get((req,res)=>{
     ShoppingCart.find().then((ShoppingCart)=>{
@@ -28,6 +31,11 @@ router.route("/").get((req,res)=>{
     }).catch((err)=>{
         console.log(err)
     })
+})
+
+//update 
+router.route("/update/:id").put(async(req,res)=> {
+    let userId = req.params.id;
 })
 
 
