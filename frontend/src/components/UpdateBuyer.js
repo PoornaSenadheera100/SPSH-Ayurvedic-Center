@@ -4,33 +4,59 @@ import { useParams } from "react-router-dom"
 
 export default function UpdateBuyer(){
     
-    const [name, setName] = useState({});
-    const [address, setAddress] = useState({});
-    const [nic, setNic] = useState({});
-    const [email, setEmail] = useState({});
-    const [phone, setPhone] = useState({});
-    const [password, setPassword] = useState({});
-    const [rePassword, setRePassword] = useState({});
+    const [name, setName] = useState("");
+    const [address, setAddress] = useState("");
+    const [nic, setNic] = useState("");
+    const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
+    const [password, setPassword] = useState("");
+    const [rePassword, setRePassword] = useState("");
 
     const {paramemail} = useParams();
 
     useEffect(()=>{
         axios.get(`http://localhost:8070/buyer/get/email/${paramemail}`).then((res)=>{
+            console.log(res.data);
             setName(res.data[0].name);
             setAddress(res.data[0].address);
             setNic(res.data[0].nic);
+            setEmail(res.data[0].email);
             setPhone(res.data[0].phone);
         }).catch((err)=>{
             alert("Network Issue...");
         })
-    });
+    }, []);
 
     function proceed(e){
         e.preventDefault();
+
+        if (password !== rePassword){
+            alert("Re-entered password does not match with the password that you have entered!");
+        }
+        else{
+            const newBuyer = {
+                name,
+                address,
+                nic,
+                email,
+                phone,
+                password,
+                rePassword
+            }
+    
+            axios.put(`http://localhost:8070/buyer/update/${paramemail}`, newBuyer).then(()=>{
+                alert("Buyer Updated");
+                window.location.replace("http://localhost:3000/adminhome/managebuyers");
+            }).catch((err)=>{
+                alert("Network Error...");
+            })
+        }
     }
 
     return(
         <div>
+            <a href="/adminhome/managebuyers"><button>Back</button></a>
+
             <h1>Update Buyer</h1>
 
             <form onSubmit={proceed}>
@@ -56,7 +82,7 @@ export default function UpdateBuyer(){
                 <br></br>
 
                 <label htmlFor="email">Email</label>
-                <input type="email" id="email" placeholder="abc@gmail.com" value={email} required onChange={(e)=>{
+                <input type="email" id="email" placeholder="abc@gmail.com" value={email} required disabled onChange={(e)=>{
                     setEmail(e.target.value);
                 }}/>
 
