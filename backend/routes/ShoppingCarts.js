@@ -56,10 +56,10 @@ router.route("/update/:id").put(async(req,res)=> {
         ProductQty
     }
     const update = await ShoppingCart.findByIdAndUpdate(userId,updateShoppingcart).then(()=>{
-        res.status(200).send({status:"Cart updated",user:update});
+        res.status(200).send({status:"Cart updated"});
     }).catch((err)=>{
         console.log(err);
-        res.status(500).send({status:"Opps! Error in updating the cart"});
+        res.status(200).send({status:"Opps! Error in updating the cart"});
     })
   
 })
