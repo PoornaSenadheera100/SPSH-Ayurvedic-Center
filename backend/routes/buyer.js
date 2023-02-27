@@ -85,4 +85,15 @@ router.route("/update/:paramemail").put(async(req, res)=>{
     })
 })
 
+router.route("/delete/email/:paraemail").delete(async(req, res)=>{
+    let buyerEmail = req.params.paraemail;
+
+    await Buyer.findOneAndDelete({"email" : buyerEmail}).then(()=>{
+        res.status(200).send({status: "Buyer Deleted"});
+    }).catch((err)=>{
+        console.log(err.message);
+        res.status(500).send({status: "Error with delete Buyer", error: err.message});
+    })
+})
+
 module.exports = router;
