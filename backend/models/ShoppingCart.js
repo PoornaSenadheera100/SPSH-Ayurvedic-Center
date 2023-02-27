@@ -22,5 +22,5 @@ const cartShema = new Schema({
 })
 
 const ShoppingCart = mongoose.model("ShoppingCart",cartShema);
-modules.exports = ShoppingCart;
+module.exports = ShoppingCart;
 

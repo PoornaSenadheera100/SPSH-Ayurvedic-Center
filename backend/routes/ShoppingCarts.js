@@ -1,6 +1,6 @@
 const router=require("express").Router();
 const {request}=require("express");
-let ShoppingCart=require("../models/ShoppingCarts");
+let ShoppingCart=require("../models/ShoppingCart");
 
 
 //Data insertion
