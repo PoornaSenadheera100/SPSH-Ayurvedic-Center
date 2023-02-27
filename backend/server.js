@@ -5,6 +5,8 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const app = express();
 const multer = require("multer");
+//import file system.
+const fs = require('fs')
 require("dotenv").config();
 
 const PORT = process.env.PORT || 8070;
@@ -26,10 +28,13 @@ mongoose.connect(URL, {
 });
 
 //multer has option called disk storage.2 parameters --> destination and file name.
-const Storage = multer.diskStorage({
+//First we save the images in the computer, and then move it to MongoDB
+const storage = multer.diskStorage({
    //creates a folder called uploads and stores the files in it.
-    destination:'uploads',
+    destination:(req,file,cb)=>{
     //cb is the callback.
+    cb(null,'uploads')
+    },
     filename:(req,file,cb) => {
         //since we could receive multiple files, we are going to store it with the original name.
         cb(null,file.originalname);
@@ -39,15 +44,30 @@ const Storage = multer.diskStorage({
 //Specify the storage as multer storage.
 const upload = multer({
     //Specify the storage as our "Storage" that we created.
-    storage:Storage
+    storage:storage
 //since we are uploading files one by one, we have to make use of "single".
 //we are going to upload images using this name (testImage).
 //since we are uploading files one by one, should make use of "single"
-}).single('testImage')
+})
 
 const connection = mongoose.connection;
 connection.once("open", ()=>{
     console.log("MongoDB Connection Success!");
+});
+
+app.post('/',upload.single('testImage'),(req,res)=>{
+    const saveImage = new Item({
+        name: req.body.name,
+        image:{
+            data: fs.readFileSync('uploads/',req.file.filename),
+            contentType:"image/png"
+        },
+    });
+    saveImage.save()
+    .then((res)=>console.log('Image is saved'))
+    .catch((err)=>{
+        console.log(err,"error has occured");
+    });
 });
 
 
@@ -60,6 +80,7 @@ const itemRouter = require("./routes/items.js");
 //Express was initially assigned to a variable called "app"
 //This function uses 2 parameters.  When first parameter is called --> it loads the inventories.js file in the routes folder.(Path is assigned to inventoryRouter variable)
 app.use("/item",itemRouter);
+
 
 
 app.listen(PORT, ()=>{
