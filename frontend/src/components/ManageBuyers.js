@@ -18,6 +18,8 @@ export default function ManageBuyers(){
 
     return(
         <div>
+            <a href="/adminhome"><button>Back</button></a>
+
             <h1>Manage Buyers here</h1>
 
             <a href="/adminhome/managebuyers/add"><button>Add</button></a>
