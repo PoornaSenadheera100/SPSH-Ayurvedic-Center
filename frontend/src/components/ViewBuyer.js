@@ -12,7 +12,6 @@ export default function ViewBuyer(){
 
     useEffect(()=>{
         axios.get(`http://localhost:8070/buyer/get/email/${email}`).then((res)=>{
-            console.log(res.data);
             setName(res.data[0].name);
             setAddress(res.data[0].address);
             setNic(res.data[0].nic);
