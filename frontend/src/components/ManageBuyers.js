@@ -14,7 +14,7 @@ export default function ManageBuyers(){
             })
         }
         getBuyers();
-    }, [])
+    }, []);
 
     return(
         <div>
