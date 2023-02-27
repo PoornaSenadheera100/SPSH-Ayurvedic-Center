@@ -23,6 +23,7 @@ const itemSchema = new mongoose.Schema({
     required: true
   }, 
   image:{
+    //Buffer sis similar to "Array" data type.
     data: Buffer,
     contentType:String,
   }
