@@ -13,6 +13,7 @@ import ManageBuyers from './components/ManageBuyers';
 import ManageSellers from './components/ManageSellers';
 import AddSeller from './components/AddSeller';
 import ViewBuyer from './components/ViewBuyer';
+import UpdateBuyer from './components/UpdateBuyer';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
       <Route path = '/adminhome/managesellers/add' exact component={AddSeller}/>
 
       <Route path = '/adminhome/managebuyers/view/:email' exact component={ViewBuyer}/>
+      <Route path = '/adminhome/managebuyers/update/:paramemail' exact component={UpdateBuyer}/>
     </Router>
   );
 }
