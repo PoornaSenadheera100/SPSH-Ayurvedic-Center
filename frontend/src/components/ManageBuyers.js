@@ -28,13 +28,15 @@ export default function ManageBuyers(){
 
             {buyers.length !== 0 &&
                 <table className="table table-borderless" >
-                    <tr>
-                        <th><center>Name</center></th>
-                        <th><center>Email</center></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th><center>Name</center></th>
+                            <th><center>Email</center></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
 
                     <tbody>
                         {
