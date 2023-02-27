@@ -47,15 +47,16 @@ router.route("/retrieve/:buyerEmail").get(async(req,res)=>{
 
 //update a specific cart 
 
-router.route("/update/:id").put(async(req,res)=> {
-    let userId = req.params.id;
-    const {buyerEmail,itemID,ProductQty} = req.body;
+router.route("/update/:cid/:iid").put(async(req,res)=> {
+    let cartId = req.params.buyerEmail;
+    let itemID = req.params.itemID;
+
+    const {ProductQty} = req.body;
     const updateShoppingcart ={
-        buyerEmail,
-        itemID,
         ProductQty
     }
-    const update = await ShoppingCart.findByIdAndUpdate(userId,updateShoppingcart).then(()=>{
+    const update = await ShoppingCart.findOneAndUpdate({"buyerEmail": `${cartId}`}, {"itemID": `${itemID}`}, updateShoppingcart).then(()=>{
+        console.log(ProductQty);
         res.status(200).send({status:"Cart updated"});
     }).catch((err)=>{
         console.log(err);
