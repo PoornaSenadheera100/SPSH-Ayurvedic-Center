@@ -80,9 +80,6 @@ router.route("/update/:id").put(async(req,res)=>{
         console.log(err);
         res.status(500).send({status:"Error with updating data", error:err.message});
     })
-    
-   
-
 })
 
 module.exports = router;
