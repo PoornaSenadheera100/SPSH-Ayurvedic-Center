@@ -59,7 +59,7 @@ router.route("/update/:id").put(async(req,res)=> {
         res.status(200).send({status:"Cart updated",user:update});
     }).catch((err)=>{
         console.log(err);
-        res.status(200).send({status:"Opps! Error in updating the cart"});
+        res.status(500).send({status:"Opps! Error in updating the cart"});
     })
   
 })
