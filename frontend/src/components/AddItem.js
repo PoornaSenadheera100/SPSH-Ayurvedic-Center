@@ -100,6 +100,7 @@ export default function AddItem() {
   );
 }
 
+/*
 export default AddItem;
 
 //code (Past)
@@ -192,3 +193,4 @@ export default function AddSeller(){
         </div>
     )
 }
+*/
