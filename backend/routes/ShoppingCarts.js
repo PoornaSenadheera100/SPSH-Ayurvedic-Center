@@ -35,7 +35,7 @@ router.route("/").get((req,res)=>{
 
 //update a specific cart 
 
-router.route("/update/:id").put(async(req,res)=> {
+router.route("/shoppingCart/update/:id").put(async(req,res)=> {
     let userId = req.params.id;
     const {buyerEmail,itemID,ProductQty} = req.body;
     const updateShoppingcart ={
