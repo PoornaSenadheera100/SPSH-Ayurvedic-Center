@@ -61,27 +61,6 @@ const itemRouter = require("./routes/item_route.js");
 //This function uses 2 parameters.  When first parameter is called --> it loads the inventories.js file in the routes folder.(Path is assigned to inventoryRouter variable)
 app.use("/item",itemRouter);
 
-app.post('/upload',(req,res)=>{
-    upload(req,res,(err)=>{
-        if(err){
-            console.log(err)
-        }
-        else{
-            //Create a new instance and save the details.
-            const newItem = new Item({
-                name: req.body.name,
-                image:{
-                    //shows the filename being added.
-                    data:req.file.filename,
-                    //type or format of image. Could be jpg,jpeg or png. Doesn't mattrer.
-                    contentType:'image/png'
-                }
-            })
-            newItem.save().then(()=>res,send('Successfully uploaded'))
-            .catch(err=>console.log)
-        }
-    })
-})
 
 app.listen(PORT, ()=>{
     console.log(`Server is up and running on PORT : ${PORT}`);
