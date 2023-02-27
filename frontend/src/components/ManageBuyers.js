@@ -54,7 +54,15 @@ export default function ManageBuyers(){
                                     </td>
                                     <td>
                                         <button className="btn btn-danger btn-sm" onClick={()=>{
-                                            window.location.replace(`http://localhost:3000/adminhome/managebuyers/delete/${buyer.email}`);
+                                            var response = window.confirm("Are you sure you want to delete?");
+                                            if (response){
+                                                axios.delete(`http://localhost:8070/buyer/delete/email/${buyer.email}`).then(()=>{
+                                                    alert("Buyer Deleted");
+                                                    window.location.replace("http://localhost:3000/adminhome/managebuyers");
+                                                }).catch((err)=>{
+                                                    alert(err);
+                                                })
+                                            }
                                         }}>Delete <i class="fa fa-trash-o fa-lg"></i></button>
                                     </td>
                                 </tr>
