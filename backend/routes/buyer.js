@@ -65,4 +65,24 @@ router.route("/get/email/:email").get(async(req, res)=>{
     })
 })
 
+router.route("/update/:paramemail").put(async(req, res)=>{
+    let paramemail = req.params.paramemail;
+    const {name, address, nic, email, phone, password} = req.body;
+    const updateBuyer = {
+        name,
+        address,
+        nic,
+        email,
+        phone,
+        password
+    }
+
+    await Buyer.findOneAndUpdate({"email" : paramemail}, updateBuyer).then(()=>{
+        res.status(200).send({status: "Buyer Updated"});
+    }).catch((err)=>{
+        console.log(err);
+        res.status(500).send({status: "Error with updating the buyer", error: err.message});
+    })
+})
+
 module.exports = router;
