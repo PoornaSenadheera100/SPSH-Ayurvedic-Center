@@ -18,6 +18,7 @@ export default function ManageSellers(){
 
     return(
         <div>
+            <a href="/adminhome"><button>Back</button></a>
             <h1>Manage Sellers here</h1>
 
             <a href="/adminhome/managesellers/add"><button>Add</button></a>
