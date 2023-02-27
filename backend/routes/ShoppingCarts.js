@@ -33,11 +33,35 @@ router.route("/").get((req,res)=>{
     })
 })
 
-//update 
-// router.route("/update/:id").put(async(req,res)=> {
-//     let userId = req.params.id;
-// })
+//update a specific cart 
 
+router.route("/update/:id").put(async(req,res)=> {
+    let userId = req.params.id;
+    const {buyerEmail,itemID,ProductQty} = req.body;
+    const updateShoppingcart ={
+        buyerEmail,
+        itemID,
+        ProductQty
+    }
+    const update = await ShoppingCart.findByIdAndUpdate(userId,updateShoppingcart).then(()=>{
+        res.status(200).send({status:"Cart updated",user:update});
+    }).catch((err)=>{
+        console.log(err);
+        res.status(200).send({status:"Opps! Error in updating the cart"});
+    })
+  
+})
+
+//Delete a specific cart
+router.route("/shoppingCart/delete/:id").delete(async(req,res)=>{
+    let userId = req.params.id;
+    await ShoppingCart.findByIdAndDelete(userId).then(()=>{
+        res.status(200).send({status:"Cart updated",user:update});
+    }).catch((err)=>{
+        console.log(err.message);
+        res.status(500).send({status:"Error with delete user",error:err.message});
+    })
+})
 
 module.exports=router;
 
