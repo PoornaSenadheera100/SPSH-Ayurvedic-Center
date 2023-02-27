@@ -33,6 +33,23 @@ router.route("/").get((req,res)=>{
     })
 })
 
+//Read a specific cart items
+router.route("/shoppingCart/retrieve/:id").get(async(req,res)=>{
+    let userId = req.params.id;
+    const {buyerEmail,itemID,ProductQty} = req.body;
+    const getShoppingcart ={
+        buyerEmail,
+        itemID,
+        ProductQty
+    }
+    const retrieve = await ShoppingCart.findById(userId,getShoppingcart).then(()=>{
+        res.status(200).send({status:"Cart details successfully fetched",user:retrieve});
+    }).catch((err)=>{
+        console.log(err);
+        res.status(200).send({status:"Opps! Error in loading the cart items"});
+    })
+})
+
 //update a specific cart 
 
 router.route("/shoppingCart/update/:id").put(async(req,res)=> {
