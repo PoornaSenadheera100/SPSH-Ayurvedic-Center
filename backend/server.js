@@ -53,7 +53,7 @@ connection.once("open", ()=>{
 
 //The server.js should be able to access the "inventories.js" file of the "routes folder."
 //The inventories.js file access path is assigned to a variable called "inventoryRouter"
-const itemRouter = require("./routes/item_route.js");
+const itemRouter = require("./routes/item.js");
 
 //When passing data from frontend to backend, we use a URL and call the backend.(http://localhost:8070/inventory)  
 //There's a function called "use" in express.
