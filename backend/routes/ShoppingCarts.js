@@ -34,25 +34,20 @@ router.route("/").get((req,res)=>{
 })
 
 //Read a specific cart items
-router.route("/shoppingCart/retrieve/:id").get(async(req,res)=>{
-    let userId = req.params.id;
-    const {buyerEmail,itemID,ProductQty} = req.body;
-    const getShoppingcart ={
-        buyerEmail,
-        itemID,
-        ProductQty
-    }
-    const retrieve = await ShoppingCart.findById(userId,getShoppingcart).then(()=>{
-        res.status(200).send({status:"Cart details successfully fetched",user:retrieve});
+router.route("/retrieve/:buyerEmail").get(async(req,res)=>{
+    let buyerEmail = req.params.buyerEmail;
+    
+    const retrieve = await ShoppingCart.find({"buyerEmail": buyerEmail}).then((cart)=>{
+        res.json(cart);
     }).catch((err)=>{
         console.log(err);
-        res.status(200).send({status:"Opps! Error in loading the cart items"});
+        res.status(500).send({status:"Opps! Error in loading the cart items"});
     })
 })
 
 //update a specific cart 
 
-router.route("/shoppingCart/update/:id").put(async(req,res)=> {
+router.route("/update/:id").put(async(req,res)=> {
     let userId = req.params.id;
     const {buyerEmail,itemID,ProductQty} = req.body;
     const updateShoppingcart ={
@@ -70,13 +65,13 @@ router.route("/shoppingCart/update/:id").put(async(req,res)=> {
 })
 
 //Delete a specific cart
-router.route("/shoppingCart/delete/:id").delete(async(req,res)=>{
+router.route("/delete/:id").delete(async(req,res)=>{
     let userId = req.params.id;
     await ShoppingCart.findByIdAndDelete(userId).then(()=>{
-        res.status(200).send({status:"Cart updated",user:update});
+        res.status(200).send({status:"Cart deleted"});
     }).catch((err)=>{
         console.log(err.message);
-        res.status(500).send({status:"Error with delete user",error:err.message});
+        res.status(500).send({status:"Error in deleting cart",error:err.message});
     })
 })
 
