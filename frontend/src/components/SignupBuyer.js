@@ -48,6 +48,8 @@ export default function SignupBuyer(){
 
     return(
         <div>
+            <a href="/"><button>Back</button></a>
+            
             <h1>Create Your Account</h1>
 
             <form onSubmit={proceed}>

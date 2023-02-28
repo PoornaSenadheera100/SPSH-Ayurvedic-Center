@@ -22,6 +22,8 @@ export default function LoginBuyer(){
 
     return(
         <div>
+            <a href="/"><button>Back</button></a>
+
             <h1>This is Buyer Login</h1>
 
             <form onSubmit={validate}>

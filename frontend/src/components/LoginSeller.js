@@ -22,6 +22,8 @@ export default function LoginSeller(){
 
     return(
         <div>
+            <a href="/"><button>Back</button></a>
+            
             <h1>This is Seller Login</h1>
             
             <form onSubmit={validate}>

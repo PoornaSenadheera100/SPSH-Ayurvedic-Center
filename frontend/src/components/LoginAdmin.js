@@ -23,6 +23,8 @@ export default function LoginAdmin(){
 
     return(
         <div>
+            <a href="/"><button>Back</button></a>
+            
             <h1>This is Admin Login</h1>
 
             <form onSubmit={validate}>
