@@ -53,7 +53,15 @@ export default function ManageSellers(){
                                     </td>
                                     <td>
                                         <button className="btn btn-danger btn-sm" onClick={()=>{
-                                            window.location.replace(`http://localhost:3000/adminhome/managesellers/delete/${seller.email}`);
+                                            var response = window.confirm("Are you sure you want to delete this user?");
+                                            if (response){
+                                                axios.delete(`http://localhost:8070/seller/delete/email/${seller.email}`).then(()=>{
+                                                    alert("Seller Deleted");
+                                                    window.location.replace("http://localhost:3000/adminhome/managesellers");
+                                                }).catch((err)=>{
+                                                    alert(err);
+                                                })
+                                            }
                                         }}>Delete <i class="fa fa-trash-o fa-lg"></i></button>
                                     </td>
                                 </tr>
