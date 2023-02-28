@@ -33,6 +33,22 @@ export default function UpdateBuyer(){
         if (password !== rePassword){
             alert("Re-entered password does not match with the password that you have entered!");
         }
+        else if(password == '' && rePassword == ''){
+            const newBuyer = {
+                name,
+                address,
+                nic,
+                email,
+                phone
+            }
+    
+            axios.put(`http://localhost:8070/buyer/update/${paramemail}`, newBuyer).then(()=>{
+                alert("Buyer Updated");
+                window.location.replace("http://localhost:3000/adminhome/managebuyers");
+            }).catch((err)=>{
+                alert("Network Error...");
+            })
+        }
         else{
             const newBuyer = {
                 name,
@@ -93,16 +109,19 @@ export default function UpdateBuyer(){
                 }}/>
 
                 <br></br>
-
+                <br></br>
+                Leave the fields below blank if you do not want to change the password!
+                <br></br>
+                <br></br>
                 <label htmlFor="newpassword">New Password</label>
-                <input type="password" id="newpassword" placeholder="Enter New Password" required onChange={(e)=>{
+                <input type="password" id="newpassword" placeholder="Enter New Password" onChange={(e)=>{
                     setPassword(e.target.value);
                 }}/>
 
                 <br></br>
 
                 <label htmlFor="repassword">Re-enter Password</label>
-                <input type="password" id="repassword" placeholder="Re-Enter New Password" required onChange={(e)=>{
+                <input type="password" id="repassword" placeholder="Re-Enter New Password" onChange={(e)=>{
                     setRePassword(e.target.value);
                 }}/>
 
