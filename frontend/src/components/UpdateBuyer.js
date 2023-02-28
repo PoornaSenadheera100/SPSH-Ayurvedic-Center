@@ -40,8 +40,7 @@ export default function UpdateBuyer(){
                 nic,
                 email,
                 phone,
-                password,
-                rePassword
+                password
             }
     
             axios.put(`http://localhost:8070/buyer/update/${paramemail}`, newBuyer).then(()=>{
