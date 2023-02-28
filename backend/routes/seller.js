@@ -61,4 +61,33 @@ router.route("/get/email/:email").get(async(req, res)=>{
     })
 })
 
+router.route("/update/:paramemail").put(async(req, res)=>{
+    let paramemail = req.params.paramemail;
+    const {name, email, phone, password} = req.body;
+    const updateSeller = {
+        name,
+        email,
+        phone,
+        password
+    }
+
+    await Seller.findOneAndUpdate({"email" : paramemail}, updateSeller).then(()=>{
+        res.status(200).send({status: "Seller Updated"});
+    }).catch((err)=>{
+        console.log(err);
+        res.status(500).send({status: "Error with updating the seller", error: err.message});
+    })
+})
+
+router.route("/delete/email/:paraemail").delete(async(req, res)=>{
+    let sellerEmail = req.params.paraemail;
+
+    await Seller.findOneAndDelete({"email" : sellerEmail}).then(()=>{
+        res.status(200).send({status: "Seller Deleted"});
+    }).catch((err)=>{
+        console.log(err.message);
+        res.status(500).send({status: "Error with delete Seller", error: err.message});
+    })
+})
+
 module.exports = router;
