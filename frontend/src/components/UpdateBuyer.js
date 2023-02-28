@@ -16,7 +16,6 @@ export default function UpdateBuyer(){
 
     useEffect(()=>{
         axios.get(`http://localhost:8070/buyer/get/email/${paramemail}`).then((res)=>{
-            console.log(res.data);
             setName(res.data[0].name);
             setAddress(res.data[0].address);
             setNic(res.data[0].nic);
@@ -25,7 +24,7 @@ export default function UpdateBuyer(){
         }).catch((err)=>{
             alert("Network Issue...");
         })
-    }, []);
+    }, [paramemail]);
 
     function proceed(e){
         e.preventDefault();
@@ -33,7 +32,7 @@ export default function UpdateBuyer(){
         if (password !== rePassword){
             alert("Re-entered password does not match with the password that you have entered!");
         }
-        else if(password == '' && rePassword == ''){
+        else if(password === '' && rePassword === ''){
             const newBuyer = {
                 name,
                 address,
