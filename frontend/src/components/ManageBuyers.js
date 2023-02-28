@@ -56,7 +56,7 @@ export default function ManageBuyers(){
                                     </td>
                                     <td>
                                         <button className="btn btn-danger btn-sm" onClick={()=>{
-                                            var response = window.confirm("Are you sure you want to delete?");
+                                            var response = window.confirm("Are you sure you want to delete this user?");
                                             if (response){
                                                 axios.delete(`http://localhost:8070/buyer/delete/email/${buyer.email}`).then(()=>{
                                                     alert("Buyer Deleted");
