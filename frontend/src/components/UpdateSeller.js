@@ -14,14 +14,13 @@ export default function UpdateSeller(){
 
     useEffect(()=>{
         axios.get(`http://localhost:8070/seller/get/email/${paramemail}`).then((res)=>{
-            console.log(res.data);
             setName(res.data[0].name);
             setEmail(res.data[0].email);
             setPhone(res.data[0].phone);
         }).catch((err)=>{
             alert("Network Issue...");
         })
-    }, []);
+    }, [paramemail]);
 
     function proceed(e){
         e.preventDefault();
@@ -29,7 +28,7 @@ export default function UpdateSeller(){
         if (password !== rePassword){
             alert("Re-entered password does not match with the password that you have entered!");
         }
-        else if(password == '' && rePassword == ''){
+        else if(password === '' && rePassword === ''){
             const newSeller = {
                 name,
                 email,
