@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
  });
  
 
-//Specify the storage as multer storage.
+//Specify the storage as multer storage
 const upload = multer({
     //Specify the storage as our "Storage" that we created.
     storage:storage
@@ -28,7 +28,9 @@ const upload = multer({
 //since we are uploading files one by one, should make use of "single"
 })
 
-router.route("/add").post(upload.single('testImage'),(req, res)=>{
+//Since, the "single" method has "image", when passing data, the attribute will be "image"
+//If you had "testImage" instead, then in Postman, the attribute will be named as "testImage".
+router.route("/add").post(upload.single('image'),(req, res)=>{
     const productId = req.body.productId;
     const name = req.body.name;
     const description = req.body.description;
@@ -44,7 +46,7 @@ router.route("/add").post(upload.single('testImage'),(req, res)=>{
         price,
         quantity,
         image:{
-            data: fs.readFileSync('uploads/',req.file.filename),
+            data: fs.readFileSync('uploads/'+ req.file.filename),
             contentType:"image/png"
         },
     })
