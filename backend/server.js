@@ -27,48 +27,15 @@ mongoose.connect(URL, {
     useUnifiedTopology: true
 });
 
-//multer has option called disk storage.2 parameters --> destination and file name.
-//First we save the images in the computer, and then move it to MongoDB
-const storage = multer.diskStorage({
-   //creates a folder called uploads and stores the files in it.
-    destination:(req,file,cb)=>{
-    //cb is the callback.
-    cb(null,'uploads')
-    },
-    filename:(req,file,cb) => {
-        //since we could receive multiple files, we are going to store it with the original name.
-        cb(null,file.originalname);
-    },
-});
 
-//Specify the storage as multer storage.
-const upload = multer({
-    //Specify the storage as our "Storage" that we created.
-    storage:storage
-//since we are uploading files one by one, we have to make use of "single".
-//we are going to upload images using this name (testImage).
-//since we are uploading files one by one, should make use of "single"
-})
+
 
 const connection = mongoose.connection;
 connection.once("open", ()=>{
     console.log("MongoDB Connection Success!");
 });
 
-app.post('/',upload.single('testImage'),(req,res)=>{
-    const saveImage = new Item({
-        name: req.body.name,
-        image:{
-            data: fs.readFileSync('uploads/',req.file.filename),
-            contentType:"image/png"
-        },
-    });
-    saveImage.save()
-    .then((res)=>console.log('Image is saved'))
-    .catch((err)=>{
-        console.log(err,"error has occured");
-    });
-});
+
 
 
 //The server.js should be able to access the "inventories.js" file of the "routes folder."
