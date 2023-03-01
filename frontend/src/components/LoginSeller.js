@@ -3,6 +3,10 @@ import { useState } from "react";
 
 export default function LoginSeller(){
 
+    if(sessionStorage.getItem("sAyurCenRelles") !== null){
+        window.location.replace("/sellerhome");
+    }
+
     const [email, setEmail] = useState({});
     const [password, setPassword] = useState({});
 
@@ -10,6 +14,7 @@ export default function LoginSeller(){
         e.preventDefault();
         axios.get(`http://localhost:8070/seller/get/email/${email}`).then((res)=>{
             if (res.data[0].password === password){
+                sessionStorage.setItem("sAyurCenRelles", Math.random().toString());
                 window.location.replace(`http://localhost:3000/sellerhome`);
             }
             else{
