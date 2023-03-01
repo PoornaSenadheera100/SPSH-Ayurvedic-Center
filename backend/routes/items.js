@@ -57,7 +57,8 @@ router.route("/add").post(upload.single('image'),(req, res)=>{
         res.json("Item Added.");
     }).catch((err)=>{
         console.log(err);
-    })
+    });
+   
 })
 
 //RETRIEVE DETAILS ROUTE.
