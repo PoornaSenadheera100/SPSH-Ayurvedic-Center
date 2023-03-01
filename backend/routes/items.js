@@ -36,6 +36,7 @@ router.route("/add").post(upload.single('image'),(req, res)=>{
     const description = req.body.description;
     const price = req.body.price;
     const quantity = Number(req.body.quantity);
+    //This is where you read the content or the file.
     const image = {
         data: fs.readFileSync('uploads/'+ req.file.filename),
         contentType:"image/png"
