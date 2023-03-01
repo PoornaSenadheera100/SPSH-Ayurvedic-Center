@@ -3,6 +3,10 @@ import axios from 'axios';
 
 export default function LoginAdmin(){
 
+    if(sessionStorage.getItem("sAyurCenNimda") !== null){
+        window.location.replace("/adminhome");
+    }
+
     const [email, setEmail] = useState({});
     const [password, setPassword] = useState({});
 
