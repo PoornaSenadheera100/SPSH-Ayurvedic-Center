@@ -3,6 +3,10 @@ import { useState } from "react";
 
 export default function AddSeller(){
 
+    if(sessionStorage.getItem("sAyurCenNimda") === null){
+        window.location.replace("/adminlogin");
+    }
+
     const [name, setName] = useState({});
     const [email, setEmail] = useState({});
     const [phone, setPhone] = useState({});
@@ -44,6 +48,8 @@ export default function AddSeller(){
 
     return(
         <div>
+            <a href="/adminhome/managesellers"><button>Back</button></a>
+            
             <h1>Create a Seller Account</h1>
 
             <form onSubmit={proceed}>

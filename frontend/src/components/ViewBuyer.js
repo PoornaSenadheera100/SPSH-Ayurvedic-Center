@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 
 export default function ViewBuyer(){
+
+    if(sessionStorage.getItem("sAyurCenNimda") === null){
+        window.location.replace("/adminlogin");
+    }
     
     const {email} = useParams();
     const [name, setName] = useState("");

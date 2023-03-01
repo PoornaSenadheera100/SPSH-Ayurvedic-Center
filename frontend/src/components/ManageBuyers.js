@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 
 export default function ManageBuyers(){
 
+    if(sessionStorage.getItem("sAyurCenNimda") === null){
+        window.location.replace("/adminlogin");
+    }
+
     const [buyers, setBuyers] = useState([]);
     
     useEffect(()=>{
