@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import FileBase64 from 'react-file-base64';
 import axios from "axios";
 
 export default function AddItem() {
