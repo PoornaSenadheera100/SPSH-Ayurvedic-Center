@@ -11,6 +11,7 @@ export default function LoginAdmin(){
         axios.get(`http://localhost:8070/admin/get/email/${email}`).then((res)=>{
             console.log(res.data);
             if (res.data[0].password === password){
+                sessionStorage.setItem("sAyurCenNimda", Math.random().toString());
                 window.location.replace(`http://localhost:3000/adminhome`);
             }
             else{
