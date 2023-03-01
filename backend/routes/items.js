@@ -36,7 +36,10 @@ router.route("/add").post(upload.single('image'),(req, res)=>{
     const description = req.body.description;
     const price = req.body.price;
     const quantity = Number(req.body.quantity);
-    const image = req.body.image;
+    const image = {
+        data: fs.readFileSync('uploads/'+ req.file.filename),
+        contentType:"image/png"
+    }
 
 
     const newItem = new Item({
@@ -45,10 +48,7 @@ router.route("/add").post(upload.single('image'),(req, res)=>{
         description,
         price,
         quantity,
-        image:{
-            data: fs.readFileSync('uploads/'+ req.file.filename),
-            contentType:"image/png"
-        },
+        image
     })
 
     newItem.save().
