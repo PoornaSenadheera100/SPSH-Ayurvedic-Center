@@ -1,7 +1,31 @@
 const router = require("express").Router();
 let Item = require("../models/Item");
 
-router.route("/add").post((req, res)=>{
+//multer has option called disk storage.2 parameters --> destination and file name.
+//First we save the images in the computer, and then move it to MongoDB
+const storage = multer.diskStorage({
+    //creates a folder called uploads and stores the files in it.
+     destination:(req,file,cb)=>{
+     //cb is the callback.
+     cb(null,'uploads')
+     },
+     filename:(req,file,cb) => {
+         //since we could receive multiple files, we are going to store it with the original name.
+         cb(null,file.originalname);
+     },
+ });
+ 
+
+//Specify the storage as multer storage.
+const upload = multer({
+    //Specify the storage as our "Storage" that we created.
+    storage:storage
+//since we are uploading files one by one, we have to make use of "single".
+//we are going to upload images using this name (testImage).
+//since we are uploading files one by one, should make use of "single"
+})
+
+router.route("/add").post(upload.single('testImage'),(req, res)=>{
     const productId = req.body.productId;
     const name = req.body.name;
     const description = req.body.description;
@@ -16,10 +40,14 @@ router.route("/add").post((req, res)=>{
         description,
         price,
         quantity,
-        image
+        image:{
+            data: fs.readFileSync('uploads/',req.file.filename),
+            contentType:"image/png"
+        },
     })
 
-    newItem.save().then(()=>{
+    newItem.save().
+    then(()=>{
         res.json("Item Added.");
     }).catch((err)=>{
         console.log(err);
@@ -80,6 +108,7 @@ router.route("/update/:id").put(async(req,res)=>{
         console.log(err);
         res.status(500).send({status:"Error with updating data", error:err.message});
     })
+
 })
 
 module.exports = router;
