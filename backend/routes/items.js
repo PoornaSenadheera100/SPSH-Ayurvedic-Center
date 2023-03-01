@@ -1,5 +1,8 @@
 const router = require("express").Router();
 let Item = require("../models/Item");
+const multer = require("multer");
+//import file system.
+const fs = require('fs');
 
 //multer has option called disk storage.2 parameters --> destination and file name.
 //First we save the images in the computer, and then move it to MongoDB
