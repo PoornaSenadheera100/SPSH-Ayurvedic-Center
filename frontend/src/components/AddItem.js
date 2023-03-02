@@ -103,6 +103,7 @@ export default function AddItem() {
 //First thing it returns --->This "useState" returns the value of the state.(The counter we developed using the "increment" button for instance)
 //Second thing it returns ---> The "useState" also has the respective function to be implemented that reveals how the state value is updated.
 import React, { useEffect, useState } from "react";
+import FileBase64 from 'react-file-base64';
 //import ReactDOM from 'react-dom';
 //Import axios from the axios package we installed.This is needed to move the data from the frontend to the backend via an http request
 import axios from "axios";
@@ -240,7 +241,7 @@ export default function AddItem() {
 
                     <div class="col-sm-10">
                         <input type="text" className="form-control" required id="description" placeholder="Enter Description" onChange={(e) => {
-                            setInvoiceNo(e.target.value);
+                            setItemDescription(e.target.value);
                         }} />
                     </div>
                 </div>
