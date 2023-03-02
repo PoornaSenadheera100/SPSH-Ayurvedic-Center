@@ -21,29 +21,6 @@ export default function AddItem() {
     console.log('Item Image:', itemImage);
   };
 
-  /*
-  app.post('/upload',(req,res)=>{
-    upload(req,res,(err)=>{
-        if(err){
-            console.log(err)
-        }
-        else{
-            //Create a new instance and save the details.
-            const newItem = new Item({
-                name: req.body.name,
-                image:{
-                    //shows the filename being added.
-                    data:req.file.filename,
-                    //type or format of image. Could be jpg,jpeg or png. Doesn't mattrer.
-                    contentType:'image/png'
-                }
-            })
-            newItem.save().then(()=>res,send('Successfully uploaded'))
-            .catch(err=>console.log)
-        }
-    })
-})
-*/
 
   const ItemNameChange = (event) => {
     
@@ -70,29 +47,36 @@ export default function AddItem() {
         }}/>
 
         <label htmlFor="item_name">Item Name</label>
-        <input type="texr" id="name" placeholder="Enter Item Name" required onChange={(e)=>{
+        <input type="text" id="name" placeholder="Enter Item Name" required onChange={(e)=>{
             setItemName(e.target.value);
         }}/>
 
-        <label htmlFor="phone">Phone</label>
-        <input type="phone" id="phone" placeholder="Phone No" required onChange={(e)=>{
-            setPhone(e.target.value);
+        <label htmlFor="item_quantity">Quantity</label>
+        <input type="number" id="quantity" placeholder="Enter Quantity" required onChange={(e)=>{
+            setItemQty(e.target.value);
         }}/>
 
         <br></br>
 
-        <label htmlFor="newpassword">New Password</label>
-        <input type="password" id="newpassword" placeholder="Password" required onChange={(e)=>{
-            setPassword(e.target.value);
+
+        <label htmlFor="item_description">Item Description</label>
+        <input type="text" id="description" placeholder="Enter Description" required onChange={(e)=>{
+            setItemDesc(e.target.value);
         }}/>
 
         <br></br>
 
-        <label htmlFor="repassword">Re-enter Password</label>
-        <input type="password" id="repassword" placeholder="Password" required onChange={(e)=>{
-            setRePassword(e.target.value);
+        <label htmlFor="item_price">Item Price</label>
+        <input type="number" id="price" placeholder="Enter Price" required onChange={(e)=>{
+            setItemPrice(e.target.value);
         }}/>
 
+        <br></br>
+
+        <label htmlFor="item_image">Image</label>
+        <input type="file" id="image" placeholder="Upload Image" required onChange={(e)=>{
+            setItemImage(e.target.value);
+        }}/>
         <br></br>
 
         <button type="submit">Submit</button>
