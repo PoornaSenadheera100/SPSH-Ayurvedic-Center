@@ -2,27 +2,27 @@ const mongoose = require('mongoose');
 
 const itemSchema = new mongoose.Schema({
 
-  productId: {
+  ProductId: {
     type: String,
     required: true
   },
-  name: {
+  Name: {
     type: String,
     required: true
   },
-  description:{
+  Description:{
     type: String,
     required: true
   }, 
-  price: {
+  Price: {
     type: Number,
     required: true
   },
-  quantity:{
+  Quantity:{
     type: Number, 
     required: true
   }, 
-  image:{
+  Image:{
     //Buffer sis similar to "Array" data type.
     data: Buffer,
     contentType:String,
