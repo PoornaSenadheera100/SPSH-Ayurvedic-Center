@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/*import React, { useState } from 'react';
 import FileBase64 from 'react-file-base64';
 import axios from "axios";
 
@@ -22,6 +22,7 @@ export default function AddItem() {
   };
 
 
+
   const ItemNameChange = (event) => {
     
     setItemName(event.target.value);
@@ -29,12 +30,19 @@ export default function AddItem() {
 
   const handleProductImageChange = (event) => {
     const imageFile = event.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-        setItemImage(reader.result);
-    };
+    var reader = new FileReader();
     reader.readAsDataURL(imageFile);
+    reader.onload = () => {
+        setItemImage(reader.result);
+        console.log(reader.result); //converts to base64.
+    };
+    reader.onerror = error => {
+        console.log("Error : ",error);
+    };
+    
   };
+
+  
 
   return (
     <div>
@@ -74,8 +82,8 @@ export default function AddItem() {
         <br></br>
 
         <label htmlFor="item_image">Image</label>
-        <input type="file" id="image" placeholder="Upload Image" required onChange={(e)=>{
-            setItemImage(e.target.value);
+        <input accept = "image/*" type="file" id="image" placeholder="Upload Image" required onChange={(e)=>{
+            handleProductImageChange(e.target.value);
         }}/>
         <br></br>
 
@@ -85,97 +93,194 @@ export default function AddItem() {
   );
 }
 
-/*
-export default AddItem;
+*/
 
-//code (Past)
+
+
+//import the React library here, which was assigned to a variable callled "react" in package.json
+//The useState function in 'ReactHook' will be called in the import statement. ---> this helps to define a "state" in a function based approach, without the use of a constructor.
+//If we don't use the "Export default" --> have to include the curly brackets surrounding "useState"
+//First thing it returns --->This "useState" returns the value of the state.(The counter we developed using the "increment" button for instance)
+//Second thing it returns ---> The "useState" also has the respective function to be implemented that reveals how the state value is updated.
+import React, { useEffect, useState } from "react";
+//import ReactDOM from 'react-dom';
+//Import axios from the axios package we installed.This is needed to move the data from the frontend to the backend via an http request
 import axios from "axios";
-import { useState } from "react";
 
-export default function AddSeller(){
+export default function AddItem() {
 
-    const [name, setName] = useState({});
-    const [email, setEmail] = useState({});
-    const [phone, setPhone] = useState({});
-    const [password, setPassword] = useState({});
-    const [rePassword, setRePassword] = useState({});
+    //Create 3 variables/states for name,age and gender
+    //The initialization of these 3 states have been done below.
+    //It is using the setName/setAge/setGender that we assign values to the states of name/age/gender respectively.
+    //As the initial/default value we pass ("") in the useState of each respective state.
+    //onChange is an event
+    //The values passed in the text field of the form should be assigned to the respective state(name,age,gender) --> we do this using the onChange event available.
+    //Value given in the input field to record he name should be passed to the state "name" respectively. ---> could be done using the setName method.
+    //In the setName method we pass an argument ---> (e.target.value) --> what happens in taget.value is ---> value entered in the text field to input the name will be assigned to the state of "name".
+    //Same process applies to the other 2 variables as well.
+    const [ProductId,setItemCode] = useState('');
+    const [Name, setItemName] = useState('');
+    const [Description,setItemDescription] = useState('');
+    const [Price,setItemPrice] = useState();
+    const [Quantity, setItemQty] = useState();
+    const [Image, setItemImage] = useState('');
 
-    function proceed(e){
+
+
+    useEffect(() => {
+        axios.get("http://localhost:8070/item/").then((res) => {
+            console.log(res.data);
+           // setInventories(res.data);
+            // console.log(inventories[1].ItemCode);
+        }).catch((err) => {
+            alert(err.message);
+        })
+    }, [])
+
+
+     const handleProductImageChange = (event) => {
+    const imageFile = event.target.files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(imageFile);
+    reader.onload = () => {
+        setItemImage(reader.result);
+        console.log(reader.result); //converts to base64.
+    };
+    reader.onerror = error => {
+        console.log("Error : ",error);
+    };
+    
+  };
+
+
+
+    function sendData(e) {
+        //The below code prevents the normal behaviour of the submit button.
         e.preventDefault();
 
-        if (password !== rePassword){
-            alert("Re-entered password does not match with the password that you have entered!");
-        }
-        else{
-            // checkAccount();
-            axios.get(`http://localhost:8070/seller/get/email/${email}`).then((res)=>{
-                if (res.data[0] === undefined){
-                    const newSeller = {
-                        name,
-                        email,
-                        phone,
-                        password
-                    }
 
-                    axios.post("http://localhost:8070/seller/add", newSeller).then(()=>{
-                        alert("Registration Successfull !");
-                        window.location.replace("http://localhost:3000/adminhome/managesellers");
-                    }).catch((err)=>{
-                        alert("Something went wrong !");
-                    })
-                }
-                else{
-                    alert("The seller already has an account !");
-                }
-            }).catch((err)=>{
-                console.log(err);
-            })
+
+        //Create a javascript object. That passes the 3 attributes.
+        const newItem = {
+            ProductId,
+            Name,
+            Description, 
+            Price,
+            Quantity, 
+            Image
         }
+
+
+
+
+        //We pass the data from the frontend to the backend using the post http request.
+        //Then the backend server responds with another http request.
+        //This http response coming from the backend is handled using a seperate npm package called "axios" --> this is imported at the top following the installation.
+        //axios has a method called post that passes 3 arguments usually, if there is authentication(No authentication meaning --> only 2 parameters)
+        //Pass the backend URL as the first parameter.
+        //Pass the JS object next as the second parameter, that holds the 3 attributes passed through the form.
+
+        axios.post("http://localhost:8070/item/add", newItem).then(() => {
+            //After sending the data --> backend server responds --> if successfully added then an alert message is sent.
+            alert(`Item Added`);
+
+
+            //After submitting the details ---> the values should be taken off from the fields ---> to do this --> the setters are assigned with ("")
+            setItemCode("");
+            setItemName("");
+            setItemDescription("");
+            setItemPrice();
+            setItemQty();
+            setItemImage("");
+
+            //Can move to the home page after deleting the data
+            // window.location.replace("http://localhost:3000/item");
+
+            //can move to the add student page after deleting the data.  
+            //window.location.replace("http://localhost:3000/inventory/add");
+        }).catch((err) => {
+            //After sending the data --> backend server responds --> if it wasn't successfully added --> the error is handled as an exception.
+            alert(err);
+        })
+        //Pass the js object that we created in the console.(This will display the name, age,gender that's passed).
+        //console.log(newStudent);
     }
 
-    return(
+    return (
         <div>
-            <h1>Create a Seller Account</h1>
+             <h1>Add Item</h1>
+            <form onSubmit={sendData}>
+                <div className="form-group"  >
+                    <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
+                        <label for="name">Item Code</label>
+                    </div>
 
-            <form onSubmit={proceed}>
-                <label htmlFor="name">Name</label>
-                <input type="text" id="name" placeholder="Enter your name" required onChange={(e)=>{
-                    setName(e.target.value);
-                }}/>
+                    <div class="col-sm-10">
+                        <input type="text" className="form-control" required id="code" placeholder="Enter item code" onChange={(e) => {
+                            setItemCode(e.target.value);
+                        }} />
+                        <div required/>
+                    </div>
+                </div>
+                <div className="form-group">
+                    <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
+                        <label for="description">Item Name</label>
+                    </div>
 
-                <br></br>
+                    <div class="col-sm-10">
+                        <input type="text" className="form-control" id="description" required placeholder="Enter Name" onChange={(e) => {
+                            setItemName(e.target.value);
+                        }} />
+                    </div>
+                </div>
+                <div className="form-group">
+                    <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
+                        <label for="description">Item Description</label>
+                    </div>
 
-                <label htmlFor="email">Email</label>
-                <input type="email" id="email" placeholder="abc@gmail.com" required onChange={(e)=>{
-                    setEmail(e.target.value);
-                }}/>
+                    <div class="col-sm-10">
+                        <input type="text" className="form-control" required id="description" placeholder="Enter Description" onChange={(e) => {
+                            setInvoiceNo(e.target.value);
+                        }} />
+                    </div>
+                </div>
 
-                <br></br>
+                <div className="form-group">
+                    <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
+                        <label for="quantity">Item Price</label>
+                    </div>
 
-                <label htmlFor="phone">Phone</label>
-                <input type="phone" id="phone" placeholder="Phone No" required onChange={(e)=>{
-                    setPhone(e.target.value);
-                }}/>
+                    <div class="col-sm-10">
+                        <input type="number" className="form-control" required id="price" placeholder="Enter Price " onChange={(e) => {
+                            setItemPrice(e.target.value);
+                            
+                        }} />
+                    </div>
+                </div>
 
-                <br></br>
+                <div className="form-group">
+                    <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
+                        <label for="quantity">Quantity</label>
+                    </div>
 
-                <label htmlFor="newpassword">New Password</label>
-                <input type="password" id="newpassword" placeholder="Password" required onChange={(e)=>{
-                    setPassword(e.target.value);
-                }}/>
+                    <div class="col-sm-10">
+                        <input type="number" className="form-control" required id="quantity" placeholder="Enter Quantity " onChange={(e) => {
+                            setItemQty(e.target.value);
+                        }}/>
+                    </div>
+                </div>
 
-                <br></br>
-
-                <label htmlFor="repassword">Re-enter Password</label>
-                <input type="password" id="repassword" placeholder="Password" required onChange={(e)=>{
-                    setRePassword(e.target.value);
-                }}/>
-
-                <br></br>
-
-                <button type="submit">Submit</button>
+                <div class="col-sm-10">
+                    <label htmlFor="item_image">Image</label>
+                        <input accept = "image/*" type="file" id="image" placeholder="Upload Image" required onChange={(e)=>{
+                        handleProductImageChange(e.target.value);
+            }}/>
+            </div>
+            <br></br>
+                <button type="submit" class="btn btn-success">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a  type="button" href = "/inventory" class="btn btn-secondary">Back</a>
             </form>
         </div>
     )
 }
-*/
+
