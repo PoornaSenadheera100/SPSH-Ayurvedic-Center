@@ -63,17 +63,17 @@ router.route("/update/:buyerEmail/:itemID").put(async(req,res)=> {
         console.log(err);
         res.status(200).send({status:"Opps! Error in updating the cart"});
     })
-  
 })
 
 //Delete a specific cart
-router.route("/delete/:id").delete(async(req,res)=>{
-    let userId = req.params.id;
-    await ShoppingCart.findByIdAndDelete(userId).then(()=>{
-        res.status(200).send({status:"Cart deleted"});
+router.route("/delete/:buyerEmail/:itemID").delete(async(req,res)=>{
+    let userID = req.params.buyerEmail;
+    let itemID = req.params.itemID
+    await ShoppingCart.findOneAndDelete({buyerEmail: userID, itemID: itemID}).then(()=>{
+        res.status(200).send({status:"Item deleted"});
     }).catch((err)=>{
         console.log(err.message);
-        res.status(500).send({status:"Error in deleting cart",error:err.message});
+        res.status(500).send({status:"Error in deleting item",error:err.message});
     })
 })
 
