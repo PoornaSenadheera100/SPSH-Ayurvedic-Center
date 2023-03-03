@@ -25,6 +25,8 @@ connection.once("open", ()=>{
     console.log("MongoDB Connection Success!");
 });
 
+const ShoppingCartRouter = require("./routes/shoppingCarts.js");
+app.use("/ShoppingCart",ShoppingCartRouter);
 
 
 const buyerRouter = require("./routes/buyer.js");
