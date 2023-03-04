@@ -26,20 +26,7 @@ export default function HomeBuyer(){
         getItems();
 
     },[])
-    // function checkStock() {
-    //     // e.preventdefault();
-    //     if (InvQuantity >= ReqQuantity) {
-    //         setInvQuantity(InvQuantity - ReqQuantity);
-    //         //if its is onChange --> use "let" variables.
-    //         //if it is onClick --> can use both(const and let)
-    //         alert("Stocks request granted");
-
-    //     }
-    //     else {
-    //         alert("Request Denied");
-    //     }
-    // }
-
+ 
 
     return(
         <div>
@@ -69,18 +56,11 @@ export default function HomeBuyer(){
                                 <td>{item.description}</td>
                                 <td>{item.price}</td>
                                 <td>{item.quantity}</td>
-                                <td><input type={'number'} value={count} ></input></td>
+                                <td><input type={'number'} value={count} onChange={(e)=>{
+                                    setCount(e.target.value);
+                                }} ></input></td>
                                 <td><button>Add cart</button></td>
-                                {/* <td>{item.total_Days}</td>  */}
-                                
-                                {/* <td><button className="btn btn-success" onClick={()=>{
-                                    history.push(`/update/${leave._id}`);
-                                    window.location.replace(`http://localhost:3000/leave/update/${leave._id}`);
-                                }}>Update <i class="fa fa-pencil"></i></button></td>
-                                <td><button className="btn btn-danger"onClick={()=>{
-                                    history.push(`/delete/${leave._id}`);
-                                    window.location.replace(`http://localhost:3000/leave/delete/${leave._id}`);
-                                }}>Delete <i class="fa fa-trash-o"></i></button></td> */}
+                             
 
                              
             
