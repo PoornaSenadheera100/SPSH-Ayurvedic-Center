@@ -10,6 +10,7 @@ export default function HomeBuyer(){
 
     //Creating variables 
     const [items,setitems]=useState([]);
+    const [count,setCount]=useState(1);
     let history = useHistory();
 
 
@@ -25,19 +26,19 @@ export default function HomeBuyer(){
         getItems();
 
     },[])
-    function checkStock() {
-        // e.preventdefault();
-        if (InvQuantity >= ReqQuantity) {
-            setInvQuantity(InvQuantity - ReqQuantity);
-            //if its is onChange --> use "let" variables.
-            //if it is onClick --> can use both(const and let)
-            alert("Stocks request granted");
+    // function checkStock() {
+    //     // e.preventdefault();
+    //     if (InvQuantity >= ReqQuantity) {
+    //         setInvQuantity(InvQuantity - ReqQuantity);
+    //         //if its is onChange --> use "let" variables.
+    //         //if it is onClick --> can use both(const and let)
+    //         alert("Stocks request granted");
 
-        }
-        else {
-            alert("Request Denied");
-        }
-    }
+    //     }
+    //     else {
+    //         alert("Request Denied");
+    //     }
+    // }
 
 
     return(
@@ -68,6 +69,7 @@ export default function HomeBuyer(){
                                 <td>{item.description}</td>
                                 <td>{item.price}</td>
                                 <td>{item.quantity}</td>
+                                <td><input type={'number'} value={count} ></input></td>
                                 <td><button>Add cart</button></td>
                                 {/* <td>{item.total_Days}</td>  */}
                                 
