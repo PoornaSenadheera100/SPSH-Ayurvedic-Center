@@ -1,3 +1,4 @@
+// rafce --> this command will automatically generate the basic code.
 /*import React, { useState } from 'react';
 import FileBase64 from 'react-file-base64';
 import axios from "axios";
@@ -107,6 +108,7 @@ import FileBase64 from 'react-file-base64';
 //import ReactDOM from 'react-dom';
 //Import axios from the axios package we installed.This is needed to move the data from the frontend to the backend via an http request
 import axios from "axios";
+//const fs = require('fs');
 
 export default function AddItem() {
 
@@ -119,12 +121,12 @@ export default function AddItem() {
     //Value given in the input field to record he name should be passed to the state "name" respectively. ---> could be done using the setName method.
     //In the setName method we pass an argument ---> (e.target.value) --> what happens in taget.value is ---> value entered in the text field to input the name will be assigned to the state of "name".
     //Same process applies to the other 2 variables as well.
-    const [ProductId,setItemCode] = useState('');
-    const [Name, setItemName] = useState('');
-    const [Description,setItemDescription] = useState('');
+    const [ProductId,setItemCode] = useState("");
+    const [Name, setItemName] = useState("");
+    const [Description,setItemDescription] = useState("");
     const [Price,setItemPrice] = useState();
     const [Quantity, setItemQty] = useState();
-    const [Image, setItemImage] = useState('');
+    const [Image, setImage] = useState("");
 
 
 
@@ -139,12 +141,12 @@ export default function AddItem() {
     }, [])
 
 
-     const handleProductImageChange = (event) => {
+     function handleProductImageChange (event) {
     const imageFile = event.target.files[0];
     var reader = new FileReader();
     reader.readAsDataURL(imageFile);
     reader.onload = () => {
-        setItemImage(reader.result);
+        setImage(reader.result);
         console.log(reader.result); //converts to base64.
     };
     reader.onerror = error => {
@@ -192,7 +194,7 @@ export default function AddItem() {
             setItemDescription("");
             setItemPrice();
             setItemQty();
-            setItemImage("");
+            setImage("");
 
             //Can move to the home page after deleting the data
             // window.location.replace("http://localhost:3000/item");
@@ -273,13 +275,16 @@ export default function AddItem() {
 
                 <div class="col-sm-10">
                     <label htmlFor="item_image">Image</label>
-                        <input accept = "image/*" type="file" id="image" placeholder="Upload Image" required onChange={(e)=>{
+                        <input type="file" id="image" placeholder="Upload Image" required onChange={(e)=>{
                         handleProductImageChange(e.target.value);
             }}/>
+            {Image==""|| Image==null?"": <img width={100} height ={100} src={Image}/>}
+           
+            
             </div>
             <br></br>
                 <button type="submit" class="btn btn-success">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a  type="button" href = "/inventory" class="btn btn-secondary">Back</a>
+                <a  type="button" href = "/item" class="btn btn-secondary">Back</a>
             </form>
         </div>
     )
