@@ -7,7 +7,7 @@ function App() {
     <Router>
     <div className="App">
       <Route path="/item/add/" exact component={AddItem}></Route>
-      <h1>Hello World</h1>
+     
     </div>
     </Router>
   );
