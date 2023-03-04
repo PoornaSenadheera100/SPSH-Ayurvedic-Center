@@ -6,6 +6,10 @@ export default function Welcome(){
             <a href="/sellerlogin"><button>Seller Login</button></a>
             <a href="/adminlogin"><button>Admin Login</button></a>
             <a href="/buyersignup"><button>Signup</button></a>
+
+            <br></br>
+            <center><h1>Featured products</h1></center>
+            
         </div>
     )
 }
