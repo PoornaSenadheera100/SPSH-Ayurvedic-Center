@@ -51,11 +51,11 @@ export default function HomeBuyer(){
                     {
                         items.map((item)=>(
                             <tr>
-                                <td>{item.productId}</td>
-                                <td>{item.name}</td>
-                                <td>{item.description}</td>
-                                <td>{item.price}</td>
-                                <td>{item.quantity}</td>
+                                <td>{item.ProductId}</td>
+                                <td>{item.Name}</td>
+                                <td>{item.Description}</td>
+                                <td>{item.Price}</td>
+                                <td>{item.Quantity}</td>
                                 <td><input type={'number'} value={count} onChange={(e)=>{
                                     setCount(e.target.value);
                                 }} ></input></td>
