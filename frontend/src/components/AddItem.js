@@ -278,8 +278,7 @@ export default function AddItem() {
                         <input type="file" id="image" placeholder="Upload Image" required onChange={(e)=>{
                         handleProductImageChange(e);
             }}/>
-            {Image==""|| Image==null?"": <img width={100} height ={100} src={Image}/>}
-           
+            
             
             </div>
             <br></br>
