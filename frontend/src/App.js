@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <Route path="/item/add/" exact component={AddItem}></Route>
      <Route path="/item" exact component={AllItems}></Route>
-     <Route path="/item/delete/" exact componenet={DeleteItem}></Route>
+     <Route path="/item/delete/:id" exact componenet={DeleteItem}></Route>
     </div>
     </Router>
   );
