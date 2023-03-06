@@ -27,7 +27,7 @@ export default function LoginBuyer(){
 
     return(
         <div className="container">
-            <a href="/"><button>Back</button></a>
+            <a href="/"><button className="btn btn-primary">Back</button></a>
 
             <form onSubmit={validate}>
                 <section className="vh-100 gradient-custom">
