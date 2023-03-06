@@ -141,7 +141,7 @@ export default function AddItem() {
     }, [])
 
 
-     function handleProductImageChange (event) {
+    function handleProductImageChange (event) {
     const imageFile = event.target.files[0];
     var reader = new FileReader();
     reader.readAsDataURL(imageFile);
@@ -276,7 +276,7 @@ export default function AddItem() {
                 <div class="col-sm-10">
                     <label htmlFor="item_image">Image</label>
                         <input type="file" id="image" placeholder="Upload Image" required onChange={(e)=>{
-                        handleProductImageChange(e.target.value);
+                        handleProductImageChange(e);
             }}/>
             {Image==""|| Image==null?"": <img width={100} height ={100} src={Image}/>}
            

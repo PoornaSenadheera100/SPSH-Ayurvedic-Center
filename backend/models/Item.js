@@ -29,7 +29,7 @@ const itemSchema = new mongoose.Schema({
     //Buffer is similar to "Array" data type.
     //type:String
     data: Buffer,
-      contentType: String,
+    contentType: [String],
      // required: true,
     },
               
