@@ -50,8 +50,11 @@ export default function AllItems() {
 
     //Get the image source.
     const getImageSource = (imageData) => {
+
+        //Converting the String to an image happens here.
         let imageSource = `data:image/png;base64,${Buffer.from(imageData.data).toString('base64').substring(19)}`;
         //Hilarina (0,3) --> Hil
+        //We reduce 2 here --> because, the last 2 values in the basecode is generally of 2 equal characters.(==)
         imageSource = imageSource.slice(0,imageSource.length-2);
         return imageSource;
       };
