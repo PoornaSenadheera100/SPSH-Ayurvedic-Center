@@ -48,7 +48,7 @@ export default function SignupBuyer(){
 
     return(
         <div>
-            <a href="/"><button>Back</button></a>
+            <a href="/buyerlogin"><button>Back</button></a>
             
             <h1>Create Your Account</h1>
 
