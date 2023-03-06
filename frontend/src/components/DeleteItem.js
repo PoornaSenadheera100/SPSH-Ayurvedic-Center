@@ -16,12 +16,12 @@ export default function DeleteItem() {
     useEffect(() => {
         axios.get(`http://localhost:8070/item/get/${id}`).then((res) => {
             console.log(res.data);
-            setProductId(res.data.inventory.ItemCode);
-            setName(res.data.inventory.Description);
-            setDescription(res.data.inventory.InvoiceNo);
-            setPrice(res.data.inventory.Quantity);
-            setQuantity(res.data.inventory.Supplier);
-            setImage(res.data.inventory.OrderDate);
+            setProductId(res.data.item.ProductId);
+            setName(res.data.item.Name);
+            setDescription(res.data.item.Description);
+            setPrice(res.data.item.Price);
+            setQuantity(res.data.item.Quantity);
+            setImage(res.data.item.Image);
         }).catch((err) => {
             console.log(err);
         })
