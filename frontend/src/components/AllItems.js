@@ -4,6 +4,8 @@
 //import the React library here, which was assigned to a variable callled "react" in package.json
 import React, { useState, useEffect } from 'react';
 
+import { Buffer } from 'buffer';
+
 //Import the axios pacakge to read the data from the backend to the frontend.
 import axios from "axios";
 
@@ -48,8 +50,9 @@ export default function AllItems() {
 
     //Get the image source.
     const getImageSource = (imageData) => {
-        console.log(imageData.data);
-        const imageSource = `data:Image/png;base64,${imageData}`;
+        let imageSource = `data:image/png;base64,${Buffer.from(imageData.data).toString('base64').substring(19)}`;
+        //Hilarina (0,3) --> Hil
+        imageSource = imageSource.slice(0,imageSource.length-2);
         return imageSource;
       };
 
@@ -105,7 +108,7 @@ export default function AllItems() {
                                 <td class="text-uppercase">{item.Description}</td>
                                 <td class="text-uppercase">{item.Price}</td>
                                 <td class="text-uppercase">{item.Quantity}</td>
-                                <td><img src={getImageSource(item.Image)} alt={item.Name}/></td>
+                                <td><img src={getImageSource(item.Image)} alt={item.Name} width="300px"/></td>
                                 <td>
                                     <button className="btn btn-success" onClick={() => {
 
