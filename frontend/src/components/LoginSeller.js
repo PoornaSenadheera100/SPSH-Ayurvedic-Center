@@ -26,28 +26,59 @@ export default function LoginSeller(){
     }
 
     return(
-        <div>
-            <a href="/"><button>Back</button></a>
-            
-            <h1>This is Seller Login</h1>
-            
+        <div className="container">
+            <a href="/"><button className="btn btn-primary">Back</button></a>
+
             <form onSubmit={validate}>
-                <label htmlFor="email">Email</label>
-                <input type="email" id="email" placeholder="abc@gmail.com" required onChange={(e)=>{
-                    setEmail(e.target.value);
-                }}/>
+                <section className="vh-100 gradient-custom">
+                    <div className="container py-5 h-100">
+                        <div className="row d-flex justify-content-center align-items-center h-100">
+                            <div className="col-12 col-md-8 col-lg-6 col-xl-5">
+                                <div className="card bg-dark text-white" style={{borderRadius: "1rem"}}>
+                                    <div className="card-body p-5 text-center">
 
-                <br></br>
+                                        <div className="mb-md-5 mt-md-4 pb-5">
 
-                <label htmlFor="password">Password</label>
-                <input type="password" id="password" placeholder="Password" required onChange={(e)=>{
-                    setPassword(e.target.value);
-                }}/>
+                                            <h2 className="fw-bold mb-2 text-uppercase">Seller Login</h2>
+                                            <p className="text-white-50 mb-5">Please enter your email and password!</p>
 
-                <br></br>
+                                            <div className="form-outline form-white mb-4">
+                                                <input type="email" id="email" className="form-control form-control-lg" placeholder="abc@gmail.com" required onChange={(e)=>{
+                                                    setEmail(e.target.value);
+                                                }}/>
+                                                <label className="form-label" htmlFor="typeEmailX">Email</label>
+                                            </div>
 
-                <button type="submit">Login</button>
+                                            <div className="form-outline form-white mb-4">
+                                                <input type="password" id="password" className="form-control form-control-lg" placeholder="Password" required onChange={(e)=>{
+                                                    setPassword(e.target.value);
+                                                }}/>
+                                                <label className="form-label" htmlFor="typePasswordX">Password</label>
+                                            </div>
+
+                                            <button className="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+
+                                        </div>
+
+                                        <div>
+                                            <p className="mb-0">Don't have an account? Contact the administrator.
+                                            </p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </form>
+
+
+
+
+
+
+
         </div>
     )
 }
