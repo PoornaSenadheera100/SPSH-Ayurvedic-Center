@@ -8,7 +8,7 @@ export default function Header(){
                 <div className='row'>
                     <div className='col-3'>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <img src={logo} width="40%"></img>
+                        <img src={logo} width="40%" alt='Logo'></img>
                     </div>
                     <div className='col' style={{fontSize:"80px"}}>
                         <b>SPSH Ayurvedic Center</b>
