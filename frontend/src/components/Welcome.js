@@ -3,10 +3,14 @@ export default function Welcome(){
         <div className="container">
             <center>
                 <h1>Welcome to SPSH Ayurvedic Center</h1>
-                <a href="/buyerlogin"><button>Buyer Login</button></a>
-                <a href="/sellerlogin"><button>Seller Login</button></a>
-                <a href="/adminlogin"><button>Admin Login</button></a>
-                <a href="/buyersignup"><button>Signup</button></a>
+                <br></br>
+                <a href="/buyerlogin"><button className="btn btn-primary btn-lg">Buyer Login</button></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/sellerlogin"><button className="btn btn-warning btn-lg">Seller Login</button></a>
+                <br></br>
+                <br></br>
+                <br></br>
+                <p className="mb-0">Are you an administrator? <a href="/adminlogin" className="text-black-50 fw-bold">Log in here.</a></p>
             </center>
         </div>
     )
