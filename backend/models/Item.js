@@ -4,7 +4,7 @@ const itemSchema = new mongoose.Schema({
 
   ProductId: {
     type: String,
-    maxlength:5,
+    //maxlength:5,
     required: true
   },
   Name: {
