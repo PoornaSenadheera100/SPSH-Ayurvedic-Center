@@ -8,9 +8,13 @@ export default function HomeSeller(){
         <div>
             <a href="/" onClick={()=>{
                 sessionStorage.removeItem("sAyurCenRelles");
+                sessionStorage.removeItem("sellerEmail");
             }}><button>Signout</button></a>
             
             <h1>This is Seller Home</h1>
+
+            <a href="/sellerhome/item"><button>Manage Items</button></a>
+            
         </div>
     )
 }

@@ -15,6 +15,7 @@ export default function LoginSeller(){
         axios.get(`http://localhost:8070/seller/get/email/${email}`).then((res)=>{
             if (res.data[0].password === password){
                 sessionStorage.setItem("sAyurCenRelles", Math.random().toString());
+                sessionStorage.setItem("sellerEmail", email);
                 window.location.replace(`http://localhost:3000/sellerhome`);
             }
             else{
