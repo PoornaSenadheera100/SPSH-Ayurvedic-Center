@@ -70,24 +70,7 @@ app.use("/admin", adminRouter);
 const sellerRouter = require("./routes/seller.js");
 app.use("/seller", sellerRouter);
 
-const itemRouter = require("./routes/items.js");
-app.use("/item", itemRouter);
-
-const ShoppingCartRouter = require("./routes/shoppingCarts.js");
-app.use("/ShoppingCart",ShoppingCartRouter);
-
-
-const buyerRouter = require("./routes/buyer.js");
-app.use("/buyer", buyerRouter);
-
-const adminRouter = require("./routes/admin.js");
-app.use("/admin", adminRouter);
-
-const sellerRouter = require("./routes/seller.js");
-app.use("/seller", sellerRouter);
-
-const itemRouter = require("./routes/items.js");
-app.use("/item", itemRouter);
+;
 
 /*
 app.post('/',upload.single('Image'),(req,res)=>{
