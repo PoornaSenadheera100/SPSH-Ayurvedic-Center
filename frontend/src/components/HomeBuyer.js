@@ -38,50 +38,25 @@ export default function HomeBuyer(){
 
             <div>
             <center><h1>All featured items</h1></center>
-            <table className="table table-borderless">
-            <tr> 
-                    <th>product ID</th>
-                    <th>Item Name</th>
-                    <th>Description</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Action</th>
-            </tr>
-            <tbody>
-                    {
-                        items.map((item)=>(
-                            <tr>
-                                <td>{item.ProductId}</td>
-                                <td>{item.Name}</td>
-                                <td>{item.Description}</td>
-                                <td>{item.Price}</td>
-                                <td>{item.Quantity}</td>
-                                <td><input type={'number'} value={count} onChange={(e)=>{
-                                    setCount(e.target.value);
-                                }} ></input></td>
-                                <td><button>Add cart</button></td>
-                             
-
-                             
-            
+            <div class="p-3 border bg-light">
+            {
+                    
+                    items.map((item)=>(
                                 
-                            </tr>
-                        ))
+                        item.ProductId,
+                        item.Name,
+                        item.Description,
+                        item.Price,
+                        item.Quantity,
+                        <input type={'number'} value={count} onChange={(e)=>{
+                            setCount(e.target.value);
+                        }} ></input>,
+                        <button>Add cart</button>
+                    ))
                     }
-                </tbody>
-            </table>
             </div>
-
-
-
-
-
-
-
-
-
-
-
+            
+           </div>
         </div>
 
         
