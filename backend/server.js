@@ -38,7 +38,8 @@ app.use("/admin", adminRouter);
 const sellerRouter = require("./routes/seller.js");
 app.use("/seller", sellerRouter);
 
-
+const itemRouter = require("./routes/items.js");
+app.use("/item", itemRouter);
 
 
 
