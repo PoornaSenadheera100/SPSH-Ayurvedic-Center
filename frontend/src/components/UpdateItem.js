@@ -112,8 +112,16 @@ function UpdateItem() {
                     </div>
 
                     <div class="col-sm-10">
-                    <input type="text" className="form-control" id="date" value={Image} placeholder="Enter Order Date" onChange={(e) => {
-                        setImage(e.target.value);
+                    <input type="file" className="form-control" id="date" value={Image} placeholder="Enter Order Date" onChange={(e) => {
+                       // setImage(e.target.value);
+                       const file = e.target.files[0];
+                         const reader = new FileReader();
+
+                            reader.onload = (event) => {
+                            setImage(event);
+                            };
+
+                             reader.readAsDataURL(file);
                     }} />
                     </div>
                     
