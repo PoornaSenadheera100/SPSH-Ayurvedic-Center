@@ -125,4 +125,4 @@ function UpdateItem() {
     )
 }
 
-export default UpdateInventory;
+export default UpdateItem;
