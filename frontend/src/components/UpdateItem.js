@@ -4,6 +4,13 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 function UpdateItem() {
+
+    if(sessionStorage.getItem("sAyurCenRelles") === null){
+        window.location.replace("/sellerlogin");
+    }
+
+    const sellerEmail = sessionStorage.getItem("sellerEmail");
+
     const [ProductId, setProductId] = useState("");
     const [Name, setName] = useState("");
     const [Description, setDescription] = useState("");
