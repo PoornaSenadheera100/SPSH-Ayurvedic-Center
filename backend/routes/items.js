@@ -14,6 +14,7 @@ const storage = multer.diskStorage({
      },
      filename:(req,file,cb) => {
          //since we could receive multiple files, we are going to store it with the original name.
+         const {originalname} = file;
          cb(null,file.originalname);
      },
  });
@@ -28,29 +29,30 @@ const upload = multer({
 //since we are uploading files one by one, should make use of "single"
 })
 
+
 //Since, the "single" method has "image", when passing data, the attribute will be "image"
 //If you had "testImage" instead, then in Postman, the attribute will be named as "testImage".
-router.route("/add").post(upload.single('image'),(req, res)=>{
-    const productId = req.body.productId;
-    const name = req.body.name;
-    const description = req.body.description;
-    const price = req.body.price;
-    const quantity = Number(req.body.quantity);
+router.route("/add").post(upload.single('Image'),(req, res)=>{
+    const ProductId = req.body.ProductId;
+    const Name = req.body.Name;
+    const Description = req.body.Description;
+    const Price = req.body.Price;
+    const Quantity = Number(req.body.Quantity);
     //This is where you read the content or the file.
-    const image = {
-        data: fs.readFileSync('uploads/'+ req.file.filename),
-        contentType:"image/png"
-    }
+    const Image = req.body.Image;
 
 
     const newItem = new Item({
-        productId,
-        name,
-        description,
-        price,
-        quantity,
-        image
-    })
+        ProductId,
+        Name,
+        Description,
+        Price,
+        Quantity,
+        Image : {
+            data: Buffer.from(Image,'base64'),
+            contentType: 'Image/png'
+        },
+    });
 
     newItem.save().
     then(()=>{
@@ -86,9 +88,9 @@ router.route("/delete/:id").delete(async(req, res)=>{
 router.route("/get/:id").get(async(req,res) =>{
     let itemId = req.params.id;
     const item = await Item.findById(itemId)
-    .then(()=>{
-        res.status(200).send({status:"Item fetched",item:item})
-    }).catch(()=>{
+    .then((item)=>{
+        res.status(200).send({status:"Item fetched",item})
+    }).catch((err)=>{
         console.log(err.message);
         res.status(500).send({status:"Error with getting one item",error:err.message});
     })

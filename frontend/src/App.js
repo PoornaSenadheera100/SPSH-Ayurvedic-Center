@@ -17,6 +17,11 @@ import UpdateBuyer from './components/UpdateBuyer';
 import ViewSeller from './components/ViewSeller';
 import UpdateSeller from './components/UpdateSeller';
 
+import AddItem from './components/AddItem';
+import DeleteItem from './components/DeleteItem';
+import AllItems from './components/AllItems';
+import UpdateItem from './components/UpdateItem';
+
 function App() {
   return (
     <Router>
@@ -42,6 +47,11 @@ function App() {
       <Route path = '/adminhome/managesellers/view/:email' exact component={ViewSeller}/>
       <Route path = '/adminhome/managesellers/update/:paramemail' exact component={UpdateSeller}/>
       
+    
+      <Route path="/item/add/" exact component={AddItem}></Route>
+      <Route path="/item" exact component={AllItems}></Route>
+      <Route path="/item/delete/:id" exact componenet={DeleteItem}></Route>
+      <Route path="/item/update/:id" exact component={UpdateItem}></Route>
     </Router>
   );
 }

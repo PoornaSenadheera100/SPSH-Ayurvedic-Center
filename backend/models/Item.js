@@ -4,14 +4,17 @@ const itemSchema = new mongoose.Schema({
 
   ProductId: {
     type: String,
+    //maxlength:5,
     required: true
   },
   Name: {
     type: String,
+    maxlength:2000,
     required: true
   },
   Description:{
     type: String,
+    maxlength:2000,
     required: true
   }, 
   Price: {
@@ -23,11 +26,15 @@ const itemSchema = new mongoose.Schema({
     required: true
   }, 
   Image:{
-    //Buffer sis similar to "Array" data type.
+    //Buffer is similar to "Array" data type.
+    //type:String
     data: Buffer,
-    contentType:String,
-  }
-});
+    contentType: [String],
+     // required: true,
+    },
+              
+  });
+
 const Item = mongoose.model('Item', itemSchema);
 
 module.exports = Item;
