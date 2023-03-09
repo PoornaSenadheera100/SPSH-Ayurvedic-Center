@@ -14,6 +14,10 @@ import axios from "axios";
 
 export default function AddItem() {
 
+    if(sessionStorage.getItem("sAyurCenRelles") === null){
+        window.location.replace("/sellerlogin");
+    }
+
     //Create 3 variables/states for name,age and gender
     //The initialization of these 3 states have been done below.
     //It is using the setName/setAge/setGender that we assign values to the states of name/age/gender respectively.
@@ -29,6 +33,9 @@ export default function AddItem() {
     const [Price,setItemPrice] = useState();
     const [Quantity, setItemQty] = useState();
     const [Image, setImage] = useState("");
+
+
+    const sellerEmail = sessionStorage.getItem("sellerEmail");
 
 
 
@@ -185,7 +192,7 @@ export default function AddItem() {
             </div>
             <br></br>
                 <button type="submit" class="btn btn-success">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a  type="button" href = "/item" class="btn btn-secondary">Back</a>
+                <a  type="button" href = "/sellerhome/item" class="btn btn-secondary">Back</a>
             </form>
         </div>
     )

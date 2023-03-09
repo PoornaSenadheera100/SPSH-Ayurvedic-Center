@@ -15,6 +15,10 @@ import { useHistory } from "react-router-dom";
 //export the function of "AllStudents"
 export default function AllItems() {
 
+    if(sessionStorage.getItem("sAyurCenRelles") === null){
+        window.location.replace("/sellerlogin");
+    }
+
     //Creating an array that passes 2 values.
     //First value of "students" returns the state.
     //Second value of "setStudents" returns the method that sets the values to the statae, or the one that changes the value of the state.
@@ -23,6 +27,9 @@ export default function AllItems() {
 
     //assigning the method of useHistory to the variable "history"
     let history = useHistory();
+
+
+    const sellerEmail = sessionStorage.getItem("sellerEmail");
 
     
     useEffect(() => {
@@ -63,6 +70,7 @@ export default function AllItems() {
 
 
         <div className="container">
+            <a href="/sellerhome"><button>Back</button></a>
             <h1>All Items</h1>
 
             <table className="table table-borderless">
@@ -76,7 +84,7 @@ export default function AllItems() {
                             //history.push moves from the current page.
                             //history.push(`/update/${student._id}`);
                             //window.location also redirects to another page.(delete page with the ID)
-                            window.location.replace(`http://localhost:3000/item/add/`);
+                            window.location.replace(`http://localhost:3000/sellerhome/item/add/`);
                         }}>Add Item</button>
                         <button type="button" class="btn btn-outline-dark" onClick={() => {
 
@@ -118,7 +126,7 @@ export default function AllItems() {
                                         //history.push moves from the current page.
                                         //history.push(`/update/${student._id}`);
                                         //window.location also redirects to another page.(delete page with the ID)
-                                        window.location.replace(`http://localhost:3000/item/update/${item._id}`);
+                                        window.location.replace(`http://localhost:3000/sellerhome/item/update/${item._id}`);
                                     }}>UPDATE</button>
                                 </td>
 
@@ -126,7 +134,7 @@ export default function AllItems() {
                                     <button className="btn btn-danger" onClick={() => {
                                         //history.push(`/delete/${student._id}`);
                                         //window.location also redirects to another page.(delete page with the ID)
-                                        window.location.replace(`http://localhost:3000/item/delete/${item._id}`);
+                                        window.location.replace(`http://localhost:3000/sellerhome/item/delete/${item._id}`);
                                     }}>DELETE</button>
                                 </td>
                             </tr>

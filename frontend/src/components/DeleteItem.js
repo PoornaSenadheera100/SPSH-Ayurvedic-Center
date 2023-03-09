@@ -4,6 +4,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 export default function DeleteItem() {
+
+    if(sessionStorage.getItem("sAyurCenRelles") === null){
+        window.location.replace("/sellerlogin");
+    }
+
     const [ProductId, setProductId] = useState("");
     const [Name, setName] = useState("");
     const [Description, setDescription] = useState("");
