@@ -89,9 +89,9 @@ router.route("/delete/:id").delete(async(req, res)=>{
 router.route("/get/:id").get(async(req,res) =>{
     let itemId = req.params.id;
     const item = await Item.findById(itemId)
-    .then(()=>{
-        res.status(200).send({status:"Item fetched",item:item})
-    }).catch(()=>{
+    .then((item)=>{
+        res.status(200).send({status:"Item fetched",item})
+    }).catch((err)=>{
         console.log(err.message);
         res.status(500).send({status:"Error with getting one item",error:err.message});
     })

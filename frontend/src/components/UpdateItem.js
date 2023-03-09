@@ -106,6 +106,7 @@ function UpdateItem() {
                     </div>
                 </div>
 
+
                 <div className="form-group">
                     <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
                         <label for="gender">Image</label>
@@ -114,7 +115,7 @@ function UpdateItem() {
                     <div class="col-sm-10">
                     <input type="file" className="form-control" id="date" value={Image} placeholder="Enter Order Date" onChange={(e) => {
                        // setImage(e.target.value);
-                       const file = e.target.files[0];
+                        const file = e.target.files[0];
                          const reader = new FileReader();
 
                             reader.onload = (event) => {

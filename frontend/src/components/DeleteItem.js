@@ -83,11 +83,11 @@ export default function DeleteItem() {
                         <label for="quantity">Quantity</label>
                     </div>
                     <div class="col-sm-10">
-                        <input type="text" className="form-control" id="quantity" value={Quantity} placeholder="Enter Quantity" disabled />
+                        <input type="number" className="form-control" id="quantity" value={Quantity} placeholder="Enter Quantity" disabled />
                     </div>
                 </div>
 
-                <div className="form-group">
+                <div className="form-group">     
                     <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
                         <label for="image">Image</label>
                     </div>
@@ -98,7 +98,7 @@ export default function DeleteItem() {
                     </div>
                 </div>
                 <button type="submit" className="btn btn-danger">Delete</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a  type="button" href = "/item" class="btn btn-secondary">Back</a>
+                <a  type="button" href = "/item" class="btn btn-secondary">Back</a>  
             </form>
         </div>
     )
