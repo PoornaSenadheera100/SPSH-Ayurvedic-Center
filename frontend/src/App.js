@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Route, } from "react-router-dom";
-// import Header from './components/Header';
+import Header from './components/Header';
 import Welcome from './components/Welcome';
 import LoginBuyer from './components/LoginBuyer';
 import LoginSeller from './components/LoginSeller';
@@ -17,10 +17,15 @@ import UpdateBuyer from './components/UpdateBuyer';
 import ViewSeller from './components/ViewSeller';
 import UpdateSeller from './components/UpdateSeller';
 
+import AddItem from './components/AddItem';
+import DeleteItem from './components/DeleteItem';
+import AllItems from './components/AllItems';
+import UpdateItem from './components/UpdateItem';
+
 function App() {
   return (
     <Router>
-      {/* <Header/> */}
+      <Header/>
       <Route path = '/' exact component = {Welcome}/>
       <Route path = '/buyerlogin' exact component = {LoginBuyer}/>
       <Route path = '/sellerlogin' exact component = {LoginSeller}/>
@@ -42,6 +47,11 @@ function App() {
       <Route path = '/adminhome/managesellers/view/:email' exact component={ViewSeller}/>
       <Route path = '/adminhome/managesellers/update/:paramemail' exact component={UpdateSeller}/>
       
+    
+      <Route path="/sellerhome/item/add/" exact component={AddItem}></Route>
+      <Route path="/sellerhome/item" exact component={AllItems}></Route>
+      <Route path="/sellerhome/item/delete/:id" exact componenet={DeleteItem}></Route>
+      <Route path="/sellerhome/item/update/:id" exact component={UpdateItem}></Route>
     </Router>
   );
 }
