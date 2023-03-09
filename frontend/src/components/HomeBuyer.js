@@ -13,6 +13,8 @@ export default function HomeBuyer(){
     const [count,setCount]=useState(1);
     let history = useHistory();
 
+    const buyerEmail = sessionStorage.getItem("buyerEmail");
+
 
     useEffect(()=>{
         function getItems(){
@@ -32,6 +34,7 @@ export default function HomeBuyer(){
         <div>
             <a href="/" onClick={()=>{
                 sessionStorage.removeItem("sAyurCenReyub");
+                sessionStorage.removeItem("buyerEmail");
             }}><button>Signout</button></a>
             
             <h1>Welcome to Buyer Home</h1>
