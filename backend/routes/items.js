@@ -98,11 +98,13 @@ router.route("/get/:id").get(async(req,res) =>{
 })
 
 //UPDATE ROUTE
-router.route("/update/:id").put(async(req,res)=>{
-    let itemId = req.params.id;
-    const {productId,name,description,price,quantity,image} = req.body;
+router.route("/update/:sellerEmail/:id").put(async(req,res)=>{
+    let sellerID = req.params.sellerEmail;
+    let id = req.params.id;
+    const {sellerId,productId,name,description,price,quantity,image} = req.body;
 
     const updateItem = {
+        sellerId,
         productId,
         name,
         description,
@@ -111,7 +113,8 @@ router.route("/update/:id").put(async(req,res)=>{
         image
     }
 
-    const update = await Item.findByIdAndUpdate(itemId,updateItem)
+    const update = await Item.findOneAndUpdate({ sellerEmail: sellerID, id: id },
+        updateItem)
     .then(()=>{
         res.status(200).send({status : "Item Updated",item: update})
     }).catch((err) => {
