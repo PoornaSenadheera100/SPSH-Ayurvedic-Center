@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 
 const itemSchema = new mongoose.Schema({
 
+  SellerId: {
+    type: String,
+    required
+  },
+
   ProductId: {
     type: String,
     //maxlength:5,
