@@ -100,24 +100,27 @@ const itemRouter = require("./routes/items.js");
 app.use("/item",itemRouter);
 
 
-
-// const sgMail = require('@sendgrid/mail')
-// sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-// const msg = {
-//     to: 'poornasenadheeraonline@gmail.com', // Change to your recipient
-//     from: 'spshayurvedic@gmail.com', // Change to your verified sender
-//     subject: 'Registration Successfull',
-//     text: 'test',
-//     html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-// }
-// sgMail.send(msg).then(() => {
-//     console.log('Email sent')
-// }).catch((error) => {
-//     console.error(error)
-// })
-
-
-
+const name1 = 'Poorna';
+const sgMail = require('@sendgrid/mail')
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+const msg = {
+    to: 'poornasenadheeraonline@gmail.com', // Change to your recipient
+    from: 'spshayurvedic@gmail.com', // Change to your verified sender
+    subject: 'Registration Successfull',
+    text: 'test',
+    html: `<strong>
+              Dear ${name1},<br/><br/>
+              Thank you for registering with us. Your account has been created successfully.<br/><br/>
+              Regards, <br/>
+              Administrator, <br/>
+              SPSH Ayurvedic Center, Sri Lanka
+          </strong>`,
+}
+sgMail.send(msg).then(() => {
+    console.log('Email sent')
+}).catch((error) => {
+    console.error(error)
+})
 
 
 
@@ -128,4 +131,3 @@ app.use("/item",itemRouter);
 app.listen(PORT, ()=>{
     console.log(`Server is up and running on PORT : ${PORT}`);
 });
-
