@@ -73,10 +73,11 @@ router.route("/").get((req, res)=>{
 })
 
 //DELETE ROUTE.
-router.route("/delete/:id").delete(async(req, res)=>{
+router.route("/delete/:sellerEmail/:id").delete(async(req, res)=>{
+    let sellerEmail = req.params.sellerEmail;
     let itemId = req.params.id;
 
-    await Item.findByIdAndDelete(itemId).then(()=>{
+    await Item.findOneAndDelete({sellerEmail: userID, id: id}).then(()=>{
         res.status(200).send({status: "Item Deleted"});
     }).catch((err)=>{
         console.log(err.message);
