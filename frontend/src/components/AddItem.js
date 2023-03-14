@@ -27,6 +27,7 @@ export default function AddItem() {
     //Value given in the input field to record he name should be passed to the state "name" respectively. ---> could be done using the setName method.
     //In the setName method we pass an argument ---> (e.target.value) --> what happens in taget.value is ---> value entered in the text field to input the name will be assigned to the state of "name".
     //Same process applies to the other 2 variables as well.
+    const[SupplierId,setSupplierId] = useState("");
     const [ProductId,setItemCode] = useState("");
     const [Name, setItemName] = useState("");
     const [Description,setItemDescription] = useState("");
@@ -74,6 +75,7 @@ export default function AddItem() {
 
         //Create a javascript object. That passes the 3 attributes.
         const newItem = {
+            SupplierId,
             ProductId,
             Name,
             Description, 
@@ -98,6 +100,7 @@ export default function AddItem() {
 
 
             //After submitting the details ---> the values should be taken off from the fields ---> to do this --> the setters are assigned with ("")
+            setSupplierId("")
             setItemCode("");
             setItemName("");
             setItemDescription("");
@@ -122,6 +125,18 @@ export default function AddItem() {
         <div>
              <h1>Add Item</h1>
             <form onSubmit={sendData}>
+            <div className="form-group"  >
+                    <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
+                        <label for="name">Supplier ID</label>
+                    </div>
+
+                    <div class="col-sm-10">
+                        <input type="text" className="form-control" required id="code" placeholder="Enter Supplier ID" onChange={(e) => {
+                            setSupplierId(e.target.value);
+                        }} />
+                        <div required/>
+                    </div>
+                </div>
                 <div className="form-group"  >
                     <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
                         <label for="name">Item Code</label>
