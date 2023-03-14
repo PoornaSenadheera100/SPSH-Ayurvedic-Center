@@ -101,20 +101,27 @@ app.use("/item",itemRouter);
 
 
 
-const sgMail = require('@sendgrid/mail')
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-const msg = {
-    to: 'spshayurvedic@gmail.com', // Change to your recipient
-    from: 'spshayurvedic@gmail.com', // Change to your verified sender
-    subject: 'Registration Successfull',
-    text: 'Registration Successfull',
-    html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-}
-sgMail.send(msg).then(() => {
-    console.log('Email sent')
-}).catch((error) => {
-    console.error(error)
-})
+// const sgMail = require('@sendgrid/mail')
+// sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+// const msg = {
+//     to: 'poornasenadheeraonline@gmail.com', // Change to your recipient
+//     from: 'spshayurvedic@gmail.com', // Change to your verified sender
+//     subject: 'Registration Successfull',
+//     text: 'test',
+//     html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+// }
+// sgMail.send(msg).then(() => {
+//     console.log('Email sent')
+// }).catch((error) => {
+//     console.error(error)
+// })
+
+
+
+
+
+
+
 
 
 
