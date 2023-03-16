@@ -51,7 +51,7 @@ export default function HomeBuyer(){
                 sessionStorage.removeItem("buyerEmail");
             }}><button>Signout</button></a>
             
-            <h1>Welcome to Buyer Home</h1>
+           
 
             <div>
             <center><h1>All featured items</h1></center>
