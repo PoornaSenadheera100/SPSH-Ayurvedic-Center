@@ -61,6 +61,28 @@ router.route("/delete/:id").delete(async(req, res)=>{
 
     await Buyer.findByIdAndDelete(buyerId).then(()=>{
         res.status(200).send({status: "Buyer Deleted"});
+
+        // const sgMail = require('@sendgrid/mail')
+        // sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+        // const msg = {
+        //     to: buyerId, // Change to your recipient
+        //     from: 'spshayurvedic@gmail.com', // Change to your verified sender
+        //     subject: 'Registration Successfull',
+        //     text: 'test',
+        //     html: `<strong>
+        //             Dear ${name},<br/><br/>
+        //             Thank you for registering with us. Your account has been created successfully.<br/><br/>
+        //             Regards, <br/>
+        //             Administrator, <br/>
+        //             SPSH Ayurvedic Center, Sri Lanka
+        //         </strong>`,
+        // }
+        // sgMail.send(msg).then(() => {
+        //     console.log('Email sent')
+        // }).catch((error) => {
+        //     console.error(error)
+        // })
+
     }).catch((err)=>{
         console.log(err.message);
         res.status(500).send({status: "Error with delete Buyer", error: err.message});
