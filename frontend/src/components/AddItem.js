@@ -35,7 +35,7 @@ export default function AddItem() {
     const [Image, setImage] = useState("");
 
 
-    const sellerEmail = sessionStorage.getItem("sellerEmail");
+    const SupplierId = sessionStorage.getItem("sellerEmail");
 
 
 
@@ -74,6 +74,7 @@ export default function AddItem() {
 
         //Create a javascript object. That passes the 3 attributes.
         const newItem = {
+            SupplierId,
             ProductId,
             Name,
             Description, 
@@ -122,6 +123,16 @@ export default function AddItem() {
         <div>
              <h1>Add Item</h1>
             <form onSubmit={sendData}>
+            <div className="form-group"  >
+                    <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
+                        <label for="name">Supplier Email</label>
+                    </div>
+
+                    <div class="col-sm-10">
+                        <input type="text" className="form-control" required id="code" placeholder="Enter Supplier ID" value={SupplierId} disabled/>
+                        <div required/>
+                    </div>
+                </div>
                 <div className="form-group"  >
                     <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
                         <label for="name">Item Code</label>
