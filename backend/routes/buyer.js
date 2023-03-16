@@ -21,6 +21,28 @@ router.route("/add").post((req, res)=>{
 
     newBuyer.save().then(()=>{
         res.json("Buyer Added.");
+
+        const sgMail = require('@sendgrid/mail')
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+        const msg = {
+            to: email, // Change to your recipient
+            from: 'spshayurvedic@gmail.com', // Change to your verified sender
+            subject: 'Registration Successfull',
+            text: 'test',
+            html: `<strong>
+                    Dear ${name},<br/><br/>
+                    Thank you for registering with us. Your account has been created successfully.<br/><br/>
+                    Regards, <br/>
+                    Administrator, <br/>
+                    SPSH Ayurvedic Center, Sri Lanka
+                </strong>`,
+        }
+        sgMail.send(msg).then(() => {
+            console.log('Email sent')
+        }).catch((error) => {
+            console.error(error)
+        })
+
     }).catch((err)=>{
         console.log(err);
     })
