@@ -25,8 +25,8 @@ router.route("/add").post((req, res)=>{
         const sgMail = require('@sendgrid/mail')
         sgMail.setApiKey(process.env.SENDGRID_API_KEY)
         const msg = {
-            to: email, // Change to your recipient
-            from: 'spshayurvedic@gmail.com', // Change to your verified sender
+            to: email,
+            from: 'spshayurvedic@gmail.com',
             subject: 'Registration Successfull',
             text: 'test',
             html: `<strong>
@@ -65,8 +65,8 @@ router.route("/delete/:id").delete(async(req, res)=>{
         // const sgMail = require('@sendgrid/mail')
         // sgMail.setApiKey(process.env.SENDGRID_API_KEY)
         // const msg = {
-        //     to: buyerId, // Change to your recipient
-        //     from: 'spshayurvedic@gmail.com', // Change to your verified sender
+        //     to: buyerId,
+        //     from: 'spshayurvedic@gmail.com',
         //     subject: 'Registration Successfull',
         //     text: 'test',
         //     html: `<strong>
