@@ -4,7 +4,7 @@ const itemSchema = new mongoose.Schema({
 
   SellerId: {
     type: String,
-    required
+    required : true
   },
 
   ProductId: {
