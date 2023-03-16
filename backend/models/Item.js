@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const itemSchema = new mongoose.Schema({
 
-  SellerId: {
+  SupplierId: {
     type: String,
     required : true
   },

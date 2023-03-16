@@ -32,7 +32,7 @@ const upload = multer({
 
 //Since, the "single" method has "image", when passing data, the attribute will be "image"
 //If you had "testImage" instead, then in Postman, the attribute will be named as "testImage".
-router.route("/add/:sellerEmail").post(upload.single('Image'),(req, res)=>{
+router.route("/add").post(upload.single('Image'),(req, res)=>{
     const SupplierId = req.body.SupplierId;
     const ProductId = req.body.ProductId;
     const Name = req.body.Name;
