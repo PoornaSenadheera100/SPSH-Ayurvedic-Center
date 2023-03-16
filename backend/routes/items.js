@@ -32,7 +32,8 @@ const upload = multer({
 
 //Since, the "single" method has "image", when passing data, the attribute will be "image"
 //If you had "testImage" instead, then in Postman, the attribute will be named as "testImage".
-router.route("/add").post(upload.single('Image'),(req, res)=>{
+router.route("/add/:sellerEmail").post(upload.single('Image'),(req, res)=>{
+    const SupplierId = req.body.SupplierId;
     const ProductId = req.body.ProductId;
     const Name = req.body.Name;
     const Description = req.body.Description;
@@ -43,6 +44,7 @@ router.route("/add").post(upload.single('Image'),(req, res)=>{
 
 
     const newItem = new Item({
+        SupplierId,
         ProductId,
         Name,
         Description,
@@ -73,10 +75,11 @@ router.route("/").get((req, res)=>{
 })
 
 //DELETE ROUTE.
-router.route("/delete/:id").delete(async(req, res)=>{
+router.route("/delete/:sellerEmail/:id").delete(async(req, res)=>{
+    let sellerEmail = req.params.sellerEmail;
     let itemId = req.params.id;
 
-    await Item.findByIdAndDelete(itemId).then(()=>{
+    await Item.findOneAndDelete({sellerEmail: userID, id: id}).then(()=>{
         res.status(200).send({status: "Item Deleted"});
     }).catch((err)=>{
         console.log(err.message);
@@ -97,11 +100,13 @@ router.route("/get/:id").get(async(req,res) =>{
 })
 
 //UPDATE ROUTE
-router.route("/update/:id").put(async(req,res)=>{
-    let itemId = req.params.id;
-    const {productId,name,description,price,quantity,image} = req.body;
+router.route("/update/:sellerEmail/:id").put(async(req,res)=>{
+    let sellerID = req.params.sellerEmail;
+    let id = req.params.id;
+    const {sellerId,productId,name,description,price,quantity,image} = req.body;
 
     const updateItem = {
+        sellerId,
         productId,
         name,
         description,
@@ -110,7 +115,8 @@ router.route("/update/:id").put(async(req,res)=>{
         image
     }
 
-    const update = await Item.findByIdAndUpdate(itemId,updateItem)
+    const update = await Item.findOneAndUpdate({ sellerEmail: sellerID, id: id },
+        updateItem)
     .then(()=>{
         res.status(200).send({status : "Item Updated",item: update})
     }).catch((err) => {
