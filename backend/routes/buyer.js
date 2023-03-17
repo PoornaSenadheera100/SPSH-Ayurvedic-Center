@@ -27,7 +27,7 @@ router.route("/add").post((req, res)=>{
         const msg = {
             to: email,
             from: 'spshayurvedic@gmail.com',
-            subject: 'Registration Successfull',
+            subject: 'Registration Successful',
             text: 'test',
             html: `<strong>
                     Dear ${name},<br/><br/>
