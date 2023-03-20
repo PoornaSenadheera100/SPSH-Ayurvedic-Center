@@ -46,6 +46,7 @@ export default function HomeBuyer(){
 
     return(
         <div className="container">
+            {/* session used to handle the login  */}
             <a href="/" onClick={()=>{
                 sessionStorage.removeItem("sAyurCenReyub");
                 sessionStorage.removeItem("buyerEmail");
@@ -59,8 +60,10 @@ export default function HomeBuyer(){
             <div>
             <center><h1>All featured items</h1></center>
             
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '10rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '5rem' }}>
+
             {items.map((item) => (
+
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1rem', border: '1px solid #ccc' }} key={item.ProductId}>
             <img src={getImageSource(item.Image)} style={{ maxWidth: '100%' }} />
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '1rem' }}>
