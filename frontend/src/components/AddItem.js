@@ -93,7 +93,7 @@ export default function AddItem() {
         //Pass the backend URL as the first parameter.
         //Pass the JS object next as the second parameter, that holds the 3 attributes passed through the form.
 
-        axios.post("http://localhost:8070/item/add:SupllierId", newItem).then(() => {
+        axios.post("http://localhost:8070/item/add:SupplierId", newItem).then(() => {
             //After sending the data --> backend server responds --> if successfully added then an alert message is sent.
             alert(`Item Added`);
 
