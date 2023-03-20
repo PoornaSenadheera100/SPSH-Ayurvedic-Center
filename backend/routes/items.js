@@ -32,7 +32,8 @@ const upload = multer({
 
 //Since, the "single" method has "image", when passing data, the attribute will be "image"
 //If you had "testImage" instead, then in Postman, the attribute will be named as "testImage".
-router.route("/add").post(upload.single('Image'),(req, res)=>{
+router.route("/add:SupplierId").post(upload.single('Image'),(req, res)=>{
+    //let SupplierId = req.params.SupplierId;
     const SupplierId = req.body.SupplierId;
     const ProductId = req.body.ProductId;
     const Name = req.body.Name;
@@ -66,20 +67,23 @@ router.route("/add").post(upload.single('Image'),(req, res)=>{
 })
 
 //RETRIEVE DETAILS ROUTE.
-router.route("/").get((req, res)=>{
-    Item.find().then((items)=>{
-        res.json(items);
+router.route("/:SupplierId").get(async(req, res)=>{
+
+    let SupplierId = req.params.SupplierId;
+
+    const retrieve = await Item.find({"SupplierId": SupplierId}).then((item)=>{
+        res.json(item);
     }).catch((err)=>{
         console.log(err);
+        res.status(500).send({status:"Error in retrieving details."});
     })
 })
 
 //DELETE ROUTE.
-router.route("/delete/:sellerEmail/:id").delete(async(req, res)=>{
-    let sellerEmail = req.params.sellerEmail;
-    let itemId = req.params.id;
-
-    await Item.findOneAndDelete({sellerEmail: userID, id: id}).then(()=>{
+router.route("/delete/:SupplierId/:ProductId").delete(async(req, res)=>{
+    let SupplierId = req.params.SupplierId;
+    let ProductId = req.params.ProductId;
+    await Item.findOneAndDelete({SupplierId: SupplierId, id: id}).then(()=>{
         res.status(200).send({status: "Item Deleted"});
     }).catch((err)=>{
         console.log(err.message);
@@ -88,8 +92,9 @@ router.route("/delete/:sellerEmail/:id").delete(async(req, res)=>{
 })
 
 //RETRIEVEING ONE SPECIFIC DETAIL
-router.route("/get/:id").get(async(req,res) =>{
+router.route("/get/SupplierId/:id").get(async(req,res) =>{
     let itemId = req.params.id;
+    let SupplierId = req.params.SupplierId;
     const item = await Item.findById(itemId)
     .then((item)=>{
         res.status(200).send({status:"Item fetched",item})
@@ -100,22 +105,26 @@ router.route("/get/:id").get(async(req,res) =>{
 })
 
 //UPDATE ROUTE
-router.route("/update/:sellerEmail/:id").put(async(req,res)=>{
-    let sellerID = req.params.sellerEmail;
-    let id = req.params.id;
-    const {sellerId,productId,name,description,price,quantity,image} = req.body;
+router.route("/update/:SupplierID/:ProductId").put(async(req,res)=>{
+    
+    //The supplier ID and Product ID is fetched and stored in variables.
+    let supplierID = req.params.SupplierID;
+    let productId = req.params.ProductId;
+
+    
+    const {SupplierID,ProductId,Name,Description,Price,Quantity,Image} = req.body;
 
     const updateItem = {
-        sellerId,
-        productId,
-        name,
-        description,
-        price,
-        quantity,
-        image
+        SupplierID,
+        ProductId,
+        Name,
+        Description,
+        Price,
+        Quantity,
+        Image
     }
 
-    const update = await Item.findOneAndUpdate({ sellerEmail: sellerID, id: id },
+    const update = await Item.findOneAndUpdate({ SupplierID: supplierID, ProductId: productId },
         updateItem)
     .then(()=>{
         res.status(200).send({status : "Item Updated",item: update})
