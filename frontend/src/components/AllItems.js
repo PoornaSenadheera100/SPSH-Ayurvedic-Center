@@ -29,7 +29,7 @@ export default function AllItems() {
     let history = useHistory();
 
 
-    const sellerEmail = sessionStorage.getItem("sellerEmail");
+    const SupplierId = sessionStorage.getItem("sellerEmail");
 
     
     useEffect(() => {
@@ -91,7 +91,7 @@ export default function AllItems() {
                             //history.push moves from the current page.
                             //history.push(`/update/${student._id}`);
                             //window.location also redirects to another page.(delete page with the ID)
-                            window.location.replace(`http://localhost:3000/inventory/search`);
+                            window.location.replace(`http://localhost:3000/item/search`);
                         }}>Search Item</button>
                         
                        
@@ -112,6 +112,7 @@ export default function AllItems() {
                         //.map function --> similar to a for each loop.
                         //inventories has all the objects passed as an array.
                         //we pass a varaiable inside the map function ---> to access the attributes.(age,gender,name)
+                        //<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '5rem' }}>
                         items.map((item) => (
                             <tr scope="row" key={item._id}>
                                 <td class="text-uppercase">{item.ProductId}</td>
@@ -126,7 +127,7 @@ export default function AllItems() {
                                         //history.push moves from the current page.
                                         //history.push(`/update/${student._id}`);
                                         //window.location also redirects to another page.(delete page with the ID)
-                                        window.location.replace(`http://localhost:3000/sellerhome/item/update/${item._id}`);
+                                        window.location.replace(`http://localhost:3000/sellerhome/item/update/SupplierId/${item._id}`);
                                     }}>UPDATE</button>
                                 </td>
 
@@ -134,12 +135,14 @@ export default function AllItems() {
                                     <button className="btn btn-danger" onClick={() => {
                                         //history.push(`/delete/${student._id}`);
                                         //window.location also redirects to another page.(delete page with the ID)
-                                        window.location.replace(`http://localhost:3000/sellerhome/item/delete/${item._id}`);
+                                        window.location.replace(`http://localhost:3000/sellerhome/item/delete/SupplierId/${item._id}`);
                                     }}>DELETE</button>
                                 </td>
                             </tr>
                         ))
+                        //</div>
                     }
+                    
                 </tbody>
             </table>
         </div>
