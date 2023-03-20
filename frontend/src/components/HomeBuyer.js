@@ -50,8 +50,11 @@ export default function HomeBuyer(){
                 sessionStorage.removeItem("sAyurCenReyub");
                 sessionStorage.removeItem("buyerEmail");
             }}><button>Signout</button></a>
-            
-           
+
+            {/* Adding a cart image  */}
+            <div style={{float:"right"}}>
+            <img style={{width: 50, height: 50 }}src="cart.gif"/>
+            </div>
 
             <div>
             <center><h1>All featured items</h1></center>
