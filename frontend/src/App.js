@@ -48,10 +48,10 @@ function App() {
       <Route path = '/adminhome/managesellers/update/:paramemail' exact component={UpdateSeller}/>
       
     
-      <Route path="/sellerhome/item/add/" exact component={AddItem}></Route>
-      <Route path="/sellerhome/item" exact component={AllItems}></Route>
-      <Route path="/sellerhome/item/delete/:id" exact componenet={DeleteItem}></Route>
-      <Route path="/sellerhome/item/update/:id" exact component={UpdateItem}></Route>
+      <Route path="/sellerhome/item/add/:SupplierId" exact component={AddItem}></Route>
+      <Route path="/sellerhome/item:SupplierId" exact component={AllItems}></Route>
+      <Route path="/sellerhome/item/delete/SupplierId/:id" exact componenet={DeleteItem}></Route>
+      <Route path="/sellerhome/item/update/SupplierId/:id" exact component={UpdateItem}></Route>
     </Router>
   );
 }
