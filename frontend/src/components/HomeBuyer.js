@@ -70,15 +70,15 @@ export default function HomeBuyer(){
             <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>{item.Name}</h3>
             <p style={{ marginBottom: '0.5rem', textAlign: 'center' }}>{item.Description}</p>
             <span style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Rs.{item.Price}</span>
-            <input
+            {/* <input
                     type="number"
                     value={count}
                     onChange={(e) => {
                     setCount(e.target.value);
           }}
           style={{ width: '50%', marginBottom: '0.5rem' }}
-        />
-        <button style={{ padding: '0.5rem', backgroundColor: '#008CBA', color: 'white', border: 'none', cursor: 'pointer' }}>Add cart</button>
+        /> */}
+        <button style={{ padding: '0.5rem', backgroundColor: '#008CBA', color: 'white', border: 'none', cursor: 'pointer' }}>View</button>
       </div>
     </div>
   ))}
