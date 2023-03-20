@@ -46,33 +46,39 @@ export default function HomeBuyer(){
 
     return(
         <div className="container">
+            {/* session used to handle the login  */}
             <a href="/" onClick={()=>{
                 sessionStorage.removeItem("sAyurCenReyub");
                 sessionStorage.removeItem("buyerEmail");
             }}><button>Signout</button></a>
-            
-           
+
+            {/* Adding a cart image  */}
+            <div style={{float:"right"}}>
+            <img style={{width: 50, height: 50 }}src="cart.gif"/>
+            </div>
 
             <div>
             <center><h1>All featured items</h1></center>
             
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '10rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '5rem' }}>
+
             {items.map((item) => (
+
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1rem', border: '1px solid #ccc' }} key={item.ProductId}>
             <img src={getImageSource(item.Image)} style={{ maxWidth: '100%' }} />
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '1rem' }}>
             <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>{item.Name}</h3>
             <p style={{ marginBottom: '0.5rem', textAlign: 'center' }}>{item.Description}</p>
             <span style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Rs.{item.Price}</span>
-            <input
+            {/* <input
                     type="number"
                     value={count}
                     onChange={(e) => {
                     setCount(e.target.value);
           }}
           style={{ width: '50%', marginBottom: '0.5rem' }}
-        />
-        <button style={{ padding: '0.5rem', backgroundColor: '#008CBA', color: 'white', border: 'none', cursor: 'pointer' }}>Add cart</button>
+        /> */}
+        <button style={{ padding: '0.5rem', backgroundColor: '#008CBA', color: 'white', border: 'none', cursor: 'pointer' }}>View</button>
       </div>
     </div>
   ))}
