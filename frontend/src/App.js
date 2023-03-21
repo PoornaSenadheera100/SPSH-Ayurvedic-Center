@@ -21,7 +21,7 @@ import AddItem from './components/AddItem';
 import DeleteItem from './components/DeleteItem';
 import AllItems from './components/AllItems';
 import UpdateItem from './components/UpdateItem';
-import ViewItem from './components/ViewItem';
+import BuyerViewItem from './components/BuyerViewItem';
 
 function App() {
   return (
@@ -35,7 +35,7 @@ function App() {
       <Route path = '/adminhome' exact component={HomeAdmin}/>
       <Route path = '/buyerhome' exact component={HomeBuyer}/>
       <Route path = '/sellerhome' exact component={HomeSeller}/>
-      <Route path = '/ViewItem' exact component={ViewItem}/>
+      <Route path = '/buyer/view/item/:id' exact component={BuyerViewItem}/>
 
       <Route path='/buyersignup' exact component={SignupBuyer}/>
 
