@@ -32,17 +32,37 @@ export default function BuyerViewItem(){
 
     }, []);
 
-    return(
-        <div>
-            {/* <a href="/buyerhome"><button>Back</button></a>
-            <h1>View Seller</h1>
+     //Get the image source.
+     const getImageSource = (imageData) => {
 
-            Name &nbsp;&nbsp;&nbsp; : {name}
-            <br></br>
-            email &nbsp;&nbsp;&nbsp;&nbsp; : {email}
-            <br></br>
-            phone &nbsp;&nbsp;&nbsp; : {phone}
-            <br></br> */}
+        //Converting the String to an image happens here.
+        let imageSource = `data:image/png;base64,${Buffer.from(imageData.data).toString('base64').substring(19)}`;
+        //Hilarina (0,3) --> Hil
+        //We reduce 2 here --> because, the last 2 values in the basecode is generally of 2 equal characters.(==)
+        imageSource = imageSource.slice(0,imageSource.length-2);
+        return imageSource;
+      };
+
+    return(
+        <div className="container">
+            <table className="table table-borderless">
+            <tr>
+                    <th scope="col">Product ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Image</th>
+                </tr>
+                <tr scope="row">
+                                <td class="text-uppercase">{ProductId}</td>
+                                <td class="text-uppercase">{Name}</td>
+                                <td class="text-uppercase">{Description}</td>
+                                <td class="text-uppercase">{Price}</td>
+                                <td class="text-uppercase">{Quantity}</td>
+                                <td><img src={getImageSource(Image)} alt={Name} width="300px"/></td>
+                </tr>
+            </table>
         </div>
     )
 }
