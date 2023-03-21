@@ -78,7 +78,7 @@ export default function HomeBuyer(){
           }}
           style={{ width: '50%', marginBottom: '0.5rem' }}
         /> */}
-        <button style={{ padding: '0.5rem', backgroundColor: '#008CBA', color: 'white', border: 'none', cursor: 'pointer' }}>View</button>
+        <a href="/ViewItem"><button style={{ padding: '0.5rem', backgroundColor: '#008CBA', color: 'white', border: 'none', cursor: 'pointer' }}>View</button></a>
       </div>
     </div>
   ))}
