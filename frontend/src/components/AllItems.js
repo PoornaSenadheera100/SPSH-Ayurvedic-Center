@@ -41,7 +41,7 @@ export default function AllItems() {
             //axois can go to the mentioned URL and get the backend data.
             //axois uses the "get" method --> when retrieving data from the DB --> since that is the http request that is specified in the BACKEND
             //If data was successfully fetched, then ---> the data objects sent as an array is passed to the seStudent method.
-            axios.get("http://localhost:8070/item/SupplierId").then((res) => {
+            axios.get(`http://localhost:8070/item/${SupplierId}`).then((res) => {
                 console.log(res.data);
                 setItem(res.data);
 
@@ -84,15 +84,8 @@ export default function AllItems() {
                             //history.push moves from the current page.
                             //history.push(`/update/${student._id}`);
                             //window.location also redirects to another page.(delete page with the ID)
-                            window.location.replace(`http://localhost:3000/sellerhome/item/add/SupplierId`);
+                            window.location.replace(`http://localhost:3000/sellerhome/item/add:SupplierId`);
                         }}>Add Item</button>
-                        <button type="button" class="btn btn-outline-dark" onClick={() => {
-
-                            //history.push moves from the current page.
-                            //history.push(`/update/${student._id}`);
-                            //window.location also redirects to another page.(delete page with the ID)
-                            window.location.replace(`http://localhost:3000/item/search`);
-                        }}>Search Item</button>
                         
                        
                     </div>
@@ -127,7 +120,7 @@ export default function AllItems() {
                                         //history.push moves from the current page.
                                         //history.push(`/update/${student._id}`);
                                         //window.location also redirects to another page.(delete page with the ID)
-                                        window.location.replace(`http://localhost:3000/sellerhome/item/update/SupplierId/${item._id}`);
+                                        window.location.replace(`http://localhost:3000/sellerhome/item/update:SupplierId/${item._id}`);
                                     }}>UPDATE</button>
                                 </td>
 
@@ -135,7 +128,7 @@ export default function AllItems() {
                                     <button className="btn btn-danger" onClick={() => {
                                         //history.push(`/delete/${student._id}`);
                                         //window.location also redirects to another page.(delete page with the ID)
-                                        window.location.replace(`http://localhost:3000/sellerhome/item/delete/SupplierId/${item._id}`);
+                                        window.location.replace(`http://localhost:3000/sellerhome/item/delete:SupplierId/${item._id}`);
                                     }}>DELETE</button>
                                 </td>
                             </tr>
