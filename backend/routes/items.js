@@ -83,7 +83,7 @@ router.route("/:SupplierId").get(async(req, res)=>{
 router.route("/delete/:SupplierId/:ProductId").delete(async(req, res)=>{
     let SupplierId = req.params.SupplierId;
     let ProductId = req.params.ProductId;
-    await Item.findOneAndDelete({SupplierId: SupplierId, id: id}).then(()=>{
+    await Item.findOneAndDelete({"SupplierId": `${SupplierId}`, "ProductId": `${ProductId}`}).then(()=>{
         res.status(200).send({status: "Item Deleted"});
     }).catch((err)=>{
         console.log(err.message);
@@ -92,10 +92,10 @@ router.route("/delete/:SupplierId/:ProductId").delete(async(req, res)=>{
 })
 
 //RETRIEVEING ONE SPECIFIC DETAIL
-router.route("/get/SupplierId/:id").get(async(req,res) =>{
-    let itemId = req.params.id;
+router.route("/get/:SupplierId/:ProductId").get(async(req,res) =>{ 
     let SupplierId = req.params.SupplierId;
-    const item = await Item.findById(itemId)
+    let ProductId = req.params.ProductId;
+    const item = await Item.find({"SupplierId": `${SupplierId}`, "ProductId": `${ProductId}`})
     .then((item)=>{
         res.status(200).send({status:"Item fetched",item})
     }).catch((err)=>{
