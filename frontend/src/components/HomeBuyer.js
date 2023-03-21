@@ -54,7 +54,7 @@ export default function HomeBuyer(){
 
             {/* Adding a cart image  */}
             <div style={{float:"right"}}>
-            <img style={{width: 50, height: 50 }}src="cart.gif"/>
+           <a href="/ViewItem"> <img style={{width: 50, height: 50 }}src="cart.gif"/></a>
             </div>
 
             <div>
