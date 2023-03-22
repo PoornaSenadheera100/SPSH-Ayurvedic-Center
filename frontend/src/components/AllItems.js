@@ -24,6 +24,7 @@ export default function AllItems() {
     //Second value of "setStudents" returns the method that sets the values to the statae, or the one that changes the value of the state.
     //The initial/default value of the useState is an empty array.([])
     const [items, setItem] = useState([]);
+    const [ProductId, setProductId] = useState("");
 
     //assigning the method of useHistory to the variable "history"
     let history = useHistory();
@@ -84,9 +85,10 @@ export default function AllItems() {
                             //history.push moves from the current page.
                             //history.push(`/update/${student._id}`);
                             //window.location also redirects to another page.(delete page with the ID)
-                            window.location.replace(`http://localhost:3000/sellerhome/item/add:SupplierId`);
+                            window.location.replace(`http://localhost:3000/sellerhome/item/add`);
                         }}>Add Item</button>
                         
+                       
                        
                     </div>
                 </div>
@@ -115,21 +117,34 @@ export default function AllItems() {
                                 <td class="text-uppercase">{item.Quantity}</td>
                                 <td><img src={getImageSource(item.Image)} alt={item.Name} width="300px"/></td>
                                 <td>
+                                <button type="button" class="btn btn-outline-dark" onClick={() => {
+                                    //history.push moves from the current page.
+                                    //history.push(`/update/${student._id}`);
+                                    //window.location also redirects to another page.(delete page with the ID)
+                                    window.location.replace(`http://localhost:3000/sellerhome/item/getItem/${item.SupplierId}/${item.ProductId}`);
+                                    }}>View Item</button>
+                                    
                                     <button className="btn btn-success" onClick={() => {
 
                                         //history.push moves from the current page.
                                         //history.push(`/update/${student._id}`);
                                         //window.location also redirects to another page.(delete page with the ID)
-                                        window.location.replace(`http://localhost:3000/sellerhome/item/update:SupplierId/${item._id}`);
+                                        window.location.replace(`http://localhost:3000/sellerhome/item/update/${item.SupplierId}/${item.ProductId}`);
                                     }}>UPDATE</button>
                                 </td>
 
                                 <td>
-                                    <button className="btn btn-danger" onClick={() => {
-                                        //history.push(`/delete/${student._id}`);
-                                        //window.location also redirects to another page.(delete page with the ID)
-                                        window.location.replace(`http://localhost:3000/sellerhome/item/delete:SupplierId/${item._id}`);
-                                    }}>DELETE</button>
+                                <button className="btn btn-danger btn-sm" onClick={()=>{
+                                            var response = window.confirm("Are you sure you want to delete this Item?");
+                                            if (response){
+                                                axios.delete(`http://localhost:8070/item/delete/${item.SupplierId}/${item.ProductId}`).then(()=>{
+                                                    alert("Item Deleted");
+                                                    window.location.replace("http://localhost:3000/sellerhome/item/");
+                                                }).catch((err)=>{
+                                                    alert(err);
+                                                })
+                                            }
+                                        }}>Delete <i class="fa fa-trash-o fa-lg"></i></button>
                                 </td>
                             </tr>
                         ))
