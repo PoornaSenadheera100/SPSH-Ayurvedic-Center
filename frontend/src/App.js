@@ -21,6 +21,7 @@ import AddItem from './components/AddItem';
 import DeleteItem from './components/DeleteItem';
 import AllItems from './components/AllItems';
 import UpdateItem from './components/UpdateItem';
+import SingleItem from './components/SingleItem';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
       <Route path="/sellerhome/item" exact component={AllItems}></Route>
       <Route path="/sellerhome/item/delete/:id" exact componenet={DeleteItem}></Route>
       <Route path="/sellerhome/item/update/:id" exact component={UpdateItem}></Route>
+      <Route path="/sellerhome/item/get/:id" exact component={SingleItem}></Route>
     </Router>
   );
 }
