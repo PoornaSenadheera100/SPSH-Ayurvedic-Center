@@ -72,7 +72,7 @@ export default function HomeBuyer() {
                                 <span style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Rs.{item.Price}</span>
                                 {/* <a href="/BuyerViewItem"><button style={{ padding: '0.5rem', backgroundColor: '#008CBA', color: 'white', border: 'none', cursor: 'pointer' }}>View</button></a> */}
                                 <button className="btn btn-success" onClick={() => {
-                                    window.location.replace(`http://localhost:3000//buyer/view/item/${item.ProductId}`);
+                                    window.location.replace(`http://localhost:3000/buyer/view/item/${item.ProductId}`);
                                 }}>View</button>
                             </div>
                         </div>
