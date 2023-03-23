@@ -2,6 +2,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Buffer } from 'buffer';
 
 function UpdateItem() {
 
@@ -22,12 +23,12 @@ function UpdateItem() {
     useEffect(() => {
         axios.get(`http://localhost:8070/item/get/${SupplierId}/${id}`).then((res) => {
             console.log(res.data.item);
-            setProductId(res.data.item.ProductId);
-            setName(res.data.item.Name);
-            setDescription(res.data.item.Description);
-            setPrice(res.data.item.Price);
-            setQuantity(res.data.item.Quantity);
-            //setImage(res.data.item.Image);
+            setProductId(res.data.item[0].ProductId);
+            setName(res.data.item[0].Name);
+            setDescription(res.data.item[0].Description);
+            setPrice(res.data.item[0].Price);
+            setQuantity(res.data.item[0].Quantity);
+            setImage(res.data.item[0].Image);
         }).catch((err) => {
             console.log(err);
         })
@@ -62,8 +63,14 @@ function UpdateItem() {
         })
     }
 
-    
+    const getImageSource = (imageData) => {
+        let imageSource = `data:image/png;base64,${Buffer.from(imageData.data).toString('base64').substring(19)}`;
+        imageSource = imageSource.slice(0, imageSource.length - 2);
+        return imageSource;
+    };
 
+    
+if (Image !== ""){
     return (
         <div>
             <h1>Update Item</h1>
@@ -137,7 +144,7 @@ function UpdateItem() {
                     </div>
 
                     <div class="col-sm-10">
-                    <input type="file" className="form-control" id="image" value={Image} placeholder="Upload Image" onChange={(e) => {
+                    <input type="file" className="form-control" id="image" src={getImageSource(Image)} placeholder="Upload Image" onChange={(e) => {
                        handleProductImageChange(e);
                        // setImage(e.target.value);
                         /*const file = e.target.files[0];
@@ -157,6 +164,7 @@ function UpdateItem() {
             </form>
         </div>
     )
+}
 }
 
 export default UpdateItem;
