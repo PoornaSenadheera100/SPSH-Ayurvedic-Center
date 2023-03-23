@@ -10,6 +10,7 @@ export default function BuyerViewItem() {
     // }
 
     const [ProductId, setProductId] = useState("");
+    const [SupplierId, setSupplierId] = useState("");
     const [Name, setName] = useState("");
     const [Description, setDescription] = useState("");
     const [Price, setPrice] = useState();
@@ -22,6 +23,7 @@ export default function BuyerViewItem() {
         axios.get(`http://localhost:8070/buyer/get/item/${id}`).then((res) => {
             console.log(res.data);
             setProductId(res.data.item.ProductId);
+            setSupplierId(res.data.item.SupplierId);
             setName(res.data.item.Name);
             setDescription(res.data.item.Description);
             setPrice(res.data.item.Price);
@@ -32,6 +34,22 @@ export default function BuyerViewItem() {
         })
 
     }, []);
+
+    function add(e){
+        e.preventDefault();
+
+        const newCart = {
+            ProductId,
+            SupplierId,
+            Name,
+            Description,
+            Price,
+            Quantity,
+            Image
+        }
+
+        axios.post(`https://localhost:8070/`)
+    }
 
     //Get the image source.
     const getImageSource = (imageData) => {
@@ -46,33 +64,29 @@ export default function BuyerViewItem() {
         return (
             <div className="container">
                 <div><a type="button" href="/buyerhome" class="btn btn-secondary">Back</a></div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'left', marginTop: '1rem' }}>
-                    <table>
-                    {/* <tr>
+                <table className="table table-borderless">
+                    <tr>
                         <th scope="col">Product ID</th>
+                        <th scope="col">Supplier ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Description</th>
                         <th scope="col">Price</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Image</th>
-                    </tr> */}
-                    
-                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'left', padding: '1rem', border: '1px solid #ccc' }} key={ProductId}>
-                        <img src={getImageSource(Image)}  />
-                        <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>{Name}</h3>
-                        <h2 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>{Description}</h2>
-                        <h1 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>{Price}</h1>
-                        <h1 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>{Quantity}</h1>
-                        {/* <td><img src={getImageSource(Image)} alt={Name} width="300px" /></td> */}
-                        
-                        <td><button className="btn-btn-success" onClick={() => {
+                    </tr>
+                    <tr scope="row">
+                        <td class="text-uppercase">{ProductId}</td>
+                        <td class="text-uppercase">{SupplierId}</td>
+                        <td class="text-uppercase">{Name}</td>
+                        <td class="text-uppercase">{Description}</td>
+                        <td class="text-uppercase">{Price}</td>
+                        <td class="text-uppercase">{Quantity}</td>
+                        <td><img src={getImageSource(Image)} alt={Name} width="300px" /></td>
+                        <td><button className="btn btn-success" onClick={() => {
                             // window.location.replace(`http://localhost:3000/buyer/view/item/${item.ProductId}`);
                         }}>Add to cart</button></td>
-                    </div>
+                    </tr>
                 </table>
-                </div>
-                
-                
             </div>
         )
     }
