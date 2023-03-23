@@ -1,5 +1,6 @@
 const router = require("express").Router();
 let Buyer = require("../models/Buyer");
+let Item = require("../models/Item");
 
 router.route("/add").post((req, res)=>{
     const name = req.body.name;
@@ -137,6 +138,19 @@ router.route("/delete/email/:paraemail").delete(async(req, res)=>{
     }).catch((err)=>{
         console.log(err.message);
         res.status(500).send({status: "Error with delete Buyer", error: err.message});
+    })
+})
+
+
+//RETRIEVEING SINGLE ITEM DETAILS
+router.route("/get/item/:id").get(async(req,res) =>{
+    let productID = req.params.id;
+    const item = await Item.findOne({"ProductId":`${productID}`})
+    .then((item)=>{
+        res.status(200).send({status:"Item fetched",item})
+    }).catch((err)=>{
+        console.log(err.message);
+        res.status(500).send({status:"Error with getting one item",error:err.message});
     })
 })
 
