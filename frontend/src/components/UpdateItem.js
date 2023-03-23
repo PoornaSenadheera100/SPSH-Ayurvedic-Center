@@ -9,7 +9,7 @@ function UpdateItem() {
         window.location.replace("/sellerlogin");
     }
 
-    const sellerEmail = sessionStorage.getItem("sellerEmail");
+    const SupplierId = sessionStorage.getItem("sellerEmail");
 
     const [ProductId, setProductId] = useState("");
     const [Name, setName] = useState("");
@@ -20,24 +20,38 @@ function UpdateItem() {
 
     const { update, id } = useParams();
     useEffect(() => {
-        axios.get(`http://localhost:8070/item/get/${id}`).then((res) => {
+        axios.get(`http://localhost:8070/item/get/${SupplierId}/${id}`).then((res) => {
             console.log(res.data.item);
             setProductId(res.data.item.ProductId);
             setName(res.data.item.Name);
             setDescription(res.data.item.Description);
             setPrice(res.data.item.Price);
             setQuantity(res.data.item.Quantity);
-            setImage(res.data.item.Image);
+            //setImage(res.data.item.Image);
         }).catch((err) => {
             console.log(err);
         })
     }, []);
 
+    function handleProductImageChange (event) {
+        const imageFile = event.target.files[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(imageFile);
+        reader.onload = () => {
+            setImage(reader.result);
+            console.log(reader.result); //converts to base64.
+        };
+        reader.onerror = error => {
+            console.log("Error : ",error);
+        };
+        
+      };
+
     function updateData(e) {
         e.preventDefault();
 
-        const newItem = { ProductId, Name, Description, Price, Quantity, Image }
-        axios.put(`http://localhost:8070/item/update/${id}`, newItem).then(() => {
+        const newItem = { SupplierId, ProductId, Name, Description, Price, Quantity, Image }
+        axios.put(`http://localhost:8070/item/update/${SupplierId}/${id}`, newItem).then(() => {
             alert("Item  Updated");
             //window.location --> helps the user to navigate(frontend --> so port is 3000)
             //axios --> navigation between frontend and backend --> so port is 8070.
@@ -47,6 +61,8 @@ function UpdateItem() {
             alert(err);
         })
     }
+
+    
 
     return (
         <div>
@@ -71,18 +87,20 @@ function UpdateItem() {
 
                     {/* using the value --> we can display the values that was previously entered by the user.*/}
                     <div class="col-sm-10">
-                    <input type="text" className="form-control" id="description" value={Name} placeholder="Enter Name" onChange={(e) => {
+                    <input type="text" className="form-control" id="name" value={Name} placeholder="Enter Name" onChange={(e) => {
+                        console.log("Hi");
                         setName(e.target.value);
+                        //console.log(e.target.v)
                     }} />
                     </div>
                 </div>
                 <div className="form-group">
                     <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-                        <label for="gender">Description</label>
+                        <label for="description">Description</label>
                     </div>
 
                     <div class="col-sm-10">
-                    <input type="text" className="form-control" id="invoiceNo" value={Description} placeholder="Enter Description" onChange={(e) => {
+                    <input type="text" className="form-control" id="description" value={Description} placeholder="Enter Description" onChange={(e) => {
                         setDescription(e.target.value);
                     }} />
                     </div>
@@ -90,7 +108,7 @@ function UpdateItem() {
 
                 <div className="form-group">
                     <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-                        <label for="gender">Price</label>
+                        <label for="price">Price</label>
                     </div>
 
                     <div class="col-sm-10">
@@ -103,39 +121,39 @@ function UpdateItem() {
 
                 <div className="form-group">
                     <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-                        <label for="gender">Quantity</label>
+                        <label for="quantity">Quantity</label>
                     </div>
 
                     <div class="col-sm-10">
-                    <input type="text" className="form-control" id="supplier" value={Quantity} placeholder="Enter supplier" onChange={(e) => {
+                    <input type="number" className="form-control" id="quantity" value={Quantity} placeholder="Enter supplier" onChange={(e) => {
                         setQuantity(e.target.value);
                     }} />
                     </div>
                 </div>
 
-
                 <div className="form-group">
                     <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-                        <label for="gender">Image</label>
+                        <label for="image">Image</label>
                     </div>
 
                     <div class="col-sm-10">
-                    <input type="file" className="form-control" id="date" value={Image} placeholder="Enter Order Date" onChange={(e) => {
+                    <input type="file" className="form-control" id="image" value={Image} placeholder="Upload Image" onChange={(e) => {
+                       handleProductImageChange(e);
                        // setImage(e.target.value);
-                        const file = e.target.files[0];
+                        /*const file = e.target.files[0];
                          const reader = new FileReader();
 
-                            reader.onload = (event) => {
+                            reader.onload = (event) => { 
                             setImage(event);
                             };
 
-                             reader.readAsDataURL(file);
+                             reader.readAsDataURL(file);*/
                     }} />
                     </div>
                     
                 </div>
                 <button type="submit" className="btn btn-success">Update</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a  type="button" href = "/item" class="btn btn-secondary">Back</a>
+                <a  type="button" href = "/sellerhome/item" class="btn btn-secondary">Back</a>
             </form>
         </div>
     )
