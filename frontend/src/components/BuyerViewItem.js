@@ -56,18 +56,19 @@ export default function BuyerViewItem() {
                         <th scope="col">Quantity</th>
                         <th scope="col">Image</th>
                     </tr> */}
-                    <tr scope="row">
-                        <td class="text-uppercase">{ProductId}</td>
+                    
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'left', padding: '1rem', border: '1px solid #ccc' }} key={ProductId}>
+                        <img src={getImageSource(Image)}  />
                         <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>{Name}</h3>
                         <h2 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>{Description}</h2>
                         <h1 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>{Price}</h1>
                         <h1 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>{Quantity}</h1>
                         {/* <td><img src={getImageSource(Image)} alt={Name} width="300px" /></td> */}
-                        <img src={getImageSource(Image)} style={{ maxWidth: '100%' }} />
+                        
                         <td><button className="btn-btn-success" onClick={() => {
                             // window.location.replace(`http://localhost:3000/buyer/view/item/${item.ProductId}`);
                         }}>Add to cart</button></td>
-                    </tr>
+                    </div>
                 </table>
                 </div>
                 
