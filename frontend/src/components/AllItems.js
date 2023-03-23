@@ -121,7 +121,7 @@ export default function AllItems() {
                                     //history.push moves from the current page.
                                     //history.push(`/update/${student._id}`);
                                     //window.location also redirects to another page.(delete page with the ID)
-                                    window.location.replace(`http://localhost:3000/sellerhome/item/getItem/${item.SupplierId}/${item.ProductId}`);
+                                    window.location.replace(`http://localhost:3000/sellerhome/item/get/${item.ProductId}`);
                                     }}>View Item</button>
                                     
                                     <button className="btn btn-success" onClick={() => {
