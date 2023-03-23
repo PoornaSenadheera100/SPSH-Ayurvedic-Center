@@ -46,10 +46,10 @@ export default function SingleItem() {
         return imageSource;
     };
 
-    // if (Image !== "") {
+    if (Image !== "") {
         return (
             <div className="container">
-                <div><a type="button" href="/sellerhome" class="btn btn-secondary">Back</a></div>
+                <div><a type="button" href="/sellerhome/item" class="btn btn-secondary">Back</a></div>
                 <table className="table table-borderless">
                     <tr>
                         <th scope="col">Product ID</th>
@@ -72,5 +72,5 @@ export default function SingleItem() {
         )
     }
 
-//}
+}
 
