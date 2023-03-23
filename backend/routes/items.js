@@ -135,4 +135,13 @@ router.route("/update/:SupplierID/:ProductId").put(async(req,res)=>{
 
 })
 
+// RETRIEVE ALL ITEMS ROUTE.
+router.route("/").get((req, res)=>{
+    Item.find().then((items)=>{
+        res.json(items);
+    }).catch((err)=>{
+        console.log(err);
+    })
+})
+
 module.exports = router;
