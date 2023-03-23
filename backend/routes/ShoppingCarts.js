@@ -8,16 +8,22 @@ router.route("/add").post((req,res)=>{
 
     const buyerEmail = req.body.buyerEmail;
     const itemID = req.body.itemID;
-    const ProductQty = req.body.ProductQty
+    const supplierId = req.body.supplierId;
+    const productName = req.body.productName;
+    const productQty = req.body.productQty;
+    const price = req.body.price;
 
 const newShoppingCart = new ShoppingCart({
     buyerEmail,
     itemID,
-    ProductQty
+    supplierId,
+    productName,
+    productQty,
+    price
 })
 
 newShoppingCart.save().then(()=>{
-    res.json("Item Added")
+    res.json("Item Added to Cart")
 }).catch((err)=>{
     console.log(err);
     })
@@ -67,9 +73,9 @@ router.route("/update/:buyerEmail/:itemID").put(async(req,res)=> {
 
 //Delete a specific cart
 router.route("/delete/:buyerEmail/:itemID").delete(async(req,res)=>{
-    let userID = req.params.buyerEmail;
+    let cartId = req.params.buyerEmail;
     let itemID = req.params.itemID
-    await ShoppingCart.findOneAndDelete({buyerEmail: userID, itemID: itemID}).then(()=>{
+    await ShoppingCart.findOneAndDelete({buyerEmail: cartId, itemID: itemID}).then(()=>{
         res.status(200).send({status:"Item deleted"});
     }).catch((err)=>{
         console.log(err.message);
