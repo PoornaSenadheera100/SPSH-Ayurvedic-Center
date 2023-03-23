@@ -1,3 +1,5 @@
+
+
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -8,6 +10,10 @@ const multer = require("multer");
 //import file system.
 const fs = require('fs');
 require("dotenv").config();
+
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(express.json());
 
 const PORT = process.env.PORT || 8070;
 
