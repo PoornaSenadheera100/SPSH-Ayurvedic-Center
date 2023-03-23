@@ -139,10 +139,7 @@ if (Image !== ""){
                 </div>
 
                 <div className="form-group">
-                    <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-                        <label for="image">Image</label>
-                    </div>
-
+                    
                     <div class="col-sm-10">
                     <input type="file" className="form-control" id="image" src={getImageSource(Image)} placeholder="Upload Image" onChange={(e) => {
                        handleProductImageChange(e);
@@ -155,7 +152,7 @@ if (Image !== ""){
                             };
 
                              reader.readAsDataURL(file);*/
-                    }} />
+                    }} disabled />
                     </div>
                     
                 </div>
