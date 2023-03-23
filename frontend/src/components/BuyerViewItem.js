@@ -62,7 +62,7 @@ export default function BuyerViewItem() {
                         <td class="text-uppercase">{Price}</td>
                         <td class="text-uppercase">{Quantity}</td>
                         <td><img src={getImageSource(Image)} alt={Name} width="300px" /></td>
-                        <td><button className="btn btn-success" onClick={() => {
+                        <td><button className="btn-btn-success" onClick={() => {
                             // window.location.replace(`http://localhost:3000/buyer/view/item/${item.ProductId}`);
                         }}>Add to cart</button></td>
                     </tr>
