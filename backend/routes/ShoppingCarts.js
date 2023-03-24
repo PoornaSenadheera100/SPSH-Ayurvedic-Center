@@ -10,8 +10,9 @@ router.route("/add").post((req,res)=>{
     const itemID = req.body.itemID;
     const supplierId = req.body.supplierId;
     const productName = req.body.productName;
-    const productQty = req.body.productQty;
+    const productQty = Number(req.body.productQty);
     const price = req.body.price;
+    // const Image = req.body.Image;
 
 const newShoppingCart = new ShoppingCart({
     buyerEmail,
@@ -19,7 +20,11 @@ const newShoppingCart = new ShoppingCart({
     supplierId,
     productName,
     productQty,
-    price
+    price/*,
+    Image : {
+        data: Buffer.from(Image,'base64'),
+        contentType: 'Image/png'
+    }*/
 })
 
 newShoppingCart.save().then(()=>{
