@@ -5,11 +5,11 @@ export default function HomeSeller(){
     }
 
     return(
-        <div>
-            <a href="/" onClick={()=>{
+        <div className="container">
+            <a href="/" style={{float: "right"}} onClick={()=>{
                 sessionStorage.removeItem("sAyurCenRelles");
                 sessionStorage.removeItem("sellerEmail");
-            }}><button>Signout</button></a>
+            }}><button className="btn btn-outline-danger">Signout</button></a>
             
             <h1>This is Seller Home</h1>
 
