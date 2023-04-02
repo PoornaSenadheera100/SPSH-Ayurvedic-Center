@@ -23,6 +23,7 @@ import AllItems from './components/AllItems';
 import UpdateItem from './components/UpdateItem';
 import BuyerViewItem from './components/BuyerViewItem';
 import SingleItem from './components/SingleItem';
+import ManageOrders from './components/ManageOrders';
 
 function App() {
   return (
@@ -42,6 +43,8 @@ function App() {
 
       <Route path = '/adminhome/managebuyers' exact component={ManageBuyers}/>
       <Route path = '/adminhome/managesellers' exact component={ManageSellers}/>
+      <Route path = '/adminhome/manageorders' exact component={ManageOrders}/>
+
       <Route path = '/adminhome/managesellers/add' exact component={AddSeller}/>
 
       <Route path = '/adminhome/managebuyers/view/:email' exact component={ViewBuyer}/>
