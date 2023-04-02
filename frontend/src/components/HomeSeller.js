@@ -13,7 +13,7 @@ export default function HomeSeller(){
             
             <h1>This is Seller Home</h1>
 
-            <a href="/sellerhome/item"><button>Manage Items</button></a>
+            <a href="/sellerhome/item"><button className="btn btn-primary">Manage Items</button></a>
             
         </div>
     )
