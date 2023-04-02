@@ -26,7 +26,7 @@ export default function ManageBuyers(){
 
             <h1>Manage Buyers here</h1>
 
-            <a href="/adminhome/managebuyers/add"><button>Add</button></a>
+            {/* <a href="/adminhome/managebuyers/add"><button>Add</button></a> */}
 
             {buyers.length === 0 && <h1>No Records</h1>}
 
