@@ -6,7 +6,8 @@ export default function ManageOrders(){
 
     return(
         <div className = "container">
-            <h1>Manage Orders</h1>
+            <a href="/adminhome"><button className="btn btn-primary">Back</button></a>
+            <h1>Manage Orders here</h1>
         </div>
     )
 }
