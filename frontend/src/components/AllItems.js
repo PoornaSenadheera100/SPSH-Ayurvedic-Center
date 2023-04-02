@@ -71,7 +71,7 @@ export default function AllItems() {
 
 
         <div className="container">
-            <a href="/sellerhome"><button>Back</button></a>
+            <a href="/sellerhome"><button className='btn btn-primary'>Back</button></a>
             <h1>All Items</h1>
 
             <table className="table table-borderless">
