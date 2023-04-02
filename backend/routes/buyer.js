@@ -124,6 +124,33 @@ router.route("/update/:paramemail").put(async(req, res)=>{
 
     await Buyer.findOneAndUpdate({"email" : paramemail}, updateBuyer).then(()=>{
         res.status(200).send({status: "Buyer Updated"});
+
+        const sgMail = require('@sendgrid/mail')
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+        const msg = {
+            to: email,
+            from: 'spshayurvedic@gmail.com',
+            subject: 'Your Account Details Have Been Updated',
+            text: 'test',
+            html: `<strong>
+                    Dear ${name},<br/><br/>
+                    We wanted to let you know that we have recently updated your account details. 
+                    Please review the changes we made to ensure that your information is accurate and up-to-date.<br/>
+
+                    If you have any questions or concerns about these changes, please don't hesitate to contact us. Our team is always here to help.<br/>
+
+                    Thank you for choosing our service, and we look forward to continuing to serve you.<br/><br/>
+                    Best Regards, <br/>
+                    Administrator, <br/>
+                    SPSH Ayurvedic Center, Sri Lanka
+                </strong>`,
+        }
+        sgMail.send(msg).then(() => {
+            console.log('Email sent')
+        }).catch((error) => {
+            console.error(error)
+        })
+
     }).catch((err)=>{
         console.log(err);
         res.status(500).send({status: "Error with updating the buyer", error: err.message});
