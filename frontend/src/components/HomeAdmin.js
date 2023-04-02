@@ -5,7 +5,7 @@ export default function HomeAdmin(){
     }
 
     return(
-        <div>
+        <div className="container">
             <a href="/" onClick={()=>{
                 sessionStorage.removeItem("sAyurCenNimda");
             }}><button>Signout</button></a>
@@ -14,6 +14,7 @@ export default function HomeAdmin(){
 
             <a href="/adminhome/managebuyers"><button>Manage Buyers</button></a>
             <a href="/adminhome/managesellers"><button>Manage Sellers</button></a>
+            <a href="/adminhome/manageorders"><button>Manage Orders</button></a>
         </div>
     )
 }
