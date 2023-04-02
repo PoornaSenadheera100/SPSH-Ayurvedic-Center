@@ -170,6 +170,34 @@ router.route("/delete/email/:paraemail").delete(async(req, res)=>{
 
     await Buyer.findOneAndDelete({"email" : buyerEmail}).then(()=>{
         res.status(200).send({status: "Buyer Deleted"});
+
+        const sgMail = require('@sendgrid/mail')
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+        const msg = {
+            to: buyerEmail,
+            from: 'spshayurvedic@gmail.com',
+            subject: 'Your Account Has Been Removed',
+            text: 'test',
+            html: `<strong>
+                    Hi,<br/><br/>
+
+                    We're sorry to see you go, but we wanted to confirm that your account has been successfully removed from our system.<br/><br/>
+
+                    If you have any questions or concerns, please don't hesitate to contact us. Our team is always here to help.<br/>
+
+                    Thank you for the time you spent with us and we wish you all the best.<br/><br/>
+
+                    Regards, <br/>
+                    Administrator, <br/>
+                    SPSH Ayurvedic Center, Sri Lanka
+                </strong>`,
+        }
+        sgMail.send(msg).then(() => {
+            console.log('Email sent')
+        }).catch((error) => {
+            console.error(error)
+        })
+
     }).catch((err)=>{
         console.log(err.message);
         res.status(500).send({status: "Error with delete Buyer", error: err.message});
