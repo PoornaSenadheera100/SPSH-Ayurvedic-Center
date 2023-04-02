@@ -6,7 +6,7 @@ export default function HomeAdmin(){
 
     return(
         <div className="container">
-            <a href="/" onClick={()=>{
+            <a href="/" style={{float: "right"}} onClick={()=>{
                 sessionStorage.removeItem("sAyurCenNimda");
             }}><button className="btn btn-outline-danger">Signout</button></a>
 
