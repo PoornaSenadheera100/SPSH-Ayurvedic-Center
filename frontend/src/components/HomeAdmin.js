@@ -8,7 +8,7 @@ export default function HomeAdmin(){
         <div className="container">
             <a href="/" onClick={()=>{
                 sessionStorage.removeItem("sAyurCenNimda");
-            }}><button>Signout</button></a>
+            }}><button className="btn btn-outline-danger">Signout</button></a>
 
             <h1>Welcome to Admin Home</h1>
 
