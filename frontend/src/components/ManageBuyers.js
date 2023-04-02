@@ -21,7 +21,7 @@ export default function ManageBuyers(){
     }, []);
 
     return(
-        <div>
+        <div className="container">
             <a href="/adminhome"><button>Back</button></a>
 
             <h1>Manage Buyers here</h1>
