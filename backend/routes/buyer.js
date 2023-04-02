@@ -32,7 +32,13 @@ router.route("/add").post((req, res)=>{
             text: 'test',
             html: `<strong>
                     Dear ${name},<br/><br/>
+
                     Thank you for registering with us. Your account has been created successfully.<br/><br/>
+
+                    If you have any questions or concerns about these changes, please don't hesitate to contact us. Our team is always here to help.<br/>
+
+                    Thank you for choosing our service, and we look forward to continuing to serve you.<br/><br/>
+
                     Regards, <br/>
                     Administrator, <br/>
                     SPSH Ayurvedic Center, Sri Lanka
@@ -134,12 +140,14 @@ router.route("/update/:paramemail").put(async(req, res)=>{
             text: 'test',
             html: `<strong>
                     Dear ${name},<br/><br/>
+
                     We wanted to let you know that we have recently updated your account details. 
-                    Please review the changes we made to ensure that your information is accurate and up-to-date.<br/>
+                    Please review the changes we made to ensure that your information is accurate and up-to-date.<br/><br/>
 
                     If you have any questions or concerns about these changes, please don't hesitate to contact us. Our team is always here to help.<br/>
 
                     Thank you for choosing our service, and we look forward to continuing to serve you.<br/><br/>
+                    
                     Best Regards, <br/>
                     Administrator, <br/>
                     SPSH Ayurvedic Center, Sri Lanka
