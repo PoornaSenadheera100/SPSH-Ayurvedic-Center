@@ -20,12 +20,12 @@ export default function BuyerViewItem() {
     const [Image, setImage] = useState("");
 
     const { id } = useParams();
-    const buyerEmail2 = sessionStorage.getItem("buyerEmail"); //implement this to get the buyer email from sessions
+    const buyerEmail = sessionStorage.getItem("buyerEmail"); //implement this to get the buyer email from sessions
 
     useEffect(() => {
         axios.get(`http://localhost:8070/buyer/get/item/${id}`).then((res) => {
             console.log(res.data);
-            console.log(buyerEmail2);
+            console.log(buyerEmail);
             setProductId(res.data.item.ProductId);
             setSupplierId(res.data.item.SupplierId);
             setName(res.data.item.Name);
@@ -43,7 +43,7 @@ export default function BuyerViewItem() {
         e.preventDefault();
 
         const newCart = {
-            buyerEmail2,
+            buyerEmail,
             ProductId,
             SupplierId,
             Name,
@@ -90,12 +90,14 @@ export default function BuyerViewItem() {
                             <td class="text-uppercase">{Description}</td>
                             <td class="text-uppercase">{Price}</td>
                             {/* <td class="text-uppercase">{Quantity}</td> */}
-                            <td><img src={getImageSource(Image)} alt={Name} width="300px" /></td>
                             <td><input type={'number'} value={Quantity} onChange={(e) => {
                                 setQuantity(e.target.value);
                             }} ></input></td>
-                            <td><button className="btn btn-success" onClick={() => {
-                                // window.location.replace(`http://localhost:3000/buyer/view/item/${item.ProductId}`);
+                            <td><img src={getImageSource(Image)} alt={Name} width="300px" /></td>
+                            <td><button className="btn btn-success" onClick={(e) => {
+                                e.preventDefault();
+                                add(e);
+                                window.location.replace(`http://localhost:3000/buyer/view/item/${id}`);
                             }}>Add to cart</button></td>
                         </tr>
                     </table>
