@@ -47,7 +47,7 @@ export default function AddSeller(){
     }
 
     return(
-        <div>
+        <div className="container">
             <a href="/adminhome/managesellers"><button>Back</button></a>
             
             <h1>Create a Seller Account</h1>
