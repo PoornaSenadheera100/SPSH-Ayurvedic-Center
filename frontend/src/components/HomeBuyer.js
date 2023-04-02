@@ -50,7 +50,7 @@ export default function HomeBuyer() {
             <a href="/" onClick={() => {
                 sessionStorage.removeItem("sAyurCenReyub");
                 sessionStorage.removeItem("buyerEmail");
-            }}><button>Signout</button></a>
+            }}><button className="btn btn-outline-danger">Signout</button></a>
 
             {/* Adding a cart image  */}
             <div style={{ float: "right" }}>
