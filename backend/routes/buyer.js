@@ -35,7 +35,7 @@ router.route("/add").post((req, res)=>{
 
                     Thank you for registering with us. Your account has been created successfully.<br/><br/>
 
-                    If you have any questions or concerns about these changes, please don't hesitate to contact us. Our team is always here to help.<br/>
+                    If you have any questions or concerns, please don't hesitate to contact us. Our team is always here to help.<br/>
 
                     Thank you for choosing our service, and we look forward to continuing to serve you.<br/><br/>
 
@@ -147,7 +147,7 @@ router.route("/update/:paramemail").put(async(req, res)=>{
                     If you have any questions or concerns about these changes, please don't hesitate to contact us. Our team is always here to help.<br/>
 
                     Thank you for choosing our service, and we look forward to continuing to serve you.<br/><br/>
-                    
+
                     Best Regards, <br/>
                     Administrator, <br/>
                     SPSH Ayurvedic Center, Sri Lanka
