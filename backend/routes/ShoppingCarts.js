@@ -7,12 +7,12 @@ let ShoppingCart=require("../models/ShoppingCart");
 router.route("/add").post((req,res)=>{
 
     const buyerEmail = req.body.buyerEmail;
-    const itemID = req.body.itemID;
-    const supplierId = req.body.supplierId;
-    const productName = req.body.productName;
-    const productQty = Number(req.body.productQty);
-    const price = req.body.price;
-    // const Image = req.body.Image;
+    const itemID = req.body.ProductId;
+    const supplierId = req.body.SupplierId;
+    const productName = req.body.Name;
+    const productQty = Number(req.body.Quantity);
+    const price = req.body.Price;
+    const Image = req.body.Image;
 
 const newShoppingCart = new ShoppingCart({
     buyerEmail,
@@ -20,11 +20,8 @@ const newShoppingCart = new ShoppingCart({
     supplierId,
     productName,
     productQty,
-    price/*,
-    Image : {
-        data: Buffer.from(Image,'base64'),
-        contentType: 'Image/png'
-    }*/
+    price,
+    Image
 })
 
 newShoppingCart.save().then(()=>{
