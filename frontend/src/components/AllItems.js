@@ -92,7 +92,7 @@ export default function AllItems() {
                        
                     </div>
                 </div>
-                
+                {/*
                 <tr>
                     <th scope="col">Product ID</th>
                     <th scope="col">Name</th>
@@ -101,7 +101,8 @@ export default function AllItems() {
                     <th scope="col">Quantity</th>
                     <th scope="col">Image</th>
                 </tr>
-                
+                    */}
+                {/*
                 <tbody>
                     {
                         //.map function --> similar to a for each loop.
@@ -152,6 +153,43 @@ export default function AllItems() {
                     }
                     
                 </tbody>
+                */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '5rem' }}>
+
+{items.map((item) => (
+
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1rem', border: '1px solid #ccc' }} key={item.ProductId}>
+        <img src={getImageSource(item.Image)} style={{ maxWidth: '100%' }} />
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '1rem' }}>
+            <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>{item.Name}</h3>
+            <p style={{ marginBottom: '0.5rem', textAlign: 'center' }}>{item.Description}</p>
+            <span style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Rs.{item.Price}</span>
+            {/* <a href="/BuyerViewItem"><button style={{ padding: '0.5rem', backgroundColor: '#008CBA', color: 'white', border: 'none', cursor: 'pointer' }}>View</button></a> */}
+            <button className="btn btn-success" onClick={() => {
+                window.location.replace(`http://localhost:3000/sellerhome/item/get/${item.ProductId}`);
+            }}>View</button><br></br>
+            <div>
+            <button className="btn btn-success" onClick={() => {
+                window.location.replace(`http://localhost:3000/sellerhome/item/update/${item.ProductId}`);
+            }}>Update</button>
+            </div> <br></br>
+            <div>
+             <button className="btn btn-danger btn-sm" onClick={()=>{
+                                            var response = window.confirm("Are you sure you want to delete this Item?");
+                                            if (response){
+                                                axios.delete(`http://localhost:8070/item/delete/${item.SupplierId}/${item.ProductId}`).then(()=>{
+                                                    alert("Item Deleted");
+                                                    window.location.replace("http://localhost:3000/sellerhome/item/");
+                                                }).catch((err)=>{
+                                                    alert(err);
+                                                })
+                                            }
+                                        }}>Delete <i class="fa fa-trash-o fa-lg"></i></button>
+                                          </div><br></br>
+        </div>
+    </div>
+))}
+</div>
             </table>
         </div>
 
