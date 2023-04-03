@@ -16,6 +16,7 @@ import ViewBuyer from './components/ViewBuyer';
 import UpdateBuyer from './components/UpdateBuyer';
 import ViewSeller from './components/ViewSeller';
 import UpdateSeller from './components/UpdateSeller';
+import BuyerCart from './components/BuyerCart';
 
 import AddItem from './components/AddItem';
 import DeleteItem from './components/DeleteItem';
@@ -37,6 +38,7 @@ function App() {
       <Route path = '/buyerhome' exact component={HomeBuyer}/>
       <Route path = '/sellerhome' exact component={HomeSeller}/>
       <Route path = '/buyer/view/item/:id' exact component={BuyerViewItem}/>
+      <Route path = '/buyer/view/cart/:buyerEmail' exact component={BuyerCart}/>
 
       <Route path='/buyersignup' exact component={SignupBuyer}/>
 
