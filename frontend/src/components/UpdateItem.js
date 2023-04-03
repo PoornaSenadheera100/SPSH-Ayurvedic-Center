@@ -141,8 +141,10 @@ if (Image !== ""){
                 <div className="form-group">
                     
                     <div class="col-sm-10">
-                    <input type="file" className="form-control" id="image" src={getImageSource(Image)} placeholder="Upload Image" onChange={(e) => {
-                       handleProductImageChange(e);
+                    {/*<input type="file" className="form-control" id="image" src={getImageSource(Image)} placeholder="Upload Image" onChange={(e) => {
+                       handleProductImageChange(e);*/}
+                       <p src={getImageSource(Image)}  onChange={(e) => {
+                        handleProductImageChange(e);
                        // setImage(e.target.value);
                         /*const file = e.target.files[0];
                          const reader = new FileReader();
@@ -152,7 +154,7 @@ if (Image !== ""){
                             };
 
                              reader.readAsDataURL(file);*/
-                    }} disabled />
+                    }} />
                     </div>
                     
                 </div>
