@@ -30,11 +30,11 @@ const cartShema = new Schema({
     price : {
         type : Number,
         required : true
-    }/*, 
+    }, 
     Image:{
       data: Buffer,
       contentType: [String],
-    }*/
+    }
 })
 
 const ShoppingCart = mongoose.model("ShoppingCart",cartShema);
