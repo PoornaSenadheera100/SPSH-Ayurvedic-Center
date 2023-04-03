@@ -20,7 +20,7 @@ export default function BuyerCart(){
 
     useEffect(() => {
         function getItems(){
-            axios.get()
+            axios.get("http://localhost:8070/")
         }
     })
 
