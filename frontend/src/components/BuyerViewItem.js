@@ -52,7 +52,7 @@ export default function BuyerViewItem() {
             Image
         }
 
-        axios.post(`https://localhost:8070/ShoppingCart/add`, newCart).then(() => {
+        axios.post(`http://localhost:8070/ShoppingCart/add`, newCart).then(() => {
             alert("Item added to cart");
         }).catch((err) => {
             alert(err);
@@ -94,10 +94,9 @@ export default function BuyerViewItem() {
                                 setQuantity(e.target.value);
                             }} ></input></td>
                             <td><img src={getImageSource(Image)} alt={Name} width="300px" /></td>
-                            <td><button className="btn btn-success" onClick={(e) => {
-                                e.preventDefault();
+                            <td><button className="btn btn-success" style={{ marginTop: '10px' }} onClick={(e) => {
                                 add(e);
-                                window.location.replace(`http://localhost:3000/buyer/view/item/${id}`);
+                                // window.location.replace(`http://localhost:3000/buyer/view/item/${id}`);
                             }}>Add to cart</button></td>
                         </tr>
                     </table>
