@@ -49,6 +49,28 @@ export default function AddItem() {
         })
     }, [])
 
+    /*
+    useEffect(() => {
+        //There's another function called getStudents defined inside the arrow function.
+        function getInv() {
+            //axois can go to the mentioned URL and get the backend data.
+            //axois uses the "get" method --> when retrieving data from the DB --> since that is the http request that is specified in the BACKEND
+            //If data was successfully fetched, then ---> the data objects sent as an array is passed to the seStudent method.
+            axios.get(`http://localhost:8070/inventory/getItem/${code}`).then((res) => {
+                console.log(res.data);
+                setInv(res.data.inventory);
+
+                //if it wasn't successfully fetched, then the error is displayed and handled as an exception.
+            }).catch((err) => {
+                alert(err.message);
+            })
+        }
+
+        //Invoke the function once its implemented.
+        getInv();
+    }, [])
+
+    */
 
     function handleProductImageChange (event) {
     const imageFile = event.target.files[0];
