@@ -128,7 +128,7 @@ export default function AllItems() {
                 window.location.replace(`http://localhost:3000/sellerhome/item/get/${item.ProductId}`);
             }}>View</button><br></br>
             <div>
-            <button className="btn btn-success" style={{ maxWidth: '100%', height: '40px', width: '120px', whiteSpace: 'nowrap'  }}  onClick={() => {
+            <button class="btn btn-outline-success" style={{ maxWidth: '100%', height: '40px', width: '120px', whiteSpace: 'nowrap'  }}  onClick={() => {
                 window.location.replace(`http://localhost:3000/sellerhome/item/update/${item.ProductId}`);
             }}>Update</button>
             </div> <br></br>
