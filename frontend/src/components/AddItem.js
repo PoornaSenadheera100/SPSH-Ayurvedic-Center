@@ -12,6 +12,7 @@ import FileBase64 from 'react-file-base64';
 import axios from "axios";
 //const fs = require('fs');
 
+
 export default function AddItem() {
 
     if(sessionStorage.getItem("sAyurCenRelles") === null){
@@ -140,6 +141,8 @@ export default function AddItem() {
         //Pass the js object that we created in the console.(This will display the name, age,gender that's passed).
         //console.log(newStudent);
     }
+
+    
 
     return (
         <div>
