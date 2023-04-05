@@ -10,7 +10,6 @@ export default function BuyerCart() {
         window.location.replace("/buyerlogin");
     }
 
-
     //creating variables
     const [items, setItems] = useState([]);
 
@@ -83,4 +82,3 @@ export default function BuyerCart() {
         </div>
     )
 }
-
