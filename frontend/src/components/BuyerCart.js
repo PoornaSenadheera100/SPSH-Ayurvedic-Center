@@ -19,8 +19,9 @@ export default function BuyerCart() {
     const buyerEmail = sessionStorage.getItem("buyerEmail");
 
     useEffect(() => {
+        console.log(buyerEmail);
         function getItems() {
-            axios.get(`http://localhost:8070/retrieve/${buyerEmail}`).then((res) => {
+            axios.get(`http://localhost:8070/ShoppingCart/retrieve/${buyerEmail}`).then((res) => {
                 console.log(res.data);
                 setItems(res.data);
             }).catch((err) => {
@@ -44,26 +45,28 @@ export default function BuyerCart() {
         <div className="container">
             <div><a type="button" href="/buyerhome" class="btn btn-secondary">Back</a></div>
             <table className="table table-borderless">
-                <tr>
-                    <th scope="col">Item ID</th>
-                    <th scope="col">Supplier ID</th>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Image</th>
-                </tr>
-                <tr scope="row">
+                <thead>
+                    <tr>
+                        <th scope="col">Item ID</th>
+                        <th scope="col">Supplier ID</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Image</th>
+                    </tr>
+                </thead>
+                <tbody>
                     {items.map((item) => (
-                        <div>
+                        <tr key={buyerEmail}>
                             <td>{item.itemID}</td>
                             <td>{item.supplierId}</td>
                             <td>{item.productName}</td>
                             <td>{item.productQty}</td>
                             <td>{item.price}</td>
                             <td><img src={getImageSource(item.Image)} width="300px" /></td>
-                        </div>
+                        </tr>
                     ))}
-                </tr>
+                </tbody>
             </table>
         </div>
     )
