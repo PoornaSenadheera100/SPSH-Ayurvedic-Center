@@ -91,7 +91,7 @@ export default function AllItems() {
         <div className="container">
             <a href="/sellerhome"><button>Back</button></a>
             <center><h1>All Items</h1></center>
-
+            <br></br>
             <table className="table table-borderless">
                 <div className="row">
                     <div class="btn-group" role="group" aria-label="Basic example">
