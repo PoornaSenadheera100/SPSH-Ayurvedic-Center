@@ -83,7 +83,7 @@ if (Image !== ""){
                     <div class="col-sm-10">
                     <input type="text" className="form-control" id="code" value={ProductId} placeholder="Enter Product ID" onChange={(e) => {
                         setProductId(e.target.value);
-                    }} />
+                    }} disabled/>
                     </div>
                 </div>
                 <div className="form-group">
@@ -154,7 +154,7 @@ if (Image !== ""){
                             };
 
                              reader.readAsDataURL(file);*/
-                    }} />
+                    }}/>
                     </div>
                     
                 </div>
