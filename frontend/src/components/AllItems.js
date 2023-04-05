@@ -57,6 +57,7 @@ export default function AllItems() {
     }, [])
 
     //Get the image source.
+    /*
     const getImageSource = (imageData) => {
 
         //Converting the String to an image happens here.
@@ -64,6 +65,24 @@ export default function AllItems() {
         //Hilarina (0,3) --> Hil
         //We reduce 2 here --> because, the last 2 values in the basecode is generally of 2 equal characters.(==)
         imageSource = imageSource.slice(0,imageSource.length-2);
+        return imageSource;
+      };*/
+
+      
+// use the mimeType variable to set the MIME type for the image source URL
+
+      const getImageSource = (imageData, imageType) => {
+        // Set the MIME type based on the image type
+        const mimeType = imageType === 'jpeg' ? 'image/jpeg' : 'image/png';
+      
+        
+        // Convert the binary data to a Base64 encoded string
+        let imageSource = `data:${mimeType};base64,${Buffer.from(imageData.data).toString('base64').substring(19)}`;
+      
+        // Remove any padding characters from the end of the string
+        //imageSource = imageSource.replace(/=+$/, '');
+        imageSource = imageSource.slice(0,imageSource.length-2);
+      
         return imageSource;
       };
 
@@ -92,89 +111,29 @@ export default function AllItems() {
                        
                     </div>
                 </div>
-                {/*
-                <tr>
-                    <th scope="col">Product ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Image</th>
-                </tr>
-                    */}
-                {/*
-                <tbody>
-                    {
-                        //.map function --> similar to a for each loop.
-                        //inventories has all the objects passed as an array.
-                        //we pass a varaiable inside the map function ---> to access the attributes.(age,gender,name)
-                        //<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '5rem' }}>
-                        items.map((item) => (
-                            <tr scope="row" key={item._id}>
-                                <td class="text-uppercase">{item.ProductId}</td>
-                                <td class="text-uppercase">{item.Name}</td>
-                                <td class="text-uppercase">{item.Description}</td>
-                                <td class="text-uppercase">{item.Price}</td>
-                                <td class="text-uppercase">{item.Quantity}</td>
-                                <td><img src={getImageSource(item.Image)} alt={item.Name} width="300px"/></td>
-                                <td>
-                                <button type="button" class="btn btn-outline-dark" onClick={() => {
-                                    //history.push moves from the current page.
-                                    //history.push(`/update/${student._id}`);
-                                    //window.location also redirects to another page.(delete page with the ID)
-                                    window.location.replace(`http://localhost:3000/sellerhome/item/get/${item.ProductId}`);
-                                    }}>View Item</button>
-                                    
-                                    <button className="btn btn-success" onClick={() => {
-
-                                        //history.push moves from the current page.
-                                        //history.push(`/update/${student._id}`);
-                                        //window.location also redirects to another page.(delete page with the ID)
-                                        window.location.replace(`http://localhost:3000/sellerhome/item/update/${item.ProductId}`);
-                                    }}>UPDATE</button>
-                                </td>
-
-                                <td>
-                                <button className="btn btn-danger btn-sm" onClick={()=>{
-                                            var response = window.confirm("Are you sure you want to delete this Item?");
-                                            if (response){
-                                                axios.delete(`http://localhost:8070/item/delete/${item.SupplierId}/${item.ProductId}`).then(()=>{
-                                                    alert("Item Deleted");
-                                                    window.location.replace("http://localhost:3000/sellerhome/item/");
-                                                }).catch((err)=>{
-                                                    alert(err);
-                                                })
-                                            }
-                                        }}>Delete <i class="fa fa-trash-o fa-lg"></i></button>
-                                </td>
-                            </tr>
-                        ))
-                        //</div>
-                    }
-                    
-                </tbody>
-                */}
+             
+               
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '5rem' }}>
 
 {items.map((item) => (
 
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1rem', border: '1px solid #ccc' }} key={item.ProductId}>
-        <img src={getImageSource(item.Image)} style={{ maxWidth: '100%' }} />
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1rem', border: '2px solid #ccc' }} key={item.ProductId}>
+        <img src={getImageSource(item.Image)} style={{ maxWidth: '150px', height: '150px'  }} />
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '1rem' }}>
             <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>{item.Name}</h3>
             <p style={{ marginBottom: '0.5rem', textAlign: 'center' }}>{item.Description}</p>
             <span style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Rs.{item.Price}</span>
             {/* <a href="/BuyerViewItem"><button style={{ padding: '0.5rem', backgroundColor: '#008CBA', color: 'white', border: 'none', cursor: 'pointer' }}>View</button></a> */}
-            <button className="btn btn-success" onClick={() => {
+            <button className="btn btn-success" style={{ maxWidth: '100%', height: '100%'  }} onClick={() => {
                 window.location.replace(`http://localhost:3000/sellerhome/item/get/${item.ProductId}`);
             }}>View</button><br></br>
             <div>
-            <button className="btn btn-success" onClick={() => {
+            <button className="btn btn-success" style={{ maxWidth: '100%', height: '100%'  }}  onClick={() => {
                 window.location.replace(`http://localhost:3000/sellerhome/item/update/${item.ProductId}`);
             }}>Update</button>
             </div> <br></br>
             <div>
-             <button className="btn btn-danger btn-sm" onClick={()=>{
+             <button className="btn btn-danger btn-sm" style={{ maxWidth: '100%', height: '40px', width: '120px', whiteSpace: 'nowrap'  }}  onClick={()=>{
                                             var response = window.confirm("Are you sure you want to delete this Item?");
                                             if (response){
                                                 axios.delete(`http://localhost:8070/item/delete/${item.SupplierId}/${item.ProductId}`).then(()=>{
