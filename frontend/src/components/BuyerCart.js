@@ -53,6 +53,7 @@ export default function BuyerCart() {
                         <th scope="col">Quantity</th>
                         <th scope="col">Price</th>
                         <th scope="col">Image</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,6 +65,17 @@ export default function BuyerCart() {
                             <td>{item.productQty}</td>
                             <td>{item.price}</td>
                             <td><img src={getImageSource(item.Image)} width="300px" /></td>
+                            <td><button className="btn btn-danger btn-sm" onClick={() => {
+                                var response = window.confirm("Are you sure you want to remove this Item?");
+                                if (response) {
+                                    axios.delete(`http://localhost:8070/ShoppingCart/delete/${buyerEmail}/${item.itemID}`).then(() => {
+                                        alert("Item Deleted");
+                                        window.location.replace("http://localhost:3000/buyer/view/cart");
+                                    }).catch((err) => {
+                                        alert(err);
+                                    })
+                                }
+                            }}>Remove from cart</button></td>
                         </tr>
                     ))}
                 </tbody>
