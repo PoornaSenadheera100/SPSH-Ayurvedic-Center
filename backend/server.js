@@ -11,8 +11,8 @@ const multer = require("multer");
 const fs = require('fs');
 require("dotenv").config();
 
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(bodyParser.json({limit: '10mb'}));
+app.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
 app.use(express.json());
 
 const PORT = process.env.PORT || 8070;
