@@ -75,7 +75,6 @@ export default function AllItems() {
         // Set the MIME type based on the image type
         const mimeType = imageType === 'jpeg' ? 'image/jpeg' : 'image/png';
       
-        
         // Convert the binary data to a Base64 encoded string
         let imageSource = `data:${mimeType};base64,${Buffer.from(imageData.data).toString('base64').substring(19)}`;
       
@@ -115,7 +114,7 @@ export default function AllItems() {
                
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '5rem' }}>
 
-{items.map((item) => (
+    {items.map((item) => (
 
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1rem', border: '2px solid #ccc' }} key={item.ProductId}>
         <img src={getImageSource(item.Image)} style={{ maxWidth: '150px', height: '150px'  }} />
@@ -145,10 +144,10 @@ export default function AllItems() {
                                             }
                                         }}>Delete <i class="fa fa-trash-o fa-lg"></i></button>
                                           </div><br></br>
-        </div>
-    </div>
+                        </div>
+                    </div>
 ))}
-</div>
+                </div>
             </table>
         </div>
 
