@@ -124,7 +124,7 @@ export default function AllItems() {
             <p style={{ marginBottom: '0.5rem', textAlign: 'center' }}>{item.Description}</p>
             <span style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Rs.{item.Price}</span>
             {/* <a href="/BuyerViewItem"><button style={{ padding: '0.5rem', backgroundColor: '#008CBA', color: 'white', border: 'none', cursor: 'pointer' }}>View</button></a> */}
-            <button className="btn btn-success" style={{ maxWidth: '100%', height: '40px', width: '120px', whiteSpace: 'nowrap'  }} onClick={() => {
+            <button class="btn btn-outline-info" style={{ maxWidth: '100%', height: '40px', width: '120px', whiteSpace: 'nowrap'  }} onClick={() => {
                 window.location.replace(`http://localhost:3000/sellerhome/item/get/${item.ProductId}`);
             }}>View</button><br></br>
             <div>
