@@ -45,6 +45,16 @@ export default function BuyerCart() {
         total = total + (qty * price);
     }
 
+    function proceedToCheckout(e){
+        e.preventDefault();
+
+        if (total === 0){
+            alert("Please add items before checkout!");
+        } else {
+            alert("Proceed!");
+        }
+    }
+
     return (
         <div className="container">
             <div><a type="button" href="/buyerhome" class="btn btn-secondary">Back</a></div>
@@ -85,6 +95,10 @@ export default function BuyerCart() {
                     ))}
                 </tbody>
             </table>
+
+            <div style={{ float: "right" }}>
+                <a type="button" class="btn btn-primary" onClick={proceedToCheckout}>Checkout</a>
+            </div>
             <h3>Total Amount = {total}</h3>
 
         </div>
