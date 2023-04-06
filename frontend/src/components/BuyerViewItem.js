@@ -31,7 +31,8 @@ export default function BuyerViewItem() {
             setName(res.data.item.Name);
             setDescription(res.data.item.Description);
             setPrice(res.data.item.Price);
-            setQuantity(res.data.item.Quantity);
+            // setQuantity(res.data.item.Quantity);
+            setQuantity(1);
             setImage(res.data.item.Image);
         }).catch((err) => {
             console.log(err);
