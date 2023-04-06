@@ -123,11 +123,12 @@ router.route("/update/:SupplierID/:ProductId").put(async(req,res)=>{
         Quantity,
         Image
     }
-
-    const update = await Item.findOneAndUpdate({ SupplierID: supplierID, ProductId: productId },
+    //const update = 
+    await Item.findOneAndUpdate({ SupplierID: supplierID, ProductId: productId },
         updateItem)
     .then(()=>{
-        res.status(200).send({status : "Item Updated",item: update})
+        res.status(200).send({status : "Item Updated"})
+        //,item: update
     }).catch((err) => {
         console.log(err);
         res.status(500).send({status:"Error with updating data", error:err.message});
