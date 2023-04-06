@@ -21,11 +21,11 @@ export default function ManageSellers(){
     }, [])
 
     return(
-        <div>
-            <a href="/adminhome"><button>Back</button></a>
+        <div className="container">
+            <a href="/adminhome"><button className="btn btn-primary">Back</button></a>
             <h1>Manage Sellers here</h1>
 
-            <a href="/adminhome/managesellers/add"><button>Add</button></a>
+            <a href="/adminhome/managesellers/add" ><button className="btn btn-success">Add</button></a>
 
             {sellers.length === 0 && <h1>No Records</h1>}
 
@@ -51,7 +51,7 @@ export default function ManageSellers(){
                                         }}>View <i class="fa fa-pencil"></i></button>
                                     </td>
                                     <td>
-                                        <button className="btn btn-success btn-sm" onClick={()=>{
+                                        <button className="btn btn-warning btn-sm" onClick={()=>{
                                             window.location.replace(`http://localhost:3000/adminhome/managesellers/update/${seller.email}`);
                                         }}>Update <i class="fa fa-pencil"></i></button>
                                     </td>

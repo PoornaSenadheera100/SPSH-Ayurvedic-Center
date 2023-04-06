@@ -47,8 +47,8 @@ export default function SignupBuyer(){
     }
 
     return(
-        <div>
-            <a href="/buyerlogin"><button>Back</button></a>
+        <div className="container">
+            <a href="/buyerlogin"><button className="btn btn-primary">Back</button></a>
 
             <form onSubmit={proceed}>
                 <section className="vh-100 gradient-custom">

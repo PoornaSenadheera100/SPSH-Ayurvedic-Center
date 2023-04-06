@@ -12,6 +12,7 @@ import FileBase64 from 'react-file-base64';
 import axios from "axios";
 //const fs = require('fs');
 
+
 export default function AddItem() {
 
     if(sessionStorage.getItem("sAyurCenRelles") === null){
@@ -33,6 +34,7 @@ export default function AddItem() {
     const [Price,setItemPrice] = useState();
     const [Quantity, setItemQty] = useState();
     const [Image, setImage] = useState("");
+    const [productIds, setProductIds] = useState([]);
 
 
     const SupplierId = sessionStorage.getItem("sellerEmail");
@@ -42,6 +44,7 @@ export default function AddItem() {
     useEffect(() => {
         axios.get("http://localhost:8070/item/").then((res) => {
             console.log(res.data);
+            setProductIds(res.data.ProductId);
            // setInventories(res.data);
             // console.log(inventories[1].ItemCode);
         }).catch((err) => {
@@ -49,6 +52,7 @@ export default function AddItem() {
         })
     }, [])
 
+  
 
     function handleProductImageChange (event) {
     const imageFile = event.target.files[0];
@@ -93,6 +97,21 @@ export default function AddItem() {
         //Pass the backend URL as the first parameter.
         //Pass the JS object next as the second parameter, that holds the 3 attributes passed through the form.
 
+
+        //METHOD TO PREVENT DUPLICATE RECORDS ENTERED.
+        /*
+            const len = productIds.length;
+            let i;
+            let count;
+            for(i = 0; i < len; i++){
+                if(productIds[i] == newItem.ProductId){
+                    alert("Existing Product ID cannot be entered");
+                    count++;
+                }
+            }
+
+          if(count == 0 ){ 
+        */
         axios.post(`http://localhost:8070/item/add/`, newItem).then(() => {
             //After sending the data --> backend server responds --> if successfully added then an alert message is sent.
             alert(`Item Added`);
@@ -118,6 +137,8 @@ export default function AddItem() {
         //Pass the js object that we created in the console.(This will display the name, age,gender that's passed).
         //console.log(newStudent);
     }
+
+// --> closing bracket of "Duplicate Record methods"}
 
     return (
         <div>

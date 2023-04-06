@@ -5,23 +5,29 @@ import { Buffer } from 'buffer';
 
 export default function BuyerViewItem() {
 
-    // if(sessionStorage.getItem("sAyurCenNimda") === null){
-    //     window.location.replace("/adminlogin");
-    // }
+    //session validation
+    if (sessionStorage.getItem("sAyurCenReyub") === null) {
+        window.location.replace("/buyerlogin");
+    }
 
     const [ProductId, setProductId] = useState("");
+    const [SupplierId, setSupplierId] = useState("");
     const [Name, setName] = useState("");
     const [Description, setDescription] = useState("");
+    // const [buyerEmail, setBuyerEmail] = useState("");   //IMPLEMENT
     const [Price, setPrice] = useState();
     const [Quantity, setQuantity] = useState();
     const [Image, setImage] = useState("");
 
     const { id } = useParams();
+    const buyerEmail = sessionStorage.getItem("buyerEmail"); //implement this to get the buyer email from sessions
 
     useEffect(() => {
         axios.get(`http://localhost:8070/buyer/get/item/${id}`).then((res) => {
             console.log(res.data);
+            console.log(buyerEmail);
             setProductId(res.data.item.ProductId);
+            setSupplierId(res.data.item.SupplierId);
             setName(res.data.item.Name);
             setDescription(res.data.item.Description);
             setPrice(res.data.item.Price);
@@ -32,6 +38,26 @@ export default function BuyerViewItem() {
         })
 
     }, []);
+
+    function add(e) {
+        e.preventDefault();
+
+        const newCart = {
+            buyerEmail,
+            ProductId,
+            SupplierId,
+            Name,
+            Quantity,
+            Price,
+            Image
+        }
+
+        axios.post(`http://localhost:8070/ShoppingCart/add`, newCart).then(() => {
+            alert("Item added to cart");
+        }).catch((err) => {
+            alert(err);
+        })
+    }
 
     //Get the image source.
     const getImageSource = (imageData) => {
@@ -46,33 +72,67 @@ export default function BuyerViewItem() {
         return (
             <div className="container">
                 <div><a type="button" href="/buyerhome" class="btn btn-secondary">Back</a></div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'left', marginTop: '1rem' }}>
-                    <table>
-                    {/* <tr>
-                        <th scope="col">Product ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Image</th>
-                    </tr> */}
-                    
-                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'left', padding: '1rem', border: '1px solid #ccc' }} key={ProductId}>
-                        <img src={getImageSource(Image)}  />
-                        <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>{Name}</h3>
-                        <h2 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>{Description}</h2>
-                        <h1 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>{Price}</h1>
-                        <h1 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>{Quantity}</h1>
-                        {/* <td><img src={getImageSource(Image)} alt={Name} width="300px" /></td> */}
-                        
-                        <td><button className="btn-btn-success" onClick={() => {
-                            // window.location.replace(`http://localhost:3000/buyer/view/item/${item.ProductId}`);
-                        }}>Add to cart</button></td>
-                    </div>
-                </table>
-                </div>
-                
-                
+                <form onSubmit={add}>
+                {/* <table>
+                    <th>
+                        <h1>{Name}</h1>
+                        <h3>{ProductId} " : "{Description}</h3>
+                        <h3>{SupplierId}</h3>
+                        <h3>{Price}</h3>
+                        <h3>{Quantity}</h3>
+                        <input type={'number'} min = "1" value={Quantity} onChange={(e) => {setQuantity(e.target.value);}} ></input>
+                    </th>
+                        <th><img src={getImageSource(Image)} alt={Name} width="300px" /><bt></bt>
+                        <button className="btn btn-success" style={{ marginTop: '10px' }} onClick={(e) => {add(e);
+                                // window.location.replace(`http://localhost:3000/buyer/view/item/${id}`);
+                            }}>Add to cart</button>
+                        </th>
+                    </table> */}
+                    {/* <table className="table table-borderless">
+                        <tr>
+                            <th scope="col">Product ID</th>
+                            <th scope="col">Supplier ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Image</th>
+                        </tr>
+                        <tr scope="row">
+                            <td class="text-uppercase">{ProductId}</td>
+                            <td class="text-uppercase">{SupplierId}</td>
+                            <td class="text-uppercase">{Name}</td>
+                            <td class="text-uppercase">{Description}</td>
+                            <td class="text-uppercase">{Price}</td>
+                            {/* <td class="text-uppercase">{Quantity}</td> */}
+                        <table className="table table-borderless">
+                        <tr>
+                            <th scope="col">Product ID</th>
+                            <th scope="col">Supplier ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Image</th>
+                        </tr>
+                        <tr scope="row">
+                            <td class="text-uppercase">{ProductId}</td>
+                            <td class="text-uppercase">{SupplierId}</td>
+                            <td class="text-uppercase">{Name}</td>
+                            <td class="text-uppercase">{Description}</td>
+                            <td class="text-uppercase">{Price}</td>
+                            {/* <td class="text-uppercase">{Quantity}</td> */}
+                            <td><input type={'number'} min = "1" value={Quantity} onChange={(e) => {
+                                setQuantity(e.target.value);
+                            }} ></input></td>
+                            <td><img src={getImageSource(Image)} alt={Name} width="300px" /></td>
+                            <td><button className="btn btn-success" style={{ marginTop: '10px' }} onClick={(e) => {
+                                add(e);
+                                // window.location.replace(`http://localhost:3000/buyer/view/item/${id}`);
+                            }}>Add to cart</button></td>
+                        </tr>
+                    </table>
+                </form>
             </div>
         )
     }

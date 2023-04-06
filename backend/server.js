@@ -1,3 +1,5 @@
+
+
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
@@ -9,13 +11,17 @@ const multer = require("multer");
 const fs = require('fs');
 require("dotenv").config();
 
+app.use(bodyParser.json({limit: '10mb'}));
+app.use(bodyParser.urlencoded({limit: '10mb', extended: true}));
+app.use(express.json());
+
 const PORT = process.env.PORT || 8070;
 
 //app uses the cors dependency package
 app.use(cors());
 
 //app uses the bodyParser package of the json format used by MongoDB
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 
 //can assign the MONGODB_URL directly using the process.env
 const URL = process.env.MONGODB_URL;
@@ -55,7 +61,7 @@ connection.once("open", ()=>{
     console.log("MongoDB Connection Success!");
 });
 
-const ShoppingCartRouter = require("./routes/shoppingCarts.js");
+const ShoppingCartRouter = require("./routes/ShoppingCarts.js");
 app.use("/ShoppingCart",ShoppingCartRouter);
 
 

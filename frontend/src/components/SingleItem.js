@@ -18,7 +18,7 @@ export default function SingleItem() {
     const [Price, setPrice] = useState();
     const [Quantity, setQuantity] = useState();
     const [Image, setImage] = useState("");
-
+    const [isHovered, setIsHovered] = useState(false);
     const { id } = useParams();
     //const { productId } = useParams();
 
@@ -65,7 +65,10 @@ export default function SingleItem() {
                         <td class="text-uppercase">{Description}</td>
                         <td class="text-uppercase">{Price}</td>
                         <td class="text-uppercase">{Quantity}</td>
-                       <td><img src={getImageSource(Image)} alt={Name} width="300px" /></td>
+                       <td><img src={getImageSource(Image)} alt={Name}  onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}  style={{
+                        transition: 'transform 0.2s ease-in-out',
+                        transform: isHovered ? 'scale(1.2)' : 'scale(1)',
+                        }} width="300px" /></td>
                     </tr>
                 </table>
             </div>

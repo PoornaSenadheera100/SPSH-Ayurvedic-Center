@@ -50,11 +50,11 @@ export default function HomeBuyer() {
             <a href="/" onClick={() => {
                 sessionStorage.removeItem("sAyurCenReyub");
                 sessionStorage.removeItem("buyerEmail");
-            }}><button>Signout</button></a>
+            }}><button className="btn btn-outline-danger">Signout</button></a>
 
             {/* Adding a cart image  */}
             <div style={{ float: "right" }}>
-                <a href="/BuyerViewItem"> <img style={{ width: 50, height: 50 }} src="cart.gif" /></a>
+                <a href="/buyer/view/cart"> <img style={{ width: 50, height: 50 }} src="cart.gif" /></a>
             </div>
 
             <div>
@@ -85,3 +85,40 @@ export default function HomeBuyer() {
 
     )
 }
+
+
+
+/*return(
+        <div>
+            <a href="/" onClick={()=>{
+                sessionStorage.removeItem("sAyurCenReyub");
+                sessionStorage.removeItem("buyerEmail");
+            }}><button>Signout</button></a>
+            
+            <h1>Welcome to Buyer Home</h1>
+
+            <div>
+            <center><h1>All featured items</h1></center>
+            <div class="p-3 border bg-light">
+            {
+                    
+                    items.map((item)=>(
+                                
+                        item.ProductId,
+                        item.Name,
+                        item.Description,
+                        item.Price,
+                        item.Quantity,
+                        <input type={'number'} value={count} onChange={(e)=>{
+                            setCount(e.target.value);
+                        }} ></input>,
+                        <button>Add cart</button>
+                    ))
+                    }
+            </div>
+            
+           </div>
+        </div>
+
+        
+    ) */

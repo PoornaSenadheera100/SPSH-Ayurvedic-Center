@@ -72,7 +72,7 @@ export default function UpdateBuyer(){
     }
 
     return(
-        <div>
+        <div className="container">
             <a href="/adminhome/managebuyers"><button>Back</button></a>
 
             <h1>Update Buyer</h1>

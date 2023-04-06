@@ -22,7 +22,7 @@ export default function ViewSeller(){
     });
 
     return(
-        <div>
+        <div className="container">
             <a href="/adminhome/managesellers"><button>Back</button></a>
             <h1>View Seller</h1>
 
