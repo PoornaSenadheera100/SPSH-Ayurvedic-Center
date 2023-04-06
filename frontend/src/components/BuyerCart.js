@@ -16,6 +16,7 @@ export default function BuyerCart() {
     let history = useHistory();
 
     const buyerEmail = sessionStorage.getItem("buyerEmail");
+    let total = 0;
 
     useEffect(() => {
         console.log(buyerEmail);
@@ -39,6 +40,10 @@ export default function BuyerCart() {
         imageSource = imageSource.slice(0, imageSource.length - 2);
         return imageSource;
     };
+
+    function calcNetValue(qty, price){
+        total = total + (qty * price);
+    }
 
     return (
         <div className="container">
@@ -75,10 +80,13 @@ export default function BuyerCart() {
                                     })
                                 }
                             }}>Remove from cart</button></td>
+                            {calcNetValue(item.productQty, item.price)}
                         </tr>
                     ))}
                 </tbody>
             </table>
+            <h3>Total Amount = {total}</h3>
+
         </div>
     )
 }
