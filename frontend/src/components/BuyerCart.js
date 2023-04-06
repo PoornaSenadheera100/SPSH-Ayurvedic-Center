@@ -99,7 +99,7 @@ export default function BuyerCart() {
             <div style={{ float: "right" }}>
                 <a type="button" class="btn btn-primary" onClick={proceedToCheckout}>Checkout</a>
             </div>
-            <h3>Total Amount = {total}</h3>
+            <h3>Total Amount = Rs.{parseFloat(total).toFixed(2)}</h3>
 
         </div>
     )
