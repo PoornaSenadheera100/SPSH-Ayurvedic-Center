@@ -112,7 +112,7 @@ export default function AllItems() {
                 </div>
              
                
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '5rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 300px))', gap: '5rem' }}>
 
     {items.map((item) => (
 
