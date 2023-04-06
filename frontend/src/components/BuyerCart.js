@@ -51,7 +51,7 @@ export default function BuyerCart() {
         if (total === 0){
             alert("Please add items before checkout!");
         } else {
-            alert("Proceed!");
+            window.location.replace("http://localhost:3000/buyer/view/cart/checkout");
         }
     }
 

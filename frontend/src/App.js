@@ -25,6 +25,7 @@ import UpdateItem from './components/UpdateItem';
 import BuyerViewItem from './components/BuyerViewItem';
 import SingleItem from './components/SingleItem';
 import ManageOrders from './components/ManageOrders';
+import Checkout from './components/Checkout';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
       <Route path = '/sellerhome' exact component={HomeSeller}/>
       <Route path = '/buyer/view/item/:id' exact component={BuyerViewItem}/>
       <Route path = '/buyer/view/cart' exact component={BuyerCart}/>
+      <Route path = '/buyer/view/cart/checkout' exact component={Checkout}/>
 
       <Route path='/buyersignup' exact component={SignupBuyer}/>
 
