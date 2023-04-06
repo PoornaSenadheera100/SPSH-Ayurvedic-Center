@@ -52,6 +52,10 @@ export default function Checkout(){
                 <option value="cash">Cash on Delivery</option>
             </select>
 
+            <br/>
+            <br/>
+            <a className="btn btn-success">Confirm</a>
+
 
 
         </div>
