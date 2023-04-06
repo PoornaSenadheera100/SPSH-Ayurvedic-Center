@@ -98,14 +98,14 @@ export default function AllItems() {
 
                     </div>
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-outline-dark" onClick={() => {
+                        <button type="button" class="btn btn-dark" onClick={() => {
 
                             //history.push moves from the current page.
                             //history.push(`/update/${student._id}`);
                             //window.location also redirects to another page.(delete page with the ID)
                             window.location.replace(`http://localhost:3000/sellerhome/item/add`);
                         }}>Add Item</button>
-                        
+                        <br></br>
                        
                        
                     </div>
