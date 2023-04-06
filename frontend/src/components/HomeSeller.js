@@ -12,9 +12,13 @@ export default function HomeSeller(){
             }}><button className="btn btn-outline-danger">Signout</button></a>
             
             <h1>This is Seller Home</h1>
+            {/* <h1>Hello {sessionStorage.getItem("sellerEmail")}</h1> */}
 
-            <a href="/sellerhome/item"><button className="btn btn-primary">Manage Items</button></a>
-            
+            <center>
+                <a href="/sellerhome/item"><button className="btn btn-primary btn-lg">Manage Items</button></a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/sellerhome/delivery"><button className="btn btn-primary btn-lg">Delivery Requests</button></a>
+            </center>
         </div>
     )
 }
