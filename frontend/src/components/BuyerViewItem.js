@@ -73,7 +73,39 @@ export default function BuyerViewItem() {
             <div className="container">
                 <div><a type="button" href="/buyerhome" class="btn btn-secondary">Back</a></div>
                 <form onSubmit={add}>
-                    <table className="table table-borderless">
+                {/* <table>
+                    <th>
+                        <h1>{Name}</h1>
+                        <h3>{ProductId} " : "{Description}</h3>
+                        <h3>{SupplierId}</h3>
+                        <h3>{Price}</h3>
+                        <h3>{Quantity}</h3>
+                        <input type={'number'} min = "1" value={Quantity} onChange={(e) => {setQuantity(e.target.value);}} ></input>
+                    </th>
+                        <th><img src={getImageSource(Image)} alt={Name} width="300px" /><bt></bt>
+                        <button className="btn btn-success" style={{ marginTop: '10px' }} onClick={(e) => {add(e);
+                                // window.location.replace(`http://localhost:3000/buyer/view/item/${id}`);
+                            }}>Add to cart</button>
+                        </th>
+                    </table> */}
+                    {/* <table className="table table-borderless">
+                        <tr>
+                            <th scope="col">Product ID</th>
+                            <th scope="col">Supplier ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Image</th>
+                        </tr>
+                        <tr scope="row">
+                            <td class="text-uppercase">{ProductId}</td>
+                            <td class="text-uppercase">{SupplierId}</td>
+                            <td class="text-uppercase">{Name}</td>
+                            <td class="text-uppercase">{Description}</td>
+                            <td class="text-uppercase">{Price}</td>
+                            {/* <td class="text-uppercase">{Quantity}</td> */}
+                        <table className="table table-borderless">
                         <tr>
                             <th scope="col">Product ID</th>
                             <th scope="col">Supplier ID</th>
