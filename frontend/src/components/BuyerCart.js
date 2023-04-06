@@ -51,6 +51,7 @@ export default function BuyerCart() {
         if (total === 0){
             alert("Please add items before checkout!");
         } else {
+            sessionStorage.setItem("netAmount", total);
             window.location.replace("http://localhost:3000/buyer/view/cart/checkout");
         }
     }
