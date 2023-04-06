@@ -12,6 +12,15 @@ export default function Checkout(){
 
             Total Amount
             Delivery Charge
+
+            Select the delivery agent
+
+            Payment method
+            Credit / Debit Card (Online)
+            Cash on Delivery
+
+            
+
         </div>
     )
 }
