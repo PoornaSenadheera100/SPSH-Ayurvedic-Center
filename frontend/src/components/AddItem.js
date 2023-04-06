@@ -34,6 +34,7 @@ export default function AddItem() {
     const [Price,setItemPrice] = useState();
     const [Quantity, setItemQty] = useState();
     const [Image, setImage] = useState("");
+    const [productIds, setProductIds] = useState([]);
 
 
     const SupplierId = sessionStorage.getItem("sellerEmail");
@@ -43,6 +44,7 @@ export default function AddItem() {
     useEffect(() => {
         axios.get("http://localhost:8070/item/").then((res) => {
             console.log(res.data);
+            setProductIds(res.data.ProductId);
            // setInventories(res.data);
             // console.log(inventories[1].ItemCode);
         }).catch((err) => {
@@ -50,28 +52,7 @@ export default function AddItem() {
         })
     }, [])
 
-    /*
-    useEffect(() => {
-        //There's another function called getStudents defined inside the arrow function.
-        function getInv() {
-            //axois can go to the mentioned URL and get the backend data.
-            //axois uses the "get" method --> when retrieving data from the DB --> since that is the http request that is specified in the BACKEND
-            //If data was successfully fetched, then ---> the data objects sent as an array is passed to the seStudent method.
-            axios.get(`http://localhost:8070/inventory/getItem/${code}`).then((res) => {
-                console.log(res.data);
-                setInv(res.data.inventory);
-
-                //if it wasn't successfully fetched, then the error is displayed and handled as an exception.
-            }).catch((err) => {
-                alert(err.message);
-            })
-        }
-
-        //Invoke the function once its implemented.
-        getInv();
-    }, [])
-
-    */
+  
 
     function handleProductImageChange (event) {
     const imageFile = event.target.files[0];
@@ -116,6 +97,21 @@ export default function AddItem() {
         //Pass the backend URL as the first parameter.
         //Pass the JS object next as the second parameter, that holds the 3 attributes passed through the form.
 
+
+        //METHOD TO PREVENT DUPLICATE RECORDS ENTERED.
+        /*
+            const len = productIds.length;
+            let i;
+            let count;
+            for(i = 0; i < len; i++){
+                if(productIds[i] == newItem.ProductId){
+                    alert("Existing Product ID cannot be entered");
+                    count++;
+                }
+            }
+
+          if(count == 0 ){ 
+        */
         axios.post(`http://localhost:8070/item/add/`, newItem).then(() => {
             //After sending the data --> backend server responds --> if successfully added then an alert message is sent.
             alert(`Item Added`);
@@ -142,7 +138,7 @@ export default function AddItem() {
         //console.log(newStudent);
     }
 
-    
+// --> closing bracket of "Duplicate Record methods"}
 
     return (
         <div>
