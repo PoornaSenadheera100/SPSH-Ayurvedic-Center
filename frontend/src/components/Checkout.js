@@ -3,6 +3,15 @@ export default function Checkout(){
         <div className="container">
             <a type="button" href="/buyer/view/cart" class="btn btn-secondary">Back</a>
             <h1>Checkout page</h1>
+            Your Details
+            Name
+            Address
+            NIC
+            Email
+            Phone
+
+            Total Amount
+            Delivery Charge
         </div>
     )
 }
