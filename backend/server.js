@@ -21,7 +21,7 @@ const PORT = process.env.PORT || 8070;
 app.use(cors());
 
 //app uses the bodyParser package of the json format used by MongoDB
-app.use(bodyParser.json());
+// app.use(bodyParser.json());
 
 //can assign the MONGODB_URL directly using the process.env
 const URL = process.env.MONGODB_URL;
