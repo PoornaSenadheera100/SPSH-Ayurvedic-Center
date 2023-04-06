@@ -9,6 +9,10 @@ export default function Checkout(){
     const [nic, setNic] = useState("");
     const [phone, setPhone] = useState("");
 
+    const [delChrg, setDelChrg] = useState("0");
+    const netAmount = parseFloat(sessionStorage.getItem("netAmount"));
+    let totalAmount = 0;
+
     useEffect(()=>{
         axios.get(`http://localhost:8070/buyer/get/email/${email}`).then((res)=>{
             setName(res.data[0].name);
@@ -19,6 +23,10 @@ export default function Checkout(){
             alert('Network Issue...');
         })
     });
+
+    function calcTotAmount(){
+        totalAmount = netAmount + parseFloat(delChrg);
+    }
 
     return(
         <div className="container">
@@ -31,14 +39,18 @@ export default function Checkout(){
             Email : {email} <br/>
             Phone : {phone} <br/><br/>
             
-            <b>Total Amount</b> : <br/>
-            <b>Delivery Charge</b> : <br/><br/>
+            <b>Net Amount</b> : Rs.{netAmount} <br/>
+            <b>Delivery Charge</b> : Rs.{parseFloat(delChrg).toFixed(2)} <br/>
+            {calcTotAmount()}
+            <b>Total Amount</b> : Rs.{parseFloat(totalAmount).toFixed(2)} <br/><br/>
 
-            Select the delivery agent
+            <b>Select the delivery agent</b> <br/><br/>
 
-            Payment method
-            Credit / Debit Card (Online)
-            Cash on Delivery
+            <b>Payment method</b> <br/>
+            <select name="paymentMethod" id="paymentMethod">
+                <option value="card">Credit / Debit Card (Online)</option>
+                <option value="cash">Cash on Delivery</option>
+            </select>
 
 
 
