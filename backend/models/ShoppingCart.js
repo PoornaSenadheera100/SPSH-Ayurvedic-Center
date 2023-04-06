@@ -13,12 +13,28 @@ const cartShema = new Schema({
         required: true
         
     },
-    ProductQty : {
+    supplierId : {
+        type : String,
+        required: true
+        
+    },
+    productName : {
+        type : String,
+        required : true
+    },
+    productQty : {
         type : Number,
         required: true
 
+    },
+    price : {
+        type : Number,
+        required : true
+    }, 
+    Image:{
+      data: Buffer,
+      contentType: [String],
     }
-
 })
 
 const ShoppingCart = mongoose.model("ShoppingCart",cartShema);

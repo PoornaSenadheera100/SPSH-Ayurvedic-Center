@@ -7,17 +7,25 @@ let ShoppingCart=require("../models/ShoppingCart");
 router.route("/add").post((req,res)=>{
 
     const buyerEmail = req.body.buyerEmail;
-    const itemID = req.body.itemID;
-    const ProductQty = req.body.ProductQty
+    const itemID = req.body.ProductId;
+    const supplierId = req.body.SupplierId;
+    const productName = req.body.Name;
+    const productQty = Number(req.body.Quantity);
+    const price = req.body.Price;
+    const Image = req.body.Image;
 
 const newShoppingCart = new ShoppingCart({
     buyerEmail,
     itemID,
-    ProductQty
+    supplierId,
+    productName,
+    productQty,
+    price,
+    Image
 })
 
 newShoppingCart.save().then(()=>{
-    res.json("Item Added")
+    res.json("Item Added to Cart")
 }).catch((err)=>{
     console.log(err);
     })
@@ -67,9 +75,9 @@ router.route("/update/:buyerEmail/:itemID").put(async(req,res)=> {
 
 //Delete a specific cart
 router.route("/delete/:buyerEmail/:itemID").delete(async(req,res)=>{
-    let userID = req.params.buyerEmail;
+    let cartId = req.params.buyerEmail;
     let itemID = req.params.itemID
-    await ShoppingCart.findOneAndDelete({buyerEmail: userID, itemID: itemID}).then(()=>{
+    await ShoppingCart.findOneAndDelete({buyerEmail: cartId, itemID: itemID}).then(()=>{
         res.status(200).send({status:"Item deleted"});
     }).catch((err)=>{
         console.log(err.message);
