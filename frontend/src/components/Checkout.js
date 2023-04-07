@@ -11,11 +11,14 @@ export default function Checkout(){
     const [nic, setNic] = useState("");
     const [phone, setPhone] = useState("");
 
-    const [paymentMethod, setPaymentMethod] = useState("");
+    const [paymentMethod, setPaymentMethod] = useState("Cash on Delivery");
 
     const [delChrg, setDelChrg] = useState("0");
     const netAmount = parseFloat(sessionStorage.getItem("netAmount"));
     let totalAmount = 0;
+
+    const [cardNo, setCardNo] = useState("");
+    const [cvc, setCvc] = useState("");
 
     const d = new Date();
     const orderRef = d.getDate().toString() + d.getMonth().toString() + d.getFullYear().toString() + d.getHours().toString() + d.getMinutes().toString() + d.getSeconds().toString();
@@ -54,15 +57,23 @@ export default function Checkout(){
     }
 
     function enableCard(res) {
-	if(res === 'Credit / Debit Card (Online)') {
-        console.log('card');
-		document.getElementById("creditCardNo").disabled = false;
-		document.getElementById("cvc").disabled = false;
-	} else {
-		document.getElementById("creditCardNo").disabled = true;
-		document.getElementById("cvc").disabled = true;
-	}
-}
+        if(res === 'Credit / Debit Card (Online)') {
+            console.log('card');
+            document.getElementById("creditCardNo").disabled = false;
+            document.getElementById("cvc").disabled = false;
+        } else {
+            document.getElementById("creditCardNo").disabled = true;
+            document.getElementById("cvc").disabled = true;
+        }
+    }
+
+    function proceedToCheckout(){
+        if (paymentMethod === "Credit / Debit Card (Online)" && (cvc == '' || cardNo == '')){
+            alert("Credit Card details are required!");
+        } else {
+            alert("Go")
+        }
+    }
 
     return(
         <div className="container">
@@ -88,19 +99,23 @@ export default function Checkout(){
                 setPaymentMethod(e.target.value);
                 enableCard(e.target.value);
             }}>
-                <option value="Credit / Debit Card (Online)" id="card" selected>Credit / Debit Card (Online)</option>
-                <option value="Cash on Delivery" id="cash">Cash on Delivery</option>
+                <option value="Cash on Delivery" id="cash" selected>Cash on Delivery</option>
+                <option value="Credit / Debit Card (Online)" id="card">Credit / Debit Card (Online)</option>
             </select>
             <br/><br/>
 
             <label for="creditCardNo">Credit Card No : </label> &nbsp;
-            <input type="text" id="creditCardNo"></input> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" id="creditCardNo" disabled onChange={(e)=>{
+                setCardNo(e.target.value);
+            }}></input> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <label for="cvc">CVC : </label> &nbsp;
-            <input type="number" id="cvc"></input>
+            <input type="number" id="cvc" disabled onChange={(e)=>{
+                setCvc(e.target.value);
+            }}></input>
 
             <br/>
             <br/>
-            <a className="btn btn-success">Confirm</a>
+            <a className="btn btn-success" onClick={proceedToCheckout}>Confirm</a>
 
 
 
