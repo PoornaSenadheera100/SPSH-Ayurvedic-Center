@@ -27,6 +27,8 @@ export default function Checkout(){
     const d = new Date();
     const orderRef = d.getDate().toString() + d.getMonth().toString() + d.getFullYear().toString() + d.getHours().toString() + d.getMinutes().toString() + d.getSeconds().toString();
 
+    const appStatus = "Pending";
+
     // alert(newDate.getDate().toString() + newDate.getMonth().toString() + newDate.getFullYear().toString() + newDate.getHours().toString() + newDate.getMinutes().toString() + newDate.getSeconds().toString());
     // alert(orderRef.substring(8, 10) + orderRef.substring(11, 15) + orderRef.substring(16, 18) + orderRef.substring(19, 21) + orderRef.substring(22, 24));
 
@@ -93,11 +95,13 @@ export default function Checkout(){
                 totalAmount,
                 delAgent,
                 paymentMethod,
-                status
+                status,
+                appStatus
             }
             axios.post("http://localhost:8070/order/add", newOrder).then((req, res)=>{
                 alert("Order Submitted Successfully");
-
+                axios.delete(`http://localhost:8070/ShoppingCart/delete/${email}`);
+                window.location.replace("http://localhost:3000/buyerhome")
             }).catch((err)=>{
                 alert(err);
             })
