@@ -17,6 +17,12 @@ export default function Checkout(){
     const netAmount = parseFloat(sessionStorage.getItem("netAmount"));
     let totalAmount = 0;
 
+    const d = new Date();
+    const orderRef = d.getDate().toString() + d.getMonth().toString() + d.getFullYear().toString() + d.getHours().toString() + d.getMinutes().toString() + d.getSeconds().toString();
+
+    // alert(newDate.getDate().toString() + newDate.getMonth().toString() + newDate.getFullYear().toString() + newDate.getHours().toString() + newDate.getMinutes().toString() + newDate.getSeconds().toString());
+    // alert(orderRef.substring(8, 10) + orderRef.substring(11, 15) + orderRef.substring(16, 18) + orderRef.substring(19, 21) + orderRef.substring(22, 24));
+
     useEffect(()=>{
         axios.get(`http://localhost:8070/buyer/get/email/${email}`).then((res)=>{
             setName(res.data[0].name);
