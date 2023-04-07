@@ -2,18 +2,20 @@ const router = require("express").Router();
 let Order = require("../models/Order");
 
 router.route("/add").post((req, res)=>{
-    const buyeremail = req.body.buyeremail;
-    const buyername = req.body.buyername;
-    const buyerphone = req.body.buyerphone;
-    const buyeraddress = req.body.buyeraddress;
-    const buyernic = req.body.buyernic;
-    const totalamount = req.body.totalamount;
-    const deliveryagent = req.body.deliveryagent;
-    const paymentmethod = req.body.paymentmethod;
+    const orderRef = req.body.orderRef;
+    const buyeremail = req.body.email;
+    const buyername = req.body.name;
+    const buyerphone = req.body.phone;
+    const buyeraddress = req.body.address;
+    const buyernic = req.body.nic;
+    const totalamount = req.body.totalAmount;
+    const deliveryagent = req.body.delAgent;
+    const paymentmethod = req.body.paymentMethod;
     const status = req.body.status;
 
 
     const newOrder = new Order({
+        orderRef,
         buyeremail,
         buyername,
         buyerphone,
