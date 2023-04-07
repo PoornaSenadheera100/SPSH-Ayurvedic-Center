@@ -17,8 +17,12 @@ export default function Checkout(){
     const netAmount = parseFloat(sessionStorage.getItem("netAmount"));
     let totalAmount = 0;
 
+    const [delAgent, setDelAgent] = useState("");
+
     const [cardNo, setCardNo] = useState("");
     const [cvc, setCvc] = useState("");
+
+    const [status, setStatus] = useState("Not Paid. Not Delivered");
 
     const d = new Date();
     const orderRef = d.getDate().toString() + d.getMonth().toString() + d.getFullYear().toString() + d.getHours().toString() + d.getMinutes().toString() + d.getSeconds().toString();
@@ -38,7 +42,7 @@ export default function Checkout(){
 
         axios.get("http://localhost:8070/seller/").then((res)=>{
                 setSellers(res.data);
-                console.log(res.data);
+                setDelAgent(res.data[0].name);
             }).catch((err)=>{
                 alert(err.message);
         }).then(()=>{
@@ -67,11 +71,36 @@ export default function Checkout(){
         }
     }
 
+    function setStatusValue(paymentMethod){
+        if (paymentMethod === "Credit / Debit Card (Online)") {
+            setStatus("Paid. Not Delivered");
+        } else {
+            setStatus("Not Paid. Not Delivered");
+        }
+    }
+
     function proceedToCheckout(){
         if (paymentMethod === "Credit / Debit Card (Online)" && (cvc == '' || cardNo == '')){
             alert("Credit Card details are required!");
         } else {
-            alert("Go")
+            const newOrder = {
+                orderRef,
+                email,
+                name,
+                phone,
+                address,
+                nic,
+                totalAmount,
+                delAgent,
+                paymentMethod,
+                status
+            }
+            axios.post("http://localhost:8070/order/add", newOrder).then((req, res)=>{
+                alert("Order Submitted Successfully");
+
+            }).catch((err)=>{
+                alert(err);
+            })
         }
     }
 
@@ -92,12 +121,15 @@ export default function Checkout(){
             <b>Total Amount</b> : Rs.{parseFloat(totalAmount).toFixed(2)} <br/><br/>
 
             <b>Select the delivery agent</b> <br/>
-            <select id="delAgents"></select> <br/><br/>
+            <select id="delAgents" onChange={(e)=>{
+                setDelAgent(e.target.value);
+            }}></select> <br/><br/>
 
             <b>Payment method</b> <br/>
             <select name="paymentMethod" id="paymentMethod" onChange={(e)=>{
                 setPaymentMethod(e.target.value);
                 enableCard(e.target.value);
+                setStatusValue(e.target.value);
             }}>
                 <option value="Cash on Delivery" id="cash" selected>Cash on Delivery</option>
                 <option value="Credit / Debit Card (Online)" id="card">Credit / Debit Card (Online)</option>
