@@ -3,11 +3,15 @@ import { useEffect, useState } from "react";
 
 export default function Checkout(){
 
+    const [sellers, setSellers] = useState([]);
+
     const email = sessionStorage.getItem("buyerEmail");
     const [name, setName] = useState("");
     const [address, setAddress] = useState("");
     const [nic, setNic] = useState("");
     const [phone, setPhone] = useState("");
+
+    const [paymentMethod, setPaymentMethod] = useState("");
 
     const [delChrg, setDelChrg] = useState("0");
     const netAmount = parseFloat(sessionStorage.getItem("netAmount"));
@@ -21,12 +25,38 @@ export default function Checkout(){
             setPhone(res.data[0].phone);
         }).catch((err)=>{
             alert('Network Issue...');
+        });
+
+        axios.get("http://localhost:8070/seller/").then((res)=>{
+                setSellers(res.data);
+                console.log(res.data);
+            }).catch((err)=>{
+                alert(err.message);
+        }).then(()=>{
+            var select = document.getElementById("delAgents");
+            sellers.map((seller)=>{
+                var option = document.createElement("option");
+                option.text = seller.name;
+                option.value = seller.email;
+                select.appendChild(option);
+            });
         })
-    });
+    }, sellers[0]);
 
     function calcTotAmount(){
         totalAmount = netAmount + parseFloat(delChrg);
     }
+
+    function enableCard(res) {
+	if(res === 'Credit / Debit Card (Online)') {
+        console.log('card');
+		document.getElementById("creditCardNo").disabled = false;
+		document.getElementById("cvc").disabled = false;
+	} else {
+		document.getElementById("creditCardNo").disabled = true;
+		document.getElementById("cvc").disabled = true;
+	}
+}
 
     return(
         <div className="container">
@@ -44,13 +74,23 @@ export default function Checkout(){
             {calcTotAmount()}
             <b>Total Amount</b> : Rs.{parseFloat(totalAmount).toFixed(2)} <br/><br/>
 
-            <b>Select the delivery agent</b> <br/><br/>
+            <b>Select the delivery agent</b> <br/>
+            <select id="delAgents"></select> <br/><br/>
 
             <b>Payment method</b> <br/>
-            <select name="paymentMethod" id="paymentMethod">
-                <option value="card">Credit / Debit Card (Online)</option>
-                <option value="cash">Cash on Delivery</option>
+            <select name="paymentMethod" id="paymentMethod" onChange={(e)=>{
+                setPaymentMethod(e.target.value);
+                enableCard(e.target.value);
+            }}>
+                <option value="Credit / Debit Card (Online)" id="card" selected>Credit / Debit Card (Online)</option>
+                <option value="Cash on Delivery" id="cash">Cash on Delivery</option>
             </select>
+            <br/><br/>
+
+            <label for="creditCardNo">Credit Card No : </label> &nbsp;
+            <input type="text" id="creditCardNo"></input> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <label for="cvc">CVC : </label> &nbsp;
+            <input type="number" id="cvc"></input>
 
             <br/>
             <br/>
