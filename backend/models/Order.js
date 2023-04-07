@@ -50,7 +50,13 @@ const orderSchema = new Schema({
     status : {
         type : String,
         required : true
+    },
+
+    appStatus : {
+        type : String,
+        required : true
     }
+
 })
 
 const Order = mongoose.model("Order", orderSchema);
