@@ -12,6 +12,7 @@ router.route("/add").post((req, res)=>{
     const deliveryagent = req.body.delAgent;
     const paymentmethod = req.body.paymentMethod;
     const status = req.body.status;
+    const appStatus = req.body.appStatus;
 
 
     const newOrder = new Order({
@@ -24,7 +25,8 @@ router.route("/add").post((req, res)=>{
         totalamount,
         deliveryagent,
         paymentmethod,
-        status
+        status,
+        appStatus
     })
 
     newOrder.save().then(()=>{
