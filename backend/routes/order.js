@@ -44,5 +44,16 @@ router.route("/").get((req, res)=>{
     })
 })
 
+router.route("/get/:buyerEmail").get(async(req,res)=>{
+    let buyerEmail = req.params.buyerEmail;
+    
+    await Order.find({"buyeremail": buyerEmail}).then((order)=>{
+        res.json(order);
+    }).catch((err)=>{
+        console.log(err);
+        res.status(500).send({status:"Opps! Error in loading the orders"});
+    })
+})
+
 
 module.exports = router;
