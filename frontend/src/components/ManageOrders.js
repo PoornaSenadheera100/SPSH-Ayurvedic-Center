@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react"
 
 export default function ManageOrders(){
@@ -7,6 +8,15 @@ export default function ManageOrders(){
     }
 
     const [orders, setOrders] = useState([]);
+
+    useEffect(()=>{
+        axios.get("http://localhost:8070/order/getpendings").then((res)=>{
+            setOrders(res.data);
+            console.log(res.data);
+        }).catch((err)=>{
+            alert("Network Error...");
+        })
+    }, [])
 
     return(
         <div className = "container">
@@ -19,9 +29,11 @@ export default function ManageOrders(){
                 <table className="table table-borderless" >
                     <tr>
                         <th><center>Reference No.</center></th>
-                        <th><center>Payment Method</center></th>
+                        <th><center>Customer Name</center></th>
                         <th><center>Payement Status</center></th>
                         <th><center>Approval Status</center></th>
+                        <th></th>
+                        <th></th>
                         <th></th>
                     </tr>
 
@@ -30,13 +42,23 @@ export default function ManageOrders(){
                             orders.map((order)=>(
                                 <tr>
                                     <td><center>{order.orderRef}</center></td>
-                                    <td><center>{order.paymentmethod}</center></td>
+                                    <td><center>{order.buyername}</center></td>
                                     <td><center>{order.status}</center></td>
                                     <td><center>{order.appStatus}</center></td>
                                     <td>
                                         <button className="btn btn-warning btn-sm" onClick={()=>{
                                             window.location.replace(`http://localhost:3000/buyerhome/myorders/${order.orderRef}`);
                                         }}>View <i class="fa fa-pencil"></i></button>
+                                    </td>
+                                    <td>
+                                        <button className="btn btn-success btn-sm" onClick={()=>{
+                                            window.location.replace(`http://localhost:3000/buyerhome/myorders/${order.orderRef}`);
+                                        }}>Approve <i class="fa fa-pencil"></i></button>
+                                    </td>
+                                    <td>
+                                        <button className="btn btn-danger btn-sm" onClick={()=>{
+                                            window.location.replace(`http://localhost:3000/buyerhome/myorders/${order.orderRef}`);
+                                        }}>Reject <i class="fa fa-pencil"></i></button>
                                     </td>
                                 </tr>
                             ))
