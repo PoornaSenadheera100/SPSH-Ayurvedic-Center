@@ -47,7 +47,7 @@ export default function ManageOrders(){
                                     <td><center>{order.appStatus}</center></td>
                                     <td>
                                         <button className="btn btn-warning btn-sm" onClick={()=>{
-                                            window.location.replace(`http://localhost:3000/buyerhome/myorders/${order.orderRef}`);
+                                            window.location.replace(`http://localhost:3000/adminhome/manageorders/${order.orderRef}`);
                                         }}>View <i class="fa fa-pencil"></i></button>
                                     </td>
                                     <td>
