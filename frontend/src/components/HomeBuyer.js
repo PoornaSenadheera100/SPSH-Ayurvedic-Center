@@ -51,6 +51,8 @@ export default function HomeBuyer() {
                 sessionStorage.removeItem("sAyurCenReyub");
                 sessionStorage.removeItem("buyerEmail");
             }}><button className="btn btn-outline-danger">Signout</button></a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="/buyerhome/myorders"><button className="btn btn-primary">My Orders</button></a>
 
             {/* Adding a cart image  */}
             <div style={{ float: "right" }}>
