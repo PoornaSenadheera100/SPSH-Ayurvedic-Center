@@ -55,5 +55,14 @@ router.route("/get/:buyerEmail").get(async(req,res)=>{
     })
 })
 
+router.route("/getpendings").get(async(req,res)=>{
+    await Order.find({"appStatus": "Pending"}).then((order)=>{
+        res.json(order);
+    }).catch((err)=>{
+        console.log(err);
+        res.status(500).send({status:"Opps! Error in loading the orders"});
+    })
+})
+
 
 module.exports = router;
