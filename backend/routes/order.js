@@ -75,5 +75,30 @@ router.route("/getbyref/:orderRef").get(async(req,res)=>{
     })
 })
 
+router.route("/approvalprocess/:orderRef").put(async(req, res)=>{
+    let orderRef = req.params.orderRef;
+    const {buyeremail, buyername, buyerphone, buyeraddress, buyernic, totalamount, deliveryagent, paymentmethod, status, appStatus} = req.body;
+    const updateOrder = {
+        orderRef,
+        buyeremail,
+        buyername,
+        buyerphone,
+        buyeraddress,
+        buyernic,
+        totalamount,
+        deliveryagent,
+        paymentmethod,
+        status,
+        appStatus
+    }
+
+    await Order.findOneAndUpdate({"orderRef" : orderRef}, updateOrder).then(()=>{
+        res.status(200).send({status: "Order Updated"});
+    }).catch((err)=>{
+        console.log(err);
+        res.status(500).send({status: "Error with updating the order", error: err.message});
+    })
+})
+
 
 module.exports = router;
