@@ -52,12 +52,30 @@ export default function ManageOrders(){
                                     </td>
                                     <td>
                                         <button className="btn btn-success btn-sm" onClick={()=>{
-                                            window.location.replace(`http://localhost:3000/buyerhome/myorders/${order.orderRef}`);
+                                            order.appStatus = "Approved"
+                                            var response = window.confirm("Are you sure you want to APPROVE this order?");
+                                            if (response){
+                                                axios.put(`http://localhost:8070/order/approvalprocess/${order.orderRef}`, order).then(()=>{
+                                                    alert("Order Approved!");
+                                                    window.location.replace(`http://localhost:3000/adminhome/manageorders`);
+                                                }).catch((err)=>{
+                                                    alert(err);
+                                                })
+                                            }
                                         }}>Approve <i class="fa fa-pencil"></i></button>
                                     </td>
                                     <td>
                                         <button className="btn btn-danger btn-sm" onClick={()=>{
-                                            window.location.replace(`http://localhost:3000/buyerhome/myorders/${order.orderRef}`);
+                                            order.appStatus = "Rejected"
+                                            var response = window.confirm("Are you sure you want to REJECT this order?");
+                                            if (response){
+                                                axios.put(`http://localhost:8070/order/approvalprocess/${order.orderRef}`, order).then(()=>{
+                                                    alert("Order Rejected!");
+                                                    window.location.replace(`http://localhost:3000/adminhome/manageorders`);
+                                                }).catch((err)=>{
+                                                    alert(err);
+                                                })
+                                            }
                                         }}>Reject <i class="fa fa-pencil"></i></button>
                                     </td>
                                 </tr>
