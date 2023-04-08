@@ -38,7 +38,7 @@ export default function MyOrders(){
                                     <td><center>{order.orderRef}</center></td>
                                     <td><center>{order.paymentmethod}</center></td>
                                     <td><center>{order.status}</center></td>
-                                    <td><center>{order.appStatus}</center></td>
+                                    <td style={{ color: order.appStatus === 'Rejected' ? 'red' : order.appStatus === 'Approved' ? 'green' : 'orange' }}><center>{order.appStatus}</center></td>
                                     <td>
                                         <button className="btn btn-warning btn-sm" onClick={()=>{
                                             window.location.replace(`http://localhost:3000/buyerhome/myorders/${order.orderRef}`);
