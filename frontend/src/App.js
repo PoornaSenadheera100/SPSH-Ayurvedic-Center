@@ -28,6 +28,7 @@ import ManageOrders from './components/ManageOrders';
 import Checkout from './components/Checkout';
 import MyOrders from './components/MyOrders';
 import SingleOrder from './components/SingleOrder';
+import SingleOrderAdmin from './components/SingleOrderAdmin';
 
 function App() {
   return (
@@ -53,6 +54,7 @@ function App() {
       <Route path = '/adminhome/managebuyers' exact component={ManageBuyers}/>
       <Route path = '/adminhome/managesellers' exact component={ManageSellers}/>
       <Route path = '/adminhome/manageorders' exact component={ManageOrders}/>
+      <Route path = '/adminhome/manageorders/:orderRef' exact component={SingleOrderAdmin}/>
 
       <Route path = '/adminhome/managesellers/add' exact component={AddSeller}/>
 
