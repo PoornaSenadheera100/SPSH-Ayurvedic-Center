@@ -64,5 +64,16 @@ router.route("/getpendings").get(async(req,res)=>{
     })
 })
 
+router.route("/getbyref/:orderRef").get(async(req,res)=>{
+    let orderRef = req.params.orderRef;
+    
+    await Order.find({"orderRef": orderRef}).then((order)=>{
+        res.json(order);
+    }).catch((err)=>{
+        console.log(err);
+        res.status(500).send({status:"Opps! Error in loading the orders"});
+    })
+})
+
 
 module.exports = router;
