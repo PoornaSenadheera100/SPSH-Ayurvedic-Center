@@ -30,7 +30,7 @@ export default function ManageOrders(){
                     <tr>
                         <th><center>Reference No.</center></th>
                         <th><center>Customer Name</center></th>
-                        <th><center>Payement Status</center></th>
+                        <th><center>Bill Amount</center></th>
                         <th><center>Approval Status</center></th>
                         <th></th>
                         <th></th>
@@ -43,7 +43,7 @@ export default function ManageOrders(){
                                 <tr>
                                     <td><center>{order.orderRef}</center></td>
                                     <td><center>{order.buyername}</center></td>
-                                    <td><center>{order.status}</center></td>
+                                    <td><center>Rs.{parseFloat(order.totalamount).toFixed(2)}</center></td>
                                     <td><center>{order.appStatus}</center></td>
                                     <td>
                                         <button className="btn btn-warning btn-sm" onClick={()=>{
