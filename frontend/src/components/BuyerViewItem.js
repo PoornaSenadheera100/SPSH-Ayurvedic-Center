@@ -17,6 +17,7 @@ export default function BuyerViewItem() {
     // const [buyerEmail, setBuyerEmail] = useState("");   //IMPLEMENT
     const [Price, setPrice] = useState();
     const [Quantity, setQuantity] = useState();
+    const [MaxQuantity, setMaxQuantity] = useState();
     const [Image, setImage] = useState("");
 
     const { id } = useParams();
@@ -31,7 +32,7 @@ export default function BuyerViewItem() {
             setName(res.data.item.Name);
             setDescription(res.data.item.Description);
             setPrice(res.data.item.Price);
-            // setQuantity(res.data.item.Quantity);
+            setMaxQuantity(res.data.item.Quantity);
             setQuantity(1);
             setImage(res.data.item.Image);
         }).catch((err) => {
@@ -123,7 +124,7 @@ export default function BuyerViewItem() {
                             <td class="text-uppercase">{Description}</td>
                             <td class="text-uppercase">{Price}</td>
                             {/* <td class="text-uppercase">{Quantity}</td> */}
-                            <td><input type={'number'} min = "1" value={Quantity} onChange={(e) => {
+                            <td><input type={'number'} min = "1" max={MaxQuantity} value={Quantity} onChange={(e) => {
                                 setQuantity(e.target.value);
                             }} ></input></td>
                             <td><img src={getImageSource(Image)} alt={Name} width="300px" /></td>
