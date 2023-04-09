@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { Buffer } from 'buffer';
+import Rater from 'react-rater'
+import 'react-rater/lib/react-rater.css'
 
 export default function BuyerViewItem() {
 
@@ -134,6 +136,11 @@ export default function BuyerViewItem() {
                             }}>Add to cart</button></td>
                         </tr>
                     </table>
+
+                    <b>Rate the Product</b> <br/>
+                    <Rater onRate={(value)=>{
+                        alert(value.rating);
+                    }} total={5} rating={0} style={{ fontSize: '40px' }}/>
                 </form>
             </div>
         )
