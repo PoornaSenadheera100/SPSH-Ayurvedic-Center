@@ -4,6 +4,10 @@ import { useParams } from "react-router-dom"
 
 export default function SingleOrder(){
 
+    if (sessionStorage.getItem("sAyurCenReyub") === null) {
+        window.location.replace("/buyerlogin");
+    }
+
     const {orderRef} = useParams();
 
     const [name, setName] = useState("");
