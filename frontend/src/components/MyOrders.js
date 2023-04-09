@@ -3,6 +3,10 @@ import { useEffect, useState } from "react"
 
 export default function MyOrders(){
 
+    if (sessionStorage.getItem("sAyurCenReyub") === null) {
+        window.location.replace("/buyerlogin");
+    }
+
     const buyerEmail = sessionStorage.getItem("buyerEmail");
     const [orders, setOrders] = useState([]);
 
