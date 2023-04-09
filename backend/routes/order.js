@@ -100,5 +100,16 @@ router.route("/approvalprocess/:orderRef").put(async(req, res)=>{
     })
 })
 
+router.route("/getdeliveries/:agentEmail").get(async(req,res)=>{
+    let agentEmail = req.params.agentEmail;
+    
+    await Order.find({"deliveryagent": agentEmail, "appStatus": "Approved", "status": {$ne: "Paid. Delivered."}}).then((order)=>{
+        res.json(order);
+    }).catch((err)=>{
+        console.log(err);
+        res.status(500).send({status:"Opps! Error in loading the orders"});
+    })
+})
+
 
 module.exports = router;
