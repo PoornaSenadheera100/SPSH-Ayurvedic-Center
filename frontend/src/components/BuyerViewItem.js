@@ -22,6 +22,8 @@ export default function BuyerViewItem() {
     const [MaxQuantity, setMaxQuantity] = useState();
     const [Image, setImage] = useState("");
 
+    const [rate, setRate] = useState(0);
+
     const { id } = useParams();
     const buyerEmail = sessionStorage.getItem("buyerEmail"); //implement this to get the buyer email from sessions
 
@@ -39,6 +41,11 @@ export default function BuyerViewItem() {
             setImage(res.data.item.Image);
         }).catch((err) => {
             console.log(err);
+        })
+
+        axios.get(`http://localhost:8070/rate/get/${buyerEmail}/${id}`).then((res)=>{
+            console.log(res.data);
+            setRate(res.data[0].rate);
         })
 
     }, []);
@@ -71,6 +78,23 @@ export default function BuyerViewItem() {
         imageSource = imageSource.slice(0, imageSource.length - 2);
         return imageSource;
     };
+
+    function rateProduct(value){
+        const newRate = {
+            id,
+            buyerEmail,
+            value
+        };
+        if (rate === 0){
+            axios.post("http://localhost:8070/rate/add", newRate).catch((err)=>{
+                alert(err);
+            });
+        } else {
+            axios.put("http://localhost:8070/rate/update", newRate).catch((err)=>{
+                alert(err);
+            })
+        }
+    }
 
     if (Image !== "") {
         return (
@@ -139,8 +163,8 @@ export default function BuyerViewItem() {
 
                     <b>Rate the Product</b> <br/>
                     <Rater onRate={(value)=>{
-                        alert(value.rating);
-                    }} total={5} rating={0} style={{ fontSize: '40px' }}/>
+                        rateProduct(value.rating);
+                    }} total={5} rating={rate} style={{ fontSize: '40px' }}/>
                 </form>
             </div>
         )
