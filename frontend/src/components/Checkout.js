@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 
 export default function Checkout(){
 
+    if (sessionStorage.getItem("sAyurCenReyub") === null) {
+        window.location.replace("/buyerlogin");
+    }
+
     const [sellers, setSellers] = useState([]);
 
     const email = sessionStorage.getItem("buyerEmail");
@@ -153,6 +157,7 @@ export default function Checkout(){
             <br/>
             <a className="btn btn-success" onClick={proceedToCheckout}>Confirm</a>
 
+            <br/><br/><br/><br/><br/><br/><br/>
 
 
         </div>
