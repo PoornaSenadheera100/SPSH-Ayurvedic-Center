@@ -4,6 +4,10 @@ import { useEffect } from "react"
 
 export default function DeliveryRequests(){
 
+    if(sessionStorage.getItem("sAyurCenRelles") === null){
+        window.location.replace("/sellerlogin");
+    }
+
     const agentEmail = sessionStorage.getItem("sellerEmail");
 
     const[delRequests, setDelRequests] = useState([]);
