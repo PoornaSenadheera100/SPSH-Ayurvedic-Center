@@ -52,6 +52,7 @@ export default function HomeBuyer() {
     function getAverageRatings(arr) {
         const itemMap = new Map();
         const result = {};
+
         arr.forEach((obj) => {
           if (!itemMap.has(obj.itemID)) {
             itemMap.set(obj.itemID, [obj.rate]);
@@ -59,11 +60,13 @@ export default function HomeBuyer() {
             itemMap.get(obj.itemID).push(obj.rate);
           }
         });
+        
         itemMap.forEach((value, key) => {
           const sum = value.reduce((acc, curr) => acc + curr, 0);
           const avg = sum / value.length;
           result[key] = avg;
         });
+        
         return result;
     }
 
