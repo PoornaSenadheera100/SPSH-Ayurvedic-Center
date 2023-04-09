@@ -30,6 +30,7 @@ import MyOrders from './components/MyOrders';
 import SingleOrder from './components/SingleOrder';
 import SingleOrderAdmin from './components/SingleOrderAdmin';
 import DeliveryRequests from './components/DeliveryRequests';
+import SingleOrderSeller from './components/SingleOrderSeller';
 
 function App() {
   return (
@@ -66,12 +67,13 @@ function App() {
       <Route path = '/adminhome/managesellers/update/:paramemail' exact component={UpdateSeller}/>
       
     
-      <Route path="/sellerhome/item/add/" exact component={AddItem}></Route>
-      <Route path="/sellerhome/item" exact component={AllItems}></Route>
-      <Route path="/sellerhome/item/delete/:id" exact componenet={DeleteItem}></Route>
-      <Route path="/sellerhome/item/update/:id" exact component={UpdateItem}></Route>
-      <Route path="/sellerhome/item/get/:id" exact component={SingleItem}></Route>
+      <Route path ="/sellerhome/item/add/" exact component={AddItem}></Route>
+      <Route path ="/sellerhome/item" exact component={AllItems}></Route>
+      <Route path ="/sellerhome/item/delete/:id" exact componenet={DeleteItem}></Route>
+      <Route path ="/sellerhome/item/update/:id" exact component={UpdateItem}></Route>
+      <Route path ="/sellerhome/item/get/:id" exact component={SingleItem}></Route>
       <Route path = "/sellerhome/delivery" exact component={DeliveryRequests}/>
+      <Route path = "/sellerhome/delivery/:orderRef" exact component={SingleOrderSeller}/>
     </Router>
   );
 }
