@@ -12,12 +12,7 @@ const rateSchema = new Schema({
         required : true
     },
 
-    ratingCount : {
-        type : Number,
-        required : true
-    },
-
-    avgRate : {
+    rate : {
         type : Number,
         required : true
     }
