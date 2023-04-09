@@ -2,9 +2,9 @@ const router = require("express").Router();
 let Rate = require("../models/Rate");
 
 router.route("/add").post((req, res)=>{
-    const itemID = req.body.itemID;
+    const itemID = req.body.id;
     const buyerEmail = req.body.buyerEmail;
-    const rate = Number(req.body.rate);
+    const rate = Number(req.body.value);
 
 
     const newRate = new Rate({
@@ -52,7 +52,10 @@ router.route("/get/:buyerEmail/:itemID").get(async(req,res)=>{
 })
 
 router.route("/update").put(async(req, res)=>{
-    const {itemID, buyerEmail, rate} = req.body;
+    const itemID = req.body.id;
+    const buyerEmail = req.body.buyerEmail;
+    const rate = Number(req.body.value);
+    
     const updateRate = {
         itemID,
         buyerEmail,
