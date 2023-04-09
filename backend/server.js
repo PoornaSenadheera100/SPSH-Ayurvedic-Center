@@ -107,7 +107,8 @@ app.use("/item",itemRouter);
 const orderRouter = require("./routes/order.js");
 app.use("/order", orderRouter);
 
-
+const rateRouter = require("./routes/rate.js");
+app.use("/rate", rateRouter);
 
 
 
