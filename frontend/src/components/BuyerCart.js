@@ -101,6 +101,7 @@ export default function BuyerCart() {
                 <a type="button" class="btn btn-primary" onClick={proceedToCheckout}>Checkout</a>
             </div>
             <h3>Total Amount = Rs.{parseFloat(total).toFixed(2)}</h3>
+            <br/><br/><br/><br/><br/><br/>
 
         </div>
     )
