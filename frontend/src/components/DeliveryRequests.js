@@ -49,9 +49,10 @@ export default function DeliveryRequests(){
                                     </td>
                                     <td>
                                         <button className="btn btn-success btn-sm" onClick={()=>{
+                                            delRequest.status = "Paid. Delivered."
                                             var response = window.confirm("Are you sure you want to mark this order as Delivered?");
                                             if (response){
-                                                axios.put(`http://localhost:8070/`).then(()=>{
+                                                axios.put(`http://localhost:8070/order/approvalprocess/${delRequest.orderRef}`, delRequest).then(()=>{
                                                     alert("Order marked as Delivered!");
                                                     window.location.replace("http://localhost:3000/sellerhome/delivery");
                                                 }).catch((err)=>{
