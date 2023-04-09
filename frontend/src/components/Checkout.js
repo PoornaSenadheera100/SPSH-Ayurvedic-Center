@@ -22,7 +22,7 @@ export default function Checkout(){
     const [cardNo, setCardNo] = useState("");
     const [cvc, setCvc] = useState("");
 
-    const [status, setStatus] = useState("Not Paid. Not Delivered");
+    const [status, setStatus] = useState("Not Paid. Not Delivered.");
 
     const d = new Date();
     const orderRef = d.getDate().toString() + d.getMonth().toString() + d.getFullYear().toString() + d.getHours().toString() + d.getMinutes().toString() + d.getSeconds().toString();
@@ -44,7 +44,7 @@ export default function Checkout(){
 
         axios.get("http://localhost:8070/seller/").then((res)=>{
                 setSellers(res.data);
-                setDelAgent(res.data[0].name);
+                setDelAgent(res.data[0].email);
             }).catch((err)=>{
                 alert(err.message);
         }).then(()=>{
@@ -75,9 +75,9 @@ export default function Checkout(){
 
     function setStatusValue(paymentMethod){
         if (paymentMethod === "Credit / Debit Card (Online)") {
-            setStatus("Paid. Not Delivered");
+            setStatus("Paid. Not Delivered.");
         } else {
-            setStatus("Not Paid. Not Delivered");
+            setStatus("Not Paid. Not Delivered.");
         }
     }
 
