@@ -29,6 +29,7 @@ import Checkout from './components/Checkout';
 import MyOrders from './components/MyOrders';
 import SingleOrder from './components/SingleOrder';
 import SingleOrderAdmin from './components/SingleOrderAdmin';
+import DeliveryRequests from './components/DeliveryRequests';
 
 function App() {
   return (
@@ -70,6 +71,7 @@ function App() {
       <Route path="/sellerhome/item/delete/:id" exact componenet={DeleteItem}></Route>
       <Route path="/sellerhome/item/update/:id" exact component={UpdateItem}></Route>
       <Route path="/sellerhome/item/get/:id" exact component={SingleItem}></Route>
+      <Route path = "/sellerhome/delivery" exact component={DeliveryRequests}/>
     </Router>
   );
 }
