@@ -17,6 +17,8 @@ import UpdateBuyer from './components/UpdateBuyer';
 import ViewSeller from './components/ViewSeller';
 import UpdateSeller from './components/UpdateSeller';
 import BuyerCart from './components/BuyerCart';
+import {PayPalScriptProvider} from "@paypal/react-paypal-js"
+import PaypalCheckout from './components/PaypalCheckout';
 
 import AddItem from './components/AddItem';
 import DeleteItem from './components/DeleteItem';
@@ -34,6 +36,7 @@ import SingleOrderSeller from './components/SingleOrderSeller';
 
 function App() {
   return (
+    <PayPalScriptProvider options={{"client-id": ""}}>
     <Router>
       <Header/>
       <Route path = '/' exact component = {Welcome}/>
@@ -75,6 +78,7 @@ function App() {
       <Route path = "/sellerhome/delivery" exact component={DeliveryRequests}/>
       <Route path = "/sellerhome/delivery/:orderRef" exact component={SingleOrderSeller}/>
     </Router>
+    </PayPalScriptProvider>
   );
 }
 
