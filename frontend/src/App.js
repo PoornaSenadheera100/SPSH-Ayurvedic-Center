@@ -36,7 +36,7 @@ import SingleOrderSeller from './components/SingleOrderSeller';
 
 function App() {
   return (
-    <PayPalScriptProvider options={{"client-id": ""}}>
+    <PayPalScriptProvider options={{"client-id": process.env.REACT_APP_CLIENT_ID}}>
     <Router>
       <Header/>
       <Route path = '/' exact component = {Welcome}/>
