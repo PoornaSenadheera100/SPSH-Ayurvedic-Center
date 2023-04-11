@@ -1,0 +1,19 @@
+{
+  "name": "rating_service",
+  "version": "1.0.0",
+  "description": "Rating Service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PoornaSenadheera100/SPSH-Ayurvedic-Center.git"
+  },
+  "author": "Sanuthi Vihansa (IT21134180), Poorna Senadheera (IT21126888), Sathira Wijeratne (IT21138386), Hilarina Christy (IT21127946)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PoornaSenadheera100/SPSH-Ayurvedic-Center/issues"
+  },
+  "homepage": "https://github.com/PoornaSenadheera100/SPSH-Ayurvedic-Center#readme"
+}
