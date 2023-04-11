@@ -16,6 +16,7 @@ export default function BuyerCart() {
     let history = useHistory();
 
     const buyerEmail = sessionStorage.getItem("buyerEmail");
+    let total = 0;
 
     useEffect(() => {
         console.log(buyerEmail);
@@ -39,6 +40,21 @@ export default function BuyerCart() {
         imageSource = imageSource.slice(0, imageSource.length - 2);
         return imageSource;
     };
+
+    function calcNetValue(qty, price){
+        total = total + (qty * price);
+    }
+
+    function proceedToCheckout(e){
+        e.preventDefault();
+
+        if (total === 0){
+            alert("Please add items before checkout!");
+        } else {
+            sessionStorage.setItem("netAmount", total);
+            window.location.replace("http://localhost:3000/buyer/view/cart/checkout");
+        }
+    }
 
     return (
         <div className="container">
@@ -75,10 +91,18 @@ export default function BuyerCart() {
                                     })
                                 }
                             }}>Remove from cart</button></td>
+                            {calcNetValue(item.productQty, item.price)}
                         </tr>
                     ))}
                 </tbody>
             </table>
+
+            <div style={{ float: "right" }}>
+                <a type="button" class="btn btn-primary" onClick={proceedToCheckout}>Checkout</a>
+            </div>
+            <h3>Total Amount = Rs.{parseFloat(total).toFixed(2)}</h3>
+            <br/><br/><br/><br/><br/><br/>
+
         </div>
     )
 }

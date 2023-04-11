@@ -73,11 +73,22 @@ router.route("/update/:buyerEmail/:itemID").put(async(req,res)=> {
     })
 })
 
-//Delete a specific cart
+//Delete a specific item in a cart
 router.route("/delete/:buyerEmail/:itemID").delete(async(req,res)=>{
     let cartId = req.params.buyerEmail;
     let itemID = req.params.itemID
     await ShoppingCart.findOneAndDelete({buyerEmail: cartId, itemID: itemID}).then(()=>{
+        res.status(200).send({status:"Item deleted"});
+    }).catch((err)=>{
+        console.log(err.message);
+        res.status(500).send({status:"Error in deleting item",error:err.message});
+    })
+})
+
+//Delete a specific item in a cart
+router.route("/delete/:buyerEmail").delete(async(req,res)=>{
+    let cartId = req.params.buyerEmail;
+    await ShoppingCart.deleteMany({buyerEmail: cartId}).then(()=>{
         res.status(200).send({status:"Item deleted"});
     }).catch((err)=>{
         console.log(err.message);

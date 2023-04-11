@@ -5,6 +5,8 @@
 import React, { useState, useEffect } from 'react';
 
 import { Buffer } from 'buffer';
+import Rater from 'react-rater'
+import 'react-rater/lib/react-rater.css'
 
 //Import the axios pacakge to read the data from the backend to the frontend.
 import axios from "axios";
@@ -32,6 +34,8 @@ export default function AllItems() {
 
     const SupplierId = sessionStorage.getItem("sellerEmail");
 
+    const [avgRatings, setAvgRatings] = useState({});
+
     
     useEffect(() => {
 
@@ -54,6 +58,11 @@ export default function AllItems() {
 
         //Invoke the function once its implemented.
         getItem();
+
+        axios.get("http://localhost:8070/rate").then((res)=>{
+            setAvgRatings(getAverageRatings(res.data));
+            console.log(getAverageRatings(res.data)['P002']);
+        })
     }, [])
 
     //Get the image source.
@@ -84,6 +93,27 @@ export default function AllItems() {
       
         return imageSource;
       };
+
+      function getAverageRatings(arr) {
+        const itemMap = new Map();
+        const result = {};
+
+        arr.forEach((obj) => {
+          if (!itemMap.has(obj.itemID)) {
+            itemMap.set(obj.itemID, [obj.rate]);
+          } else {
+            itemMap.get(obj.itemID).push(obj.rate);
+          }
+        });
+        
+        itemMap.forEach((value, key) => {
+          const sum = value.reduce((acc, curr) => acc + curr, 0);
+          const avg = sum / value.length;
+          result[key] = avg;
+        });
+        
+        return result;
+    }
 
     return (
 
@@ -123,6 +153,7 @@ export default function AllItems() {
             <p style={{ marginBottom: '0.5rem', textAlign: 'center' }}>{item.Description}</p>
             <span style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Rs.{item.Price}</span>
             {/* <a href="/BuyerViewItem"><button style={{ padding: '0.5rem', backgroundColor: '#008CBA', color: 'white', border: 'none', cursor: 'pointer' }}>View</button></a> */}
+            <Rater total={5} rating={avgRatings[item.ProductId]} interactive={false} style={{ fontSize: '30px' }}/>
             <button class="btn btn-success" style={{ maxWidth: '100%', height: '40px', width: '120px', whiteSpace: 'nowrap'  }} onClick={() => {
                 window.location.replace(`http://localhost:3000/sellerhome/item/get/${item.ProductId}`);
             }}>View</button><br></br>

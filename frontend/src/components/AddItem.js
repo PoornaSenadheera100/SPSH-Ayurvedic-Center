@@ -39,6 +39,7 @@ export default function AddItem() {
 
     const SupplierId = sessionStorage.getItem("sellerEmail");
 
+    const [block, setBlock] = useState(false);
 
 
     useEffect(() => {
@@ -112,36 +113,53 @@ export default function AddItem() {
 
           if(count == 0 ){ 
         */
-        axios.post(`http://localhost:8070/item/add/`, newItem).then(() => {
-            //After sending the data --> backend server responds --> if successfully added then an alert message is sent.
-            alert(`Item Added`);
+        if (block === false){
+            axios.post(`http://localhost:8070/item/add/`, newItem).then(() => {
+                //After sending the data --> backend server responds --> if successfully added then an alert message is sent.
+                alert(`Item Added`);
+                window.location.replace("http://localhost:3000/sellerhome/item");
 
 
-            //After submitting the details ---> the values should be taken off from the fields ---> to do this --> the setters are assigned with ("")
-            setItemCode("");
-            setItemName("");
-            setItemDescription("");
-            setItemPrice();
-            setItemQty();
-            setImage("");
+                //After submitting the details ---> the values should be taken off from the fields ---> to do this --> the setters are assigned with ("")
+                setItemCode("");
+                setItemName("");
+                setItemDescription("");
+                setItemPrice();
+                setItemQty();
+                setImage("");
 
-            //Can move to the home page after deleting the data
-            // window.location.replace("http://localhost:3000/item");
+                //Can move to the home page after deleting the data
+                // window.location.replace("http://localhost:3000/item");
 
-            //can move to the add student page after deleting the data.  
-            //window.location.replace("http://localhost:3000/inventory/add");
-        }).catch((err) => {
-            //After sending the data --> backend server responds --> if it wasn't successfully added --> the error is handled as an exception.
-            alert(err);
+                //can move to the add student page after deleting the data.  
+                //window.location.replace("http://localhost:3000/inventory/add");
+            }).catch((err) => {
+                //After sending the data --> backend server responds --> if it wasn't successfully added --> the error is handled as an exception.
+                alert(err);
+            })
+            //Pass the js object that we created in the console.(This will display the name, age,gender that's passed).
+            //console.log(newStudent);
+        } else {
+            alert("This Product ID is already existing!")
+        }
+    }
+
+    function checkItemCode(itemCode){
+        axios.get(`http://localhost:8070/item/getitem/${itemCode}`).then((res)=>{
+            if (res.data.length !== 0){
+                console.log(itemCode);
+                setBlock(true);
+            } else {
+                setBlock(false);
+            }
         })
-        //Pass the js object that we created in the console.(This will display the name, age,gender that's passed).
-        //console.log(newStudent);
+        console.log(block)
     }
 
 // --> closing bracket of "Duplicate Record methods"}
 
     return (
-        <div>
+        <div className="container">
              <h1>Add Item</h1>
             <form onSubmit={sendData}>
             
@@ -153,6 +171,7 @@ export default function AddItem() {
                     <div class="col-sm-10">
                         <input type="text" className="form-control" required id="code" placeholder="Enter item code" onChange={(e) => {
                             setItemCode(e.target.value);
+                            checkItemCode(e.target.value);
                         }} />
                         <div required/>
                     </div>
