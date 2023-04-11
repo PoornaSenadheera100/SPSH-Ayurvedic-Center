@@ -87,11 +87,11 @@ export default function BuyerViewItem() {
         };
         if (rate === 0){
             axios.post("http://localhost:8070/rate/add", newRate).catch((err)=>{
-                alert(err);
+                alert("Rating Service is not available.");
             });
         } else {
             axios.put("http://localhost:8070/rate/update", newRate).catch((err)=>{
-                alert(err);
+                alert("Rating Service is not available.");
             })
         }
     }
