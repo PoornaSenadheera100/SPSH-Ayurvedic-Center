@@ -59,9 +59,8 @@ export default function AllItems() {
         //Invoke the function once its implemented.
         getItem();
 
-        axios.get("http://localhost:8070/rate").then((res)=>{
+        axios.get("http://localhost:8071/rate").then((res)=>{
             setAvgRatings(getAverageRatings(res.data));
-            console.log(getAverageRatings(res.data)['P002']);
         })
     }, [])
 
