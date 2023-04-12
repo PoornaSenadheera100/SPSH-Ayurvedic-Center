@@ -46,6 +46,11 @@ export default function UpdateBuyer(){
             }
     
             axios.put(`http://localhost:8070/buyer/update/${paramemail}`, newBuyer).then(()=>{
+
+                axios.post(`http://localhost:8072/email/update/${name}/${email}`).catch((err)=>{
+                    alert("Email Service is not available.");
+                })
+
                 alert("Buyer Updated");
                 window.location.replace("http://localhost:3000/adminhome/managebuyers");
             }).catch((err)=>{
@@ -63,6 +68,11 @@ export default function UpdateBuyer(){
             }
     
             axios.put(`http://localhost:8070/buyer/update/${paramemail}`, newBuyer).then(()=>{
+
+            axios.post(`http://localhost:8072/email/update/${name}/${email}`).catch((err)=>{
+                alert("Email Service is not available.");
+            })
+
                 alert("Buyer Updated");
                 window.location.replace("http://localhost:3000/adminhome/managebuyers");
             }).catch((err)=>{
