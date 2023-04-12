@@ -1,7 +1,7 @@
 // Checkout.js
 import PaypalCheckoutButton from "./PaypalCheckoutButton";
 
-const PaypalCheckout = () => {
+export const PayPalCheckout = () => {
   const product = {
     description: "Design+Code React Hooks Course",
     price: 19
@@ -13,5 +13,3 @@ const PaypalCheckout = () => {
       </div>
   );
 };
-
-export default PaypalCheckout;
