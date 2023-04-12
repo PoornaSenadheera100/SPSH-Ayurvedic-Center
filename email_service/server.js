@@ -13,6 +13,9 @@ const PORT = 8072;
 
 app.use(cors());
 
+const emailRouter = require("./routes/email.js");
+app.use("/email", emailRouter);
+
 app.listen(PORT, ()=>{
     console.log(`Server is up and running on PORT : ${PORT}`);
 });
