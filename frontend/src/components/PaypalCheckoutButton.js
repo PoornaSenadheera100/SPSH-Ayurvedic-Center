@@ -1,26 +1,33 @@
+import axios from "axios";
 import { useState } from "react";
 import { PayPalButtons } from "@paypal/react-paypal-js";
 
 //holds logic and styling for checkout button
 const PaypalCheckoutButton = (props) => {
-  //contains product
-  const { product } = props;
+  //contains price
+  const { newOrder,
+    usdAmount, email } = props.obj;
 
   const [paidFor, setPaidFor] = useState(false);
   const [error, setError] = useState(null);
 
   const handleApprove = (orderID) => {
-    //call backend function to fullfill order
-
     //if response is success
     setPaidFor(true);
 
-    //refresh user's account or subscription status
+    axios
+    .post("http://localhost:8070/order/add", newOrder)
+    .then((req, res) => {
+      alert("Order Submitted Successfully");
+      axios.delete(`http://localhost:8070/ShoppingCart/delete/${email}`);
+      window.location.replace("http://localhost:3000/buyerhome");
+    })
+    .catch((err) => {
+      alert(err);
+    });
 
     //if repsonse returns error
-    setError(
-      "Your payment was processed successfully. However, we are unable to fulfill your purchase. Please contact us at spsh@gmail.com for assistance."
-    );
+    
   };
 
   if (paidFor) {
@@ -38,6 +45,7 @@ const PaypalCheckoutButton = (props) => {
         color: "silver",
         layout: "horizontal",
         height: 48,
+        width: 50,
         tagline: false,
         shape: "pill",
       }}
@@ -47,7 +55,7 @@ const PaypalCheckoutButton = (props) => {
 
         if (hasAlreadyBoughtProduct) {
           setError(
-            "You already bought this course. Go to your account to view your list of courses."
+            "One or more items have already been selected"
           );
 
           return actions.reject();
@@ -59,9 +67,8 @@ const PaypalCheckoutButton = (props) => {
         return actions.order.create({
           purchase_units: [
             {
-              description: product.description,
               amount: {
-                value: product.price,
+                value: usdAmount,
               },
             },
           ],
@@ -76,8 +83,11 @@ const PaypalCheckoutButton = (props) => {
         handleApprove(data.orderID);
       }}
       onError={(err) => {
+        setError(
+          "Your payment was not processed successfully. We are unable to fulfill your purchase. Please contact us at spsh@gmail.com for assistance."
+        );
         setError(err);
-        console.error("PayPal Checkout onError", err);
+        console.error("PayPal Checkout on Error", err);
       }}
     />
   );
