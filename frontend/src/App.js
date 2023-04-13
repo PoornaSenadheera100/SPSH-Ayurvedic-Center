@@ -17,6 +17,8 @@ import UpdateBuyer from './components/UpdateBuyer';
 import ViewSeller from './components/ViewSeller';
 import UpdateSeller from './components/UpdateSeller';
 import BuyerCart from './components/BuyerCart';
+import {PayPalScriptProvider} from "@paypal/react-paypal-js";
+import PaypalCheckoutButton from './components/PaypalCheckoutButton';
 
 import AddItem from './components/AddItem';
 import DeleteItem from './components/DeleteItem';
@@ -32,8 +34,10 @@ import SingleOrderAdmin from './components/SingleOrderAdmin';
 import DeliveryRequests from './components/DeliveryRequests';
 import SingleOrderSeller from './components/SingleOrderSeller';
 
+
 function App() {
   return (
+    <PayPalScriptProvider options={{"client-id": process.env.REACT_APP_CLIENT_ID}}>
     <Router>
       <Header/>
       <Route path = '/' exact component = {Welcome}/>
@@ -66,6 +70,7 @@ function App() {
       <Route path = '/adminhome/managesellers/view/:email' exact component={ViewSeller}/>
       <Route path = '/adminhome/managesellers/update/:paramemail' exact component={UpdateSeller}/>
       
+      <Route path='/paypal/button' exact component={PaypalCheckoutButton}/>
     
       <Route path ="/sellerhome/item/add/" exact component={AddItem}></Route>
       <Route path ="/sellerhome/item" exact component={AllItems}></Route>
@@ -75,6 +80,7 @@ function App() {
       <Route path = "/sellerhome/delivery" exact component={DeliveryRequests}/>
       <Route path = "/sellerhome/delivery/:orderRef" exact component={SingleOrderSeller}/>
     </Router>
+    </PayPalScriptProvider>
   );
 }
 
