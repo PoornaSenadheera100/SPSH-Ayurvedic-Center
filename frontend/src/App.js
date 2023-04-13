@@ -18,7 +18,6 @@ import ViewSeller from './components/ViewSeller';
 import UpdateSeller from './components/UpdateSeller';
 import BuyerCart from './components/BuyerCart';
 import {PayPalScriptProvider} from "@paypal/react-paypal-js";
-import { PayPalCheckout } from './components/PayPalCheckout';
 import PaypalCheckoutButton from './components/PaypalCheckoutButton';
 
 import AddItem from './components/AddItem';
@@ -71,7 +70,6 @@ function App() {
       <Route path = '/adminhome/managesellers/view/:email' exact component={ViewSeller}/>
       <Route path = '/adminhome/managesellers/update/:paramemail' exact component={UpdateSeller}/>
       
-      <Route path='/paypal' exact component={PayPalCheckout}/>
       <Route path='/paypal/button' exact component={PaypalCheckoutButton}/>
     
       <Route path ="/sellerhome/item/add/" exact component={AddItem}></Route>
