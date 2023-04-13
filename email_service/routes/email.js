@@ -107,7 +107,7 @@ router.route("/payment").post((req, res)=>{
     let name = req.body.name;
     let email = req.body.email;
     let orderRef = req.body.orderRef;
-    let totAmount = req.body.totAmount;
+    let totAmount = req.body.totalAmount;
 
     const msg = {
         to: email,
