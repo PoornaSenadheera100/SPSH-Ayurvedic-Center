@@ -65,6 +65,7 @@ export default function BuyerViewItem() {
 
         axios.post(`http://localhost:8070/ShoppingCart/add`, newCart).then(() => {
             alert("Item added to cart");
+            window.location.replace("http://localhost:3000/buyerhome");
         }).catch((err) => {
             alert(err);
         })
