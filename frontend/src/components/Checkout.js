@@ -160,7 +160,7 @@ export default function Checkout() {
       Email : {email} <br />
       Phone : {phone} <br />
       <br />
-      <b>Net Amount</b> : Rs.{netAmount} <br />
+      <b>Net Amount</b> : Rs.{parseFloat(netAmount).toFixed(2)} <br />
       <b>Delivery Charge</b> : Rs.{parseFloat(delChrg).toFixed(2)} <br />
       {calcTotAmount()}
       <b>Total Amount</b> : Rs.{parseFloat(totalAmount).toFixed(2)} <br />

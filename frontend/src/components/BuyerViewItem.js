@@ -189,7 +189,7 @@ export default function BuyerViewItem() {
                                         PID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {ProductId}<br />
                                         Quantity :
                                         <input for = "qunatitytxt" type="number" min="1" defaultValue="1" max={MaxQuantity}  onChange={(e) => { setQuantity(e.target.value);}} style={{marginLeft: '5px'}} /><br />
-                                        Price &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:  {Price}<br />
+                                        Price &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:  Rs.{parseFloat(Price).toFixed(2)}<br />
                                       
                                         Supplier : {SupplierId} <br/>
                                         <b>Rate the Product</b> &nbsp;
