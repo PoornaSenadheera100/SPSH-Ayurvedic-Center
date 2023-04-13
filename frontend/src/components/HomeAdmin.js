@@ -9,10 +9,10 @@ export default function HomeAdmin(){
             <a href="/" style={{float: "right"}} onClick={()=>{
                 sessionStorage.removeItem("sAyurCenNimda");
             }}>
-                <button style={{margin: '10px', padding: '10px', backgroundColor: 'transparent', color: 'red', borderColor: 'red', borderWidth: '1px', borderStyle: 'solid'}}>Signout</button> </a>
+                <button style={{margin: '5px', padding: '5px', backgroundColor: 'transparent', color: 'red', borderColor: 'red', borderWidth: '1px', borderStyle: 'solid'}}>Signout</button> </a>
                 
-    
-                <h1 align="center" style={{fontSize: '36px'}}>Welcome to Admin Home</h1>
+    <br></br>
+                <h1 align="center" style={{fontSize: '36px',justifyContent: 'center'}}>Welcome to Admin Home</h1>
   
   <br></br><br></br>
     <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center',  height: '100vh'}}>
