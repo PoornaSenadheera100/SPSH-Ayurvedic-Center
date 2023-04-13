@@ -99,8 +99,8 @@ export default function Checkout() {
   }
 
   function setStatusValue(paymentMethod) {
-    if (paymentMethod === "Credit / Debit Card (Online)") {
-      setStatus("Online Payment");
+    if (paymentMethod === "Online Payment") {
+      setStatus("Paid. Not Delivered.");
     } else {
       setStatus("Not Paid. Not Delivered.");
     }
@@ -111,7 +111,7 @@ export default function Checkout() {
       paymentMethod === "Credit / Debit Card (Online)" &&
       (cvc == "" || cardNo == "")
     ) {
-      alert("Credit Card details are required!");
+      // alert("Credit Card details are required!");
     } else {
       const newOrder = {
         orderRef,
