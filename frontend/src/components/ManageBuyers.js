@@ -24,7 +24,8 @@ export default function ManageBuyers(){
         <div className="container">
             <a href="/adminhome"><button className="btn btn-primary">Back</button></a>
 
-            <h1>Manage Buyers here</h1>
+            <h1 align="Center">Manage Buyers</h1> <br></br>
+    
 
             {/* <a href="/adminhome/managebuyers/add"><button>Add</button></a> */}
 
