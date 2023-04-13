@@ -28,7 +28,7 @@ export default function ViewBuyer(){
     return(
         <div className="container">
             <a href="/adminhome/managebuyers"><button>Back</button></a>
-            <h1>View Buyer</h1>
+            <h1><center>View Buyer</center></h1>
 
             Name &nbsp;&nbsp;&nbsp; : {name}
             <br></br>
