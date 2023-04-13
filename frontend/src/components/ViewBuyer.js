@@ -26,8 +26,8 @@ export default function ViewBuyer(){
     });
 
     return(
-        <div>
-             <a href="/adminhome/managebuyers"><button style={{ backgroundColor: 'blue', color: 'white', marginRight: '10px' }}>Back</button></a>
+        <div >
+             <a href="/adminhome/managebuyers"><button className="btn btn-primary" style={{ marginLeft: '10px' }}>Back</button></a>
         <div className="container" style={{ margin: 'auto', maxWidth: '500px', padding: '20px' }}>
  
   <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>View Buyer</h1>
