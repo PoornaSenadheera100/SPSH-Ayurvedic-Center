@@ -31,6 +31,11 @@ export default function SignupBuyer(){
                     }
 
                     axios.post("http://localhost:8070/buyer/add", newBuyer).then(()=>{
+
+                        axios.post(`http://localhost:8072/email/register/${name}/${email}`).catch((err)=>{
+                            alert("Email Service is not available.");
+                        });
+
                         alert("Registration Successfull !");
                         window.location.replace("http://localhost:3000");
                     }).catch((err)=>{

@@ -63,6 +63,11 @@ export default function ManageBuyers(){
                                             var response = window.confirm("Are you sure you want to delete this user?");
                                             if (response){
                                                 axios.delete(`http://localhost:8070/buyer/delete/email/${buyer.email}`).then(()=>{
+
+                                                    axios.post(`http://localhost:8072/email/delete/${buyer.name}/${buyer.email}`).catch((err)=>{
+                                                        alert("Email Service is not available.");
+                                                    })
+
                                                     alert("Buyer Deleted");
                                                     window.location.replace("http://localhost:3000/adminhome/managebuyers");
                                                 }).catch((err)=>{

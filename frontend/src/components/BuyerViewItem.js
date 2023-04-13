@@ -43,7 +43,7 @@ export default function BuyerViewItem() {
             console.log(err);
         })
 
-        axios.get(`http://localhost:8070/rate/get/${buyerEmail}/${id}`).then((res)=>{
+        axios.get(`http://localhost:8071/rate/get/${buyerEmail}/${id}`).then((res)=>{
             console.log(res.data);
             setRate(res.data[0].rate);
         })
@@ -86,12 +86,12 @@ export default function BuyerViewItem() {
             value
         };
         if (rate === 0){
-            axios.post("http://localhost:8070/rate/add", newRate).catch((err)=>{
-                alert(err);
+            axios.post("http://localhost:8071/rate/add", newRate).catch((err)=>{
+                alert("Rating Service is not available.");
             });
         } else {
-            axios.put("http://localhost:8070/rate/update", newRate).catch((err)=>{
-                alert(err);
+            axios.put("http://localhost:8071/rate/update", newRate).catch((err)=>{
+                alert("Rating Service is not available.");
             })
         }
     }

@@ -3,3 +3,5 @@
 backend/env
 backend/.env
 other/
+rating_service/.env
+email_service/.env
