@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/PoornaSenadheera100/SPSH-Ayurvedic-Center#readme",
   "dependencies": {
-    "@sendgrid/mail": "^7.7.0",
     "axios": "^1.3.4",
     "buffer": "^6.0.3",
     "cors": "^2.8.5",
