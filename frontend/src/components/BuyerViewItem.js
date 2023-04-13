@@ -27,6 +27,8 @@ export default function BuyerViewItem() {
     const { id } = useParams();
     const buyerEmail = sessionStorage.getItem("buyerEmail"); //implement this to get the buyer email from sessions
 
+    const [newRemainingQty, setNewRemainingQty] = useState();
+
     useEffect(() => {
         axios.get(`http://localhost:8070/buyer/get/item/${id}`).then((res) => {
             console.log(res.data);
@@ -37,6 +39,7 @@ export default function BuyerViewItem() {
             setDescription(res.data.item.Description);
             setPrice(res.data.item.Price);
             setMaxQuantity(res.data.item.Quantity);
+            setNewRemainingQty(res.data.item.Quantity - 1);
             setQuantity(1);
             setImage(res.data.item.Image);
         }).catch((err) => {
@@ -63,12 +66,21 @@ export default function BuyerViewItem() {
             Image
         }
 
-        axios.post(`http://localhost:8070/ShoppingCart/add`, newCart).then(() => {
-            alert("Item added to cart");
-            window.location.replace("http://localhost:3000/buyerhome");
-        }).catch((err) => {
-            alert(err);
-        })
+        if (MaxQuantity === 0){
+            alert("Sorry! This Item is currently not available.");
+            
+        } else if(Quantity > MaxQuantity){
+            alert("Insufficient Quantity!");
+        } else {
+            axios.post(`http://localhost:8070/ShoppingCart/add`, newCart).then(() => {
+                updateItem(newRemainingQty);
+                alert("Item added to cart");
+                window.location.replace("http://localhost:3000/buyerhome");
+            }).catch((err) => {
+                alert(err);
+            })
+        }
+        
     }
 
     //Get the image source.
@@ -95,6 +107,24 @@ export default function BuyerViewItem() {
                 alert("Rating Service is not available.");
             })
         }
+    }
+
+    function calcRemainingQty(buyingQty){
+        setNewRemainingQty(MaxQuantity - buyingQty);
+    }
+
+    function updateItem(Quantity){
+        const newItem = {
+            SupplierId,
+            ProductId,
+            Name,
+            Description,
+            Price,
+            Quantity,
+            Image
+        };
+
+        axios.put(`http://localhost:8070/item/update/${SupplierId}/${id}`, newItem);
     }
 
     if (Image !== "") {
@@ -173,6 +203,7 @@ export default function BuyerViewItem() {
             // Sathira's implementation - End
 
             <div className="container">
+                <form onSubmit={add}>
                  <div style={{padding: '10px'}}><a type="button" href="/buyerhome" className="btn btn-secondary">Back</a></div>
                     <div align="center" style={{border: '1px solid black', borderRadius: '5px', padding: '10px', maxWidth: '500px', margin: '0 auto'}}>
                         <div align="center">
@@ -188,7 +219,10 @@ export default function BuyerViewItem() {
                                         {Description}<br />
                                         PID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {ProductId}<br />
                                         Quantity :
-                                        <input for = "qunatitytxt" type="number" min="1" defaultValue="1" max={MaxQuantity}  onChange={(e) => { setQuantity(e.target.value);}} style={{marginLeft: '5px'}} /><br />
+                                        <input for = "qunatitytxt" type="number" min="1" defaultValue="1" max={MaxQuantity}  onChange={(e) => { 
+                                            setQuantity(e.target.value);
+                                            calcRemainingQty(e.target.value);
+                                            }} style={{marginLeft: '5px'}} /><br />
                                         Price &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:  Rs.{parseFloat(Price).toFixed(2)}<br />
                                       
                                         Supplier : {SupplierId} <br/>
@@ -198,10 +232,11 @@ export default function BuyerViewItem() {
                                         }} total={5} rating={rate} style={{ fontSize: '30px' }}/>
                                     </div>
                                 </div>
-                                <button className="btn btn-success" style={{marginTop: '10px', width: '100%'}} onClick={(e) => { add(e); }}>Add to cart</button>
+                                <button type="submit" className="btn btn-success" style={{marginTop: '10px', width: '100%'}} onClick={add}>Add to cart</button>
                             </form>
                         </div>
                     </div>
+                    </form>
             </div>
         )
     }
