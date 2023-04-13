@@ -26,20 +26,53 @@ export default function ViewBuyer(){
     });
 
     return(
-        <div className="container">
-            <a href="/adminhome/managebuyers"><button>Back</button></a>
-            <h1><center>View Buyer</center></h1>
+        <div>
+             <a href="/adminhome/managebuyers"><button style={{ backgroundColor: 'blue', color: 'white', marginRight: '10px' }}>Back</button></a>
+        <div className="container" style={{ margin: 'auto', maxWidth: '500px', padding: '20px' }}>
+ 
+  <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>View Buyer</h1>
 
-            Name &nbsp;&nbsp;&nbsp; : {name}
-            <br></br>
-            address &nbsp; : {address}
-            <br></br>
-            nic &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : {nic}
-            <br></br>
-            email &nbsp;&nbsp;&nbsp;&nbsp; : {email}
-            <br></br>
-            phone &nbsp;&nbsp;&nbsp; : {phone}
-            <br></br>
-        </div>
+  <div style={{ border: '1px solid black', padding: '10px', textAlign: 'justify', backgroundColor: '#f8f8f8', borderRadius: '50px',height:'200px' }}>
+    <center>
+        <br></br>
+  <table>
+
+<tr>
+<td style={{ width: '200px' }}> Name</td>
+
+<td style={{ width: '200px' }}>:</td>
+
+<td style={{ width: '200px' }}>{name}</td>
+
+</tr>
+
+<tr></tr>
+
+<tr>
+<td> Address</td>
+<td>:</td>
+<td>{address}</td>
+</tr>
+
+<tr></tr>
+<tr>
+<td> Email</td>
+<td>:</td>
+<td>{email}</td>
+</tr>
+<tr></tr>
+<tr>
+<td> Phone</td>
+<td>:</td>
+<td>{phone}</td>
+</tr>
+
+
+</table>
+</center>
+  </div>
+</div>
+
+</div>     
     )
 }
