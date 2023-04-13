@@ -66,7 +66,7 @@ export default function BuyerCart() {
                         <th scope="col">Supplier ID</th>
                         <th scope="col">Product Name</th>
                         <th scope="col">Quantity</th>
-                        <th scope="col">Price</th>
+                        <th scope="col">Price (Rs.)</th>
                         <th scope="col">Image</th>
                         <th scope="col"></th>
                     </tr>
@@ -78,7 +78,7 @@ export default function BuyerCart() {
                             <td>{item.supplierId}</td>
                             <td>{item.productName}</td>
                             <td>{item.productQty}</td>
-                            <td>{item.price}</td>
+                            <td>{parseFloat(item.price).toFixed(2)}</td>
                             <td><img src={getImageSource(item.Image)} width="300px" /></td>
                             <td><button className="btn btn-danger btn-sm" onClick={() => {
                                 var response = window.confirm("Are you sure you want to remove this Item?");

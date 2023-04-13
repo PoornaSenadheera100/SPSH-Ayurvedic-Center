@@ -65,6 +65,7 @@ export default function BuyerViewItem() {
 
         axios.post(`http://localhost:8070/ShoppingCart/add`, newCart).then(() => {
             alert("Item added to cart");
+            window.location.replace("http://localhost:3000/buyerhome");
         }).catch((err) => {
             alert(err);
         })
@@ -188,7 +189,7 @@ export default function BuyerViewItem() {
                                         PID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {ProductId}<br />
                                         Quantity :
                                         <input for = "qunatitytxt" type="number" min="1" defaultValue="1" max={MaxQuantity}  onChange={(e) => { setQuantity(e.target.value);}} style={{marginLeft: '5px'}} /><br />
-                                        Price &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:  {Price}<br />
+                                        Price &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:  Rs.{parseFloat(Price).toFixed(2)}<br />
                                       
                                         Supplier : {SupplierId} <br/>
                                         <b>Rate the Product</b> &nbsp;
