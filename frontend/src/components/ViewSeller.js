@@ -11,11 +11,14 @@ export default function ViewSeller(){
     const {email} = useParams();
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
+    const [delChrg, setDelChrg] = useState();
 
     useEffect(()=>{
         axios.get(`http://localhost:8070/seller/get/email/${email}`).then((res)=>{
+            console.log(res.data);
             setName(res.data[0].name);
             setPhone(res.data[0].phone);
+            setDelChrg(res.data[0].delChrg);
         }).catch((err)=>{
             alert('Network Issue...');
         })
@@ -26,11 +29,13 @@ export default function ViewSeller(){
             <a href="/adminhome/managesellers"><button>Back</button></a>
             <h1>View Seller</h1>
 
-            Name &nbsp;&nbsp;&nbsp; : {name}
+            Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : {name}
             <br></br>
-            email &nbsp;&nbsp;&nbsp;&nbsp; : {email}
+            email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : {email}
             <br></br>
-            phone &nbsp;&nbsp;&nbsp; : {phone}
+            phone &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : {phone}
+            <br></br>
+            Delivery Charge : Rs.{parseFloat(delChrg).toFixed(2)}
             <br></br>
         </div>
     )
