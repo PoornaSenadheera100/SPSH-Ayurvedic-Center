@@ -11,6 +11,7 @@ export default function UpdateSeller(){
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
+    const [delChrg, setDelChrg] = useState();
     const [password, setPassword] = useState("");
     const [rePassword, setRePassword] = useState("");
 
@@ -21,6 +22,7 @@ export default function UpdateSeller(){
             setName(res.data[0].name);
             setEmail(res.data[0].email);
             setPhone(res.data[0].phone);
+            setDelChrg(res.data[0].delChrg);
         }).catch((err)=>{
             alert("Network Issue...");
         })
@@ -36,7 +38,8 @@ export default function UpdateSeller(){
             const newSeller = {
                 name,
                 email,
-                phone
+                phone,
+                delChrg
             }
     
             axios.put(`http://localhost:8070/seller/update/${paramemail}`, newSeller).then(()=>{
@@ -51,6 +54,7 @@ export default function UpdateSeller(){
                 name,
                 email,
                 phone,
+                delChrg,
                 password
             }
     
@@ -87,6 +91,13 @@ export default function UpdateSeller(){
                 <label htmlFor="phone">Phone</label>
                 <input type="phone" id="phone" placeholder="Phone No" value={phone} required onChange={(e)=>{
                     setPhone(e.target.value);
+                }}/>
+
+                <br></br>
+
+                <label htmlFor="delChrg">Delivery Charge (Rs.)</label>
+                <input type="number" id="delChrg" placeholder="Delivery Charge" min="0" step="0.01" value={delChrg} required onChange={(e)=>{
+                    setDelChrg(e.target.value);
                 }}/>
 
                 <br></br>
