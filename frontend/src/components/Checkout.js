@@ -18,7 +18,7 @@ export default function Checkout() {
   const [paymentMethod, setPaymentMethod] = useState("Cash on Delivery");
   const [onlinePayment, setOnlinePayment] = useState("");
 
-  const [delChrg, setDelChrg] = useState("0");
+  const [delChrg, setDelChrg] = useState();
   const netAmount = parseFloat(sessionStorage.getItem("netAmount"));
   let totalAmount = 0;
   let usdAmount = 0;
@@ -65,6 +65,7 @@ export default function Checkout() {
       .then((res) => {
         setSellers(res.data);
         setDelAgent(res.data[0].email);
+        setDelChrg(res.data[0].delChrg);
       })
       .catch((err) => {
         alert(err.message);
@@ -146,6 +147,12 @@ export default function Checkout() {
     }
   }
 
+  function getDelChrg(agentEmail){
+    axios.get(`http://localhost:8070/seller/get/email/${agentEmail}`).then((res)=>{
+      setDelChrg(res.data[0].delChrg);
+    })
+  }
+
   return (
     <div className="container">
       <a type="button" href="/buyer/view/cart" class="btn btn-secondary">
@@ -170,6 +177,7 @@ export default function Checkout() {
         id="delAgents"
         onChange={(e) => {
           setDelAgent(e.target.value);
+          getDelChrg(e.target.value);
         }}
       ></select>{" "}
       <br />
