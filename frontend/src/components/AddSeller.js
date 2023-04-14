@@ -10,6 +10,7 @@ export default function AddSeller(){
     const [name, setName] = useState({});
     const [email, setEmail] = useState({});
     const [phone, setPhone] = useState({});
+    const [delChrg, setDelChrg] = useState();
     const [password, setPassword] = useState({});
     const [rePassword, setRePassword] = useState({});
 
@@ -27,6 +28,7 @@ export default function AddSeller(){
                         name,
                         email,
                         phone,
+                        delChrg,
                         password
                     }
 
@@ -70,6 +72,13 @@ export default function AddSeller(){
                 <label htmlFor="phone">Phone</label>
                 <input type="phone" id="phone" placeholder="Phone No" required onChange={(e)=>{
                     setPhone(e.target.value);
+                }}/>
+
+                <br></br>
+
+                <label htmlFor="delChrg">Delivery Charge (Rs.)</label>
+                <input type="number" id="delChrg" placeholder="Delivery Charge" min="0" step="0.01" required onChange={(e)=>{
+                    setDelChrg(e.target.value);
                 }}/>
 
                 <br></br>
