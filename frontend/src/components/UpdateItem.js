@@ -77,7 +77,7 @@ if (Image !== ""){
             <form onSubmit={updateData}>
                 <div className="form-group">
                     <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-                        <label for="name">Product ID</label>
+                        <label for="name">Item Code</label>
                     </div>
 
                     <div class="col-sm-10">
