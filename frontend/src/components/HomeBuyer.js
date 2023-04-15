@@ -82,8 +82,9 @@ export default function HomeBuyer() {
             
             {/*Buttons*/}
             <Button variant="danger">Signout</Button></a>
-
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            
+            {/* space between two buttons  */}
+             {' '}
 
             <a href="/buyerhome/myorders"><Button variant="success">My Orders</Button></a>
 
