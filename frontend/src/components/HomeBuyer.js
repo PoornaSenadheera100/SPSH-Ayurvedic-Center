@@ -3,6 +3,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Rater from 'react-rater'
 import 'react-rater/lib/react-rater.css'
+import Button from 'react-bootstrap/Button';
 
 import { Buffer } from 'buffer';
 
@@ -77,7 +78,9 @@ export default function HomeBuyer() {
             <a href="/" onClick={() => {
                 sessionStorage.removeItem("sAyurCenReyub");
                 sessionStorage.removeItem("buyerEmail");
-            }}><button className="btn btn-outline-danger">Signout</button></a>
+            }}>
+            
+            <button className="btn btn-outline-danger">Signout</button></a>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a href="/buyerhome/myorders"><button className="btn btn-primary">My Orders</button></a>
 
