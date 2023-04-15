@@ -188,12 +188,12 @@ export default function AddItem() {
                     </div>
                 </div>
                 <div className="form-group">
-                    <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
+                    <div style={{ marginLeft: "0px", marginRight: "auto", width: "30%" }}>
                         <label for="description">Item Description</label>
                     </div>
 
                     <div class="col-sm-10">
-                        <input type="text" className="form-control" maxlength="10" required id="description"  placeholder="Enter Description" onChange={(e) => {
+                        <input type="text" className="form-control" maxlength="20" required id="description"  placeholder="Enter Description" onChange={(e) => {
                             setItemDescription(e.target.value);
                         }} />
                     </div>
