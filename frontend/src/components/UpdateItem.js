@@ -88,7 +88,7 @@ if (Image !== ""){
                 </div>
                 <div className="form-group">
                     <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-                        <label for="name">Name</label>
+                        <label for="name">Item Name</label>
                     </div>
 
 
