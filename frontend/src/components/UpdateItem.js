@@ -81,7 +81,7 @@ if (Image !== ""){
                     </div>
 
                     <div class="col-sm-10">
-                    <input type="text" className="form-control" id="code" value={ProductId} placeholder="Enter Product ID" onChange={(e) => {
+                    <input type="text" className="form-control" id="code" pattern ="[P][0-9]{3}" value={ProductId} placeholder="Enter Product ID" onChange={(e) => {
                         setProductId(e.target.value);
                     }} disabled/>
                     </div>
