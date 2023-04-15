@@ -82,9 +82,10 @@ export default function Checkout() {
 
   function calcTotAmount() {
     totalAmount = netAmount + parseFloat(delChrg);
-    usdAmount = parseFloat((totalAmount / 319.67).toFixed(2));
+    usdAmount = parseFloat((totalAmount / 319.67).toFixed(2));  //convert lkr amount to usd
   }
 
+  //logic to set showButton to true or false depending on payment option selected
   function enableCard(res) {
     if (res === "Online Payment") {
       console.log("card");
@@ -94,7 +95,7 @@ export default function Checkout() {
     }
   }
 
-
+  //method to set status
   function setStatusValue(paymentMethod) {
     if (paymentMethod === "Online Payment") {
       setStatus("Paid. Not Delivered.");
@@ -103,7 +104,7 @@ export default function Checkout() {
     }
   }
 
-
+  //function to add order if Cash On Delivery option is picked
   function proceedToCheckout() {
     if (
       paymentMethod === "Credit / Debit Card (Online)" &&
@@ -125,6 +126,7 @@ export default function Checkout() {
         appStatus,
       };
 
+      //create object to send as props to PayPalCheckoutButton component
       obj = {
         newOrder,
         usdAmount,
@@ -192,6 +194,7 @@ export default function Checkout() {
       <br />
       <br />
 
+{/* condition to display PayPal button depending on payment option selected */}
       {showButton ? (
         <PaypalCheckoutButton
           obj={{
