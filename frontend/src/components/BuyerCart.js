@@ -54,10 +54,14 @@ export default function BuyerCart() {
     }
 
     return (
+    <div><a href="/buyerhome" style={{ display: 'inline-block', textAlign: 'left',marginLeft: '10px' }}>
+    <button className="btn btn-dark">Back</button>
+  </a>
 
-    
     <div className="container">
-        <a href="/buyerhome"><Button variant="dark">Back</Button></a>
+        
+      
+
     
     <table className="table table-borderless">
         <tbody>
@@ -97,7 +101,7 @@ export default function BuyerCart() {
     </div>
     <h3>Total Amount = Rs.{parseFloat(total).toFixed(2)}</h3>
     <br/><br/><br/><br/><br/><br/>
-
+    </div>
 </div>
     )
 }
