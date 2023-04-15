@@ -54,8 +54,11 @@ export default function BuyerCart() {
     }
 
     return (
-        <div className="container">
-    <div><a type="button" href="/buyerhome" className="btn btn-secondary">Back</a></div>
+
+    
+    <div className="container">
+        <a href="/buyerhome"><Button variant="dark">Back</Button></a>
+    
     <table className="table table-borderless">
         <tbody>
             {items.map((item) => (
