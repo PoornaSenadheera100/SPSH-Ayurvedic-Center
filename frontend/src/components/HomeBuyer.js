@@ -99,6 +99,7 @@ export default function HomeBuyer() {
                                 <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>{item.Name}</h3>
                                 <p style={{ marginBottom: '0.5rem', textAlign: 'center' }}>{item.Description}</p>
                                 <span style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Rs.{item.Price}</span>
+                                {item.Quantity === 0 && <p style={{ color: 'red' }}>Out of Stock</p>}
                                 <Rater total={5} rating={avgRatings[item.ProductId]} interactive={false} style={{ fontSize: '30px' }}/>
                                 {/* <a href="/BuyerViewItem"><button style={{ padding: '0.5rem', backgroundColor: '#008CBA', color: 'white', border: 'none', cursor: 'pointer' }}>View</button></a> */}
                                 <button className="btn btn-success" onClick={() => {
