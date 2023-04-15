@@ -32,13 +32,13 @@ export default function ViewBuyer(){
 
             Name &nbsp;&nbsp;&nbsp; : {name}
             <br></br>
-            address &nbsp; : {address}
+            Address &nbsp; : {address}
             <br></br>
-            nic &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : {nic}
+            NIC &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : {nic}
             <br></br>
-            email &nbsp;&nbsp;&nbsp;&nbsp; : {email}
+            Email &nbsp;&nbsp;&nbsp;&nbsp; : {email}
             <br></br>
-            phone &nbsp;&nbsp;&nbsp; : {phone}
+            Phone &nbsp;&nbsp;&nbsp; : {phone}
             <br></br>
         </div>
     )
