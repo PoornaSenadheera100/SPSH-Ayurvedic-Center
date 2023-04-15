@@ -66,7 +66,7 @@ export default function BuyerCart() {
                             <td>{parseFloat(item.price).toFixed(2)}</td>
                             <td><img src={getImageSource(item.Image)} width="100" height="100" /></td>
                             <td>
-                                <button className="btn btn-danger btn-sm" onClick={() => {
+                            <button className="btn btn-danger btn-lg" style={{fontSize: "20px", padding: "10px 20px"}}  onClick={() => {
                                     var response = window.confirm("Are you sure you want to remove this Item?");
                                     if (response) {
                                         axios.delete(`http://localhost:8070/ShoppingCart/delete/${buyerEmail}/${item.itemID}`).then(() => {
@@ -77,7 +77,7 @@ export default function BuyerCart() {
                                         })
                                     }
                                 }}>
-                                    <i className="fas fa-trash"></i>
+                                    <i className="fas fa-trash-alt fa-lg"/>
                                 </button>
                             </td>
                             {calcNetValue(item.productQty, item.price)}
@@ -87,6 +87,7 @@ export default function BuyerCart() {
             </table>
 
             <div style={{ float: "right" }}>
+            {/* <button type="submit" className="btn btn-danger" style={{float:"right"}}>Delete <i class="fa fa-trash-o fa-lg"/></button> */}
                 <a type="button" class="btn btn-primary" onClick={proceedToCheckout}>Checkout</a>
             </div>
             <h3>Total Amount = Rs.{parseFloat(total).toFixed(2)}</h3>
