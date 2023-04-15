@@ -115,7 +115,7 @@ if (Image !== ""){
 
                 <div className="form-group">
                     <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-                        <label for="price">Price</label>
+                        <label for="price">Item Price</label>
                     </div>
 
                     <div class="col-sm-10">
