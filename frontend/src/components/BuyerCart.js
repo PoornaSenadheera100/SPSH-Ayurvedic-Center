@@ -59,12 +59,13 @@ export default function BuyerCart() {
                 <tbody>
                     {items.map((item) => (
                         <tr key={buyerEmail}>
+                            <td><img src={getImageSource(item.Image)} width="100" height="100" /></td>
                             <td>{item.itemID}</td>
                             <td>{item.supplierId}</td>
                             <td>{item.productName}</td>
                             <td>{item.productQty}</td>
                             <td>{parseFloat(item.price).toFixed(2)}</td>
-                            <td><img src={getImageSource(item.Image)} width="100" height="100" /></td>
+                            
                             <td>
                             <button className="btn btn-danger btn-lg" style={{fontSize: "20px", padding: "10px 20px"}}  onClick={() => {
                                     var response = window.confirm("Are you sure you want to remove this Item?");
