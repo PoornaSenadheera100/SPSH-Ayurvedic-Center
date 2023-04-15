@@ -2,6 +2,7 @@ const router = require("express").Router();
 let Buyer = require("../models/Buyer");
 let Item = require("../models/Item");
 
+// Add new buyer
 router.route("/add").post((req, res)=>{
     const name = req.body.name;
     const address = req.body.address;
@@ -10,7 +11,7 @@ router.route("/add").post((req, res)=>{
     const phone = req.body.phone;
     const password = req.body.password;
 
-
+// Creating a new Buyer object with extracted details
     const newBuyer = new Buyer({
         name,
         address,
@@ -20,6 +21,7 @@ router.route("/add").post((req, res)=>{
         password
     })
 
+    // Saving the new Buyer object in the database
     newBuyer.save().then(()=>{
         res.json("Buyer Added.");
     }).catch((err)=>{
@@ -27,6 +29,7 @@ router.route("/add").post((req, res)=>{
     })
 })
 
+// Get all buyers
 router.route("/").get((req, res)=>{
     Buyer.find().then((buyer)=>{
         res.json(buyer);
@@ -35,6 +38,7 @@ router.route("/").get((req, res)=>{
     })
 })
 
+// Delete buyer by ID
 router.route("/delete/:id").delete(async(req, res)=>{
     let buyerId = req.params.id;
 
@@ -46,6 +50,7 @@ router.route("/delete/:id").delete(async(req, res)=>{
     })
 })
 
+// Get buyer by ID
 router.route("/get/:id").get(async(req, res)=>{
     let buyerId = req.params.id;
     const buyer = await Buyer.findById(buyerId).then((buyer)=>{
@@ -56,6 +61,7 @@ router.route("/get/:id").get(async(req, res)=>{
     })
 })
 
+// Get buyer by email
 router.route("/get/email/:email").get(async(req, res)=>{
     let email = req.params.email;
     await Buyer.find({"email": `${email}`}).then((buyer)=>{
@@ -66,6 +72,7 @@ router.route("/get/email/:email").get(async(req, res)=>{
     })
 })
 
+// Update buyer details by email
 router.route("/update/:paramemail").put(async(req, res)=>{
     let paramemail = req.params.paramemail;
     const {name, address, nic, email, phone, password} = req.body;
@@ -86,6 +93,7 @@ router.route("/update/:paramemail").put(async(req, res)=>{
     })
 })
 
+// Delete buyer by email
 router.route("/delete/email/:paraemail").delete(async(req, res)=>{
     let buyerEmail = req.params.paraemail;
 
@@ -98,7 +106,7 @@ router.route("/delete/email/:paraemail").delete(async(req, res)=>{
 })
 
 
-//RETRIEVEING SINGLE ITEM DETAILS
+//Get single item's details
 router.route("/get/item/:id").get(async(req,res) =>{
     let productID = req.params.id;
     const item = await Item.findOne({"ProductId":`${productID}`})
