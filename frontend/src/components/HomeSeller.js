@@ -11,7 +11,7 @@ export default function HomeSeller(){
                 sessionStorage.removeItem("sellerEmail");
             }}><button className="btn btn-outline-danger">Signout</button></a>
             
-            <h1>This is Seller Home</h1>
+            <center><h1>Seller Home</h1></center>
             {/* <h1>Hello {sessionStorage.getItem("sellerEmail")}</h1> */}
 
             <center>
