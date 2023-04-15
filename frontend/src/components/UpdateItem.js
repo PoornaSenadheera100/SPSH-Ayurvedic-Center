@@ -73,8 +73,8 @@ function UpdateItem() {
 if (Image !== ""){
     return (
         <div>
-            <h1>Update Item</h1>
-            <form onSubmit={updateData}>
+            <h1 style={{ marginLeft: "50px" }}>Update Item</h1>
+            <form onSubmit={updateData} style={{ marginLeft: "50px" }}>
                 <div className="form-group">
                     <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
                         <label for="name">Item Code</label>
