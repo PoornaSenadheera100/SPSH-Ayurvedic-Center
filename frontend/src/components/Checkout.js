@@ -89,14 +89,11 @@ export default function Checkout() {
     if (res === "Online Payment") {
       console.log("card");
       setShowButton(true);
-      // document.getElementById("creditCardNo").disabled = false;
-      // document.getElementById("cvc").disabled = false;
     } else {
-      // document.getElementById("creditCardNo").disabled = true;
-      // document.getElementById("cvc").disabled = true;
       setShowButton(false);
     }
   }
+
 
   function setStatusValue(paymentMethod) {
     if (paymentMethod === "Online Payment") {
@@ -105,6 +102,7 @@ export default function Checkout() {
       setStatus("Not Paid. Not Delivered.");
     }
   }
+
 
   function proceedToCheckout() {
     if (
@@ -193,14 +191,7 @@ export default function Checkout() {
       </select>
       <br />
       <br />
-      {/* <label for="creditCardNo">Credit Card No : </label> &nbsp;
-            <input type="text" id="creditCardNo" disabled onChange={(e)=>{
-                setCardNo(e.target.value);
-            }}></input> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <label for="cvc">CVC : </label> &nbsp;
-            <input type="number" id="cvc" disabled onChange={(e)=>{
-                setCvc(e.target.value);
-            }}></input> */}
+
       {showButton ? (
         <PaypalCheckoutButton
           obj={{
