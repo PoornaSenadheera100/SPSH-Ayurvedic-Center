@@ -96,7 +96,7 @@ export default function BuyerCart() {
     </table>
 
     <div style={{ float: "right" }}>
-        {/* <button type="submit" className="btn btn-danger" style={{float:"right"}}>Delete <i class="fa fa-trash-o fa-lg"/></button> */}
+        
         <a type="button" class="btn btn-primary" onClick={proceedToCheckout}>Checkout</a>
     </div>
     <h3>Total Amount = Rs.{parseFloat(total).toFixed(2)}</h3>
