@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-
 import { Buffer } from 'buffer';
 
 export default function BuyerCart() {
@@ -12,9 +11,7 @@ export default function BuyerCart() {
 
     //creating variables
     const [items, setItems] = useState([]);
-
     let history = useHistory();
-
     const buyerEmail = sessionStorage.getItem("buyerEmail");
     let total = 0;
 
@@ -33,7 +30,6 @@ export default function BuyerCart() {
 
     //Get the image source.
     const getImageSource = (imageData) => {
-
         //Converting the String to an image happens here.
         let imageSource = `data:image/png;base64,${Buffer.from(imageData.data).toString('base64').substring(19)}`;
         //We reduce 2 here --> because, the last 2 values in the basecode is generally of 2 equal characters.(==)
@@ -58,19 +54,8 @@ export default function BuyerCart() {
 
     return (
         <div className="container">
-            <div><a type="button" href="/buyerhome" class="btn btn-secondary">Back</a></div>
+            <div><a type="button" href="/buyerhome" className="btn btn-secondary">Back</a></div>
             <table className="table table-borderless">
-                <thead>
-                    <tr>
-                        <th scope="col">Item ID</th>
-                        <th scope="col">Supplier ID</th>
-                        <th scope="col">Product Name</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Price (Rs.)</th>
-                        <th scope="col">Image</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
                 <tbody>
                     {items.map((item) => (
                         <tr key={buyerEmail}>
@@ -79,18 +64,22 @@ export default function BuyerCart() {
                             <td>{item.productName}</td>
                             <td>{item.productQty}</td>
                             <td>{parseFloat(item.price).toFixed(2)}</td>
-                            <td><img src={getImageSource(item.Image)} width="300px" /></td>
-                            <td><button className="btn btn-danger btn-sm" onClick={() => {
-                                var response = window.confirm("Are you sure you want to remove this Item?");
-                                if (response) {
-                                    axios.delete(`http://localhost:8070/ShoppingCart/delete/${buyerEmail}/${item.itemID}`).then(() => {
-                                        alert("Item Deleted");
-                                        window.location.replace("http://localhost:3000/buyer/view/cart");
-                                    }).catch((err) => {
-                                        alert(err);
-                                    })
-                                }
-                            }}>Remove from cart</button></td>
+                            <td><img src={getImageSource(item.Image)} width="100" height="100" /></td>
+                            <td>
+                                <button className="btn btn-danger btn-sm" onClick={() => {
+                                    var response = window.confirm("Are you sure you want to remove this Item?");
+                                    if (response) {
+                                        axios.delete(`http://localhost:8070/ShoppingCart/delete/${buyerEmail}/${item.itemID}`).then(() => {
+                                            alert("Item Deleted");
+                                            window.location.replace("http://localhost:3000/buyer/view/cart");
+                                        }).catch((err) => {
+                                            alert(err);
+                                        })
+                                    }
+                                }}>
+                                    <i className="fas fa-trash"></i>
+                                </button>
+                            </td>
                             {calcNetValue(item.productQty, item.price)}
                         </tr>
                     ))}
