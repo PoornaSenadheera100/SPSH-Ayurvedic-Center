@@ -56,6 +56,29 @@ export default function BuyerCart() {
         }
     }
 
+    function resetItemQty(itemID, qty){
+        axios.get(`http://localhost:8070/item/getitem/${itemID}`).then((res)=>{
+            const SupplierID = res.data[0].SupplierId;
+            const ProductId = res.data[0].ProductId;
+            const Name = res.data[0].Name;
+            const Description = res.data[0].Description;
+            const Price = res.data[0].Price;
+            const Quantity = res.data[0].Quantity + qty;
+            const Image = res.data[0].Image;
+            axios.put(`http://localhost:8070/item/update/${res.data[0].SupplierId}/${res.data[0].ProductId}`, {
+                SupplierID,
+                ProductId,
+                Name,
+                Description,
+                Price,
+                Quantity,
+                Image
+            })
+        }).catch((err)=>{
+            alert(err);
+        })
+    }
+
     return (
         <div className="container">
             <div><a type="button" href="/buyerhome" class="btn btn-secondary">Back</a></div>
@@ -84,6 +107,7 @@ export default function BuyerCart() {
                                 var response = window.confirm("Are you sure you want to remove this Item?");
                                 if (response) {
                                     axios.delete(`http://localhost:8070/ShoppingCart/delete/${buyerEmail}/${item.itemID}`).then(() => {
+                                        resetItemQty(item.itemID, item.productQty);
                                         alert("Item Deleted");
                                         window.location.replace("http://localhost:3000/buyer/view/cart");
                                     }).catch((err) => {
