@@ -107,7 +107,7 @@ if (Image !== ""){
                     </div>
 
                     <div class="col-sm-10">
-                    <input type="text" className="form-control" id="description" maxlength="10" value={Description} placeholder="Enter Description" onChange={(e) => {
+                    <input type="text" className="form-control" id="description" maxlength="10" pattern="[a-zA-Z\s]+" value={Description} placeholder="Enter Description" onChange={(e) => {
                         setDescription(e.target.value);
                     }} />
                     </div>
