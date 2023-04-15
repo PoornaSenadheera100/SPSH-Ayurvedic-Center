@@ -15,7 +15,7 @@ export default function Welcome(){
                             </div>
                         </a>
                         <a href="/sellerlogin" style={{textDecoration: 'none'}}>
-                            <div style={{backgroundColor: '#ffc107', borderRadius: '5px', padding: '10px', height: '200px', width: '200px', margin: '0 10px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                            <div style={{backgroundColor: '#085548', borderRadius: '5px', padding: '10px', height: '200px', width: '200px', margin: '0 10px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                                 <h3 style={{margin: '0', color: '#fff'}}>Seller Login</h3>
                             </div>
                         </a>
