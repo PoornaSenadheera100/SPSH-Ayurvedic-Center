@@ -218,7 +218,7 @@ export default function AddItem() {
                     </div>
 
                     <div class="col-sm-10">
-                        <input type="number" className="form-control" required id="quantity" placeholder="Enter Quantity " onChange={(e) => {
+                        <input type="number" className="form-control" required id="quantity" min="0" placeholder="Enter Quantity " onChange={(e) => {
                             setItemQty(e.target.value);
                         }}/>
                     </div>
