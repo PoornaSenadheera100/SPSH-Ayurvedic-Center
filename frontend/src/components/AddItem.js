@@ -193,7 +193,7 @@ export default function AddItem() {
                     </div>
 
                     <div class="col-sm-10">
-                        <input type="text" className="form-control" required id="description" placeholder="Enter Description" onChange={(e) => {
+                        <input type="text" className="form-control" maxlength="10" required id="description" placeholder="Enter Description" onChange={(e) => {
                             setItemDescription(e.target.value);
                         }} />
                     </div>
