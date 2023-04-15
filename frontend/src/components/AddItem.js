@@ -169,7 +169,7 @@ export default function AddItem() {
                     </div>
 
                     <div class="col-sm-10">
-                        <input type="text" className="form-control" required id="code" placeholder="Enter item code" onChange={(e) => {
+                        <input type="text" className="form-control" required pattern ="[P][0-9]{3}" title="Has to be of 4 characters"  id="code" placeholder="Enter item code" onChange={(e) => {
                             setItemCode(e.target.value);
                             checkItemCode(e.target.value);
                         }} />
