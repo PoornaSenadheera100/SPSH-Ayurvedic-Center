@@ -182,7 +182,7 @@ export default function AddItem() {
                     </div>
 
                     <div class="col-sm-10">
-                        <input type="text" className="form-control" id="description" pattern="[a-zA-Z\s]+" required placeholder="Enter Name" onChange={(e) => {
+                        <input type="text" className="form-control" id="name" pattern="[a-zA-Z\s]+" required placeholder="Enter Name" onChange={(e) => {
                             setItemName(e.target.value);
                         }} />
                     </div>
