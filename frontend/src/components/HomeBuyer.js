@@ -96,7 +96,7 @@ export default function HomeBuyer() {
             <div>
                 <center><h1>All featured items</h1></center>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '5rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '5rem' }}>
 
                     {items.map((item) => (
 
