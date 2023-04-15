@@ -14,7 +14,6 @@ export default function HomeBuyer() {
 
     //Creating variables 
     const [items, setitems] = useState([]);
-    // const [count, setCount] = useState(1);
     let history = useHistory();
 
     const buyerEmail = sessionStorage.getItem("buyerEmail");
@@ -43,7 +42,7 @@ export default function HomeBuyer() {
 
         //Converting the String to an image happens here.
         let imageSource = `data:image/png;base64,${Buffer.from(imageData.data).toString('base64').substring(19)}`;
-        //Hilarina (0,3) --> Hil
+
         //We reduce 2 here --> because, the last 2 values in the basecode is generally of 2 equal characters.(==)
         imageSource = imageSource.slice(0, imageSource.length - 2);
         return imageSource;
@@ -100,7 +99,6 @@ export default function HomeBuyer() {
                                 <p style={{ marginBottom: '0.5rem', textAlign: 'center' }}>{item.Description}</p>
                                 <span style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Rs.{item.Price}</span>
                                 <Rater total={5} rating={avgRatings[item.ProductId]} interactive={false} style={{ fontSize: '30px' }}/>
-                                {/* <a href="/BuyerViewItem"><button style={{ padding: '0.5rem', backgroundColor: '#008CBA', color: 'white', border: 'none', cursor: 'pointer' }}>View</button></a> */}
                                 <button className="btn btn-success" onClick={() => {
                                     window.location.replace(`http://localhost:3000/buyer/view/item/${item.ProductId}`);
                                 }}>View</button>
