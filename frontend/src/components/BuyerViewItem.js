@@ -16,7 +16,6 @@ export default function BuyerViewItem() {
     const [SupplierId, setSupplierId] = useState("");
     const [Name, setName] = useState("");
     const [Description, setDescription] = useState("");
-    // const [buyerEmail, setBuyerEmail] = useState("");   //IMPLEMENT
     const [Price, setPrice] = useState();
     const [Quantity, setQuantity] = useState();
     const [MaxQuantity, setMaxQuantity] = useState();
