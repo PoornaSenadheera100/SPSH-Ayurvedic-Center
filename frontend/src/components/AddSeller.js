@@ -56,7 +56,7 @@ export default function AddSeller(){
 
             <form onSubmit={proceed}>
                 <label htmlFor="name">Name</label>
-                <input type="text" id="name" placeholder="Enter your name" required onChange={(e)=>{
+                <input type="text" id="name" placeholder="Enter your name" pattern="[A-Za-z .]{1,100}" required onChange={(e)=>{
                     setName(e.target.value);
                 }}/>
 
@@ -70,7 +70,7 @@ export default function AddSeller(){
                 <br></br>
 
                 <label htmlFor="phone">Phone</label>
-                <input type="phone" id="phone" placeholder="Phone No" required onChange={(e)=>{
+                <input type="phone" id="phone" placeholder="Phone No" pattern="0[0-9]{9}" required onChange={(e)=>{
                     setPhone(e.target.value);
                 }}/>
 
@@ -84,7 +84,7 @@ export default function AddSeller(){
                 <br></br>
 
                 <label htmlFor="newpassword">New Password</label>
-                <input type="password" id="newpassword" placeholder="Password" required onChange={(e)=>{
+                <input type="password" id="newpassword" placeholder="Password" minLength="8" required onChange={(e)=>{
                     setPassword(e.target.value);
                 }}/>
 
