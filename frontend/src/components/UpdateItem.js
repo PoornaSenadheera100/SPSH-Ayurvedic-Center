@@ -132,7 +132,7 @@ if (Image !== ""){
                     </div>
 
                     <div class="col-sm-10">
-                    <input type="number" className="form-control" id="quantity" value={Quantity} placeholder="Enter supplier" onChange={(e) => {
+                    <input type="number" className="form-control" min="0" id="quantity" value={Quantity} placeholder="Enter supplier" onChange={(e) => {
                         setQuantity(e.target.value);
                     }} />
                     </div>
