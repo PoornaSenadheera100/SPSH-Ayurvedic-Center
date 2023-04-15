@@ -28,7 +28,7 @@ export default function LoginSeller(){
 
     return(
         <div className="container">
-            <a href="/"><button className="btn btn-primary">Back</button></a>
+            <a href="/"><Button variant="dark">Back</Button></a>
 
             <form onSubmit={validate}>
                 <section className="vh-100 gradient-custom">
