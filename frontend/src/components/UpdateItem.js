@@ -94,7 +94,7 @@ if (Image !== ""){
 
                     {/* using the value --> we can display the values that was previously entered by the user.*/}
                     <div class="col-sm-10">
-                    <input type="text" className="form-control" id="name" value={Name} placeholder="Enter Name" onChange={(e) => {
+                    <input type="text" className="form-control" id="name" value={Name} pattern="[a-zA-Z\s]+" placeholder="Enter Name" onChange={(e) => {
                         console.log("Hi");
                         setName(e.target.value);
                         //console.log(e.target.v)
