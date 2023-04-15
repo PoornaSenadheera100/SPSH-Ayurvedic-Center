@@ -89,7 +89,7 @@ export default function UpdateBuyer(){
 
             <form onSubmit={proceed}>
                 <label htmlFor="name">Name</label>
-                <input type="text" id="name" placeholder="Enter your name" value={name} required onChange={(e)=>{
+                <input type="text" id="name" placeholder="Enter your name" pattern="[A-Za-z .]{1,100}" value={name} required onChange={(e)=>{
                     setName(e.target.value);
                 }}/>
 
@@ -103,7 +103,7 @@ export default function UpdateBuyer(){
                 <br></br>
 
                 <label htmlFor="nic">NIC</label>
-                <input type="text" id="nic" placeholder="Enter you NIC number" value={nic} required onChange={(e)=>{
+                <input type="text" id="nic" placeholder="Enter you NIC number" pattern="[0-9]{9}[V||v]|[0-9]{12}" value={nic} required onChange={(e)=>{
                     setNic(e.target.value);
                 }}/>
 
@@ -117,7 +117,7 @@ export default function UpdateBuyer(){
                 <br></br>
 
                 <label htmlFor="phone">Phone</label>
-                <input type="phone" id="phone" placeholder="Phone No" value={phone} required onChange={(e)=>{
+                <input type="phone" id="phone" placeholder="Phone No" pattern="0[0-9]{9}" value={phone} required onChange={(e)=>{
                     setPhone(e.target.value);
                 }}/>
 
@@ -127,7 +127,7 @@ export default function UpdateBuyer(){
                 <br></br>
                 <br></br>
                 <label htmlFor="newpassword">New Password</label>
-                <input type="password" id="newpassword" placeholder="Enter New Password" onChange={(e)=>{
+                <input type="password" id="newpassword" placeholder="Enter New Password" minLength="8" onChange={(e)=>{
                     setPassword(e.target.value);
                 }}/>
 
