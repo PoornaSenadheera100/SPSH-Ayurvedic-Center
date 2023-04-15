@@ -8,8 +8,9 @@ export default function Welcome(){
                     <br></br>
                     <div style={{display: 'flex', justifyContent: 'center'}}>
                         <a href="/buyerlogin" style={{textDecoration: 'none'}}>
-                        
-                            <div style={{backgroundColor: '#007bff', borderRadius: '5px', padding: '10px', height: '200px', width: '200px', margin: '0 10px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                        {/* Add css to the cart */}
+                            <div style={{backgroundColor: '#000080', borderRadius: '5px', padding: '10px', height: '200px', width: '200px', margin: '0 10px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                         {/* Add css to the letters inside the card */}
                                 <h3 style={{margin: '0', color: '#fff'}}>Buyer Login</h3>
                             </div>
                         </a>
