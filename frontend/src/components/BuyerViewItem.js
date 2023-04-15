@@ -174,7 +174,7 @@ export default function BuyerViewItem() {
             // Sathira's implementation - End
 
             <div className="container">
-                 <div style={{padding: '10px'}}><a type="button" href="/buyerhome">< button className="btn btn-primary">Back</button></a></div>
+                 <div style={{padding: '10px'}}><a type="button" href="/buyerhome"><Button variant="dark">Back</Button></a></div>
                     <div align="center" style={{border: '1px solid black', borderRadius: '5px', padding: '10px', maxWidth: '500px', margin: '0 auto'}}>
                         <div align="center">
                             <form onSubmit={add}>
