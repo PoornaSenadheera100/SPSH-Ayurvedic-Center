@@ -7,7 +7,7 @@ import 'react-rater/lib/react-rater.css'
 import { Buffer } from 'buffer';
 
 export default function HomeBuyer() {
-    //session validation
+    // Session validation - if the session doesn't exist, redirect the user to the buyer login page
     if (sessionStorage.getItem("sAyurCenReyub") === null) {
         window.location.replace("/buyerlogin");
     }
@@ -16,10 +16,12 @@ export default function HomeBuyer() {
     const [items, setitems] = useState([]);
     let history = useHistory();
 
+    // Get the buyer email from session storage
     const buyerEmail = sessionStorage.getItem("buyerEmail");
 
     const [avgRatings, setAvgRatings] = useState({});
 
+    // Use the useEffect hook to fetch data from API when the component mounts
     useEffect(() => {
         function getItems() {
             axios.get("http://localhost:8070/item/").then((res) => {
@@ -31,6 +33,7 @@ export default function HomeBuyer() {
         }
         getItems();
 
+        // Fetch ratings data and calculate average ratings using the getAverageRatings function
         axios.get("http://localhost:8071/rate").then((res)=>{
             setAvgRatings(getAverageRatings(res.data));
             console.log(getAverageRatings(res.data)['P002']);
@@ -48,6 +51,7 @@ export default function HomeBuyer() {
         return imageSource;
     };
 
+    // Function to calculate average ratings for each item using the ratings data fetched from the API
     function getAverageRatings(arr) {
         const itemMap = new Map();
         const result = {};
@@ -69,7 +73,7 @@ export default function HomeBuyer() {
         return result;
     }
 
-
+    // Render the HomeBuyer component
     return (
         <div className="container">
             {/* session used to handle the login  */}
