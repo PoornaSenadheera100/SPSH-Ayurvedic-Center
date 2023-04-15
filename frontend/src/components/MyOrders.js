@@ -19,8 +19,11 @@ export default function MyOrders(){
 
 
     return(
+        <div>
+<a href="/buyerhome"><button className="btn btn-dark"style={{ display: 'inline-block', textAlign: 'left',marginLeft: '10px' }}>Back</button></a>
+       
         <div className="container">
-            <a href="/buyerhome"><button className="btn btn-dark">Back</button></a>
+            
             <center><h1>My Orders</h1></center>
 
             {orders.length === 0 && <h1>No Orders</h1>}
@@ -54,6 +57,7 @@ export default function MyOrders(){
                     </tbody>
                 </table>
             }
+        </div>
         </div>
     )
 }
