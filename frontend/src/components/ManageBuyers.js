@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 export default function ManageBuyers(){
 
+    // check if the user is authenticated, if not redirect to admin login page
     if(sessionStorage.getItem("sAyurCenNimda") === null){
         window.location.replace("/adminlogin");
     }
@@ -10,6 +11,7 @@ export default function ManageBuyers(){
     const [buyers, setBuyers] = useState([]);
     
     useEffect(()=>{
+        // get buyers data from backend API when component mounts
         function getBuyers(){
             axios.get("http://localhost:8070/buyer/").then((res)=>{
                 setBuyers(res.data);
