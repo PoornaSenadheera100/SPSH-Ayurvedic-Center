@@ -69,7 +69,7 @@ export default function SignupBuyer(){
                                             <p className="text-white-50 mb-5">Please enter your details!</p>
 
                                             <div className="form-outline form-white mb-4">
-                                                <input type="text" id="name" className="form-control form-control-lg" placeholder="Enter your name" required onChange={(e)=>{
+                                                <input type="text" id="name" className="form-control form-control-lg" placeholder="Enter your name" pattern="[A-Za-z .]{1,100}" required onChange={(e)=>{
                                                     setName(e.target.value);
                                                 }}/>
                                                 <label className="form-label" htmlFor="name">Name</label>
@@ -83,7 +83,7 @@ export default function SignupBuyer(){
                                             </div>
 
                                             <div className="form-outline form-white mb-4">
-                                                <input type="text" id="nic" className="form-control form-control-lg" placeholder="Enter you NIC number" required onChange={(e)=>{
+                                                <input type="text" id="nic" className="form-control form-control-lg" placeholder="Enter you NIC number" pattern="[0-9]{9}[V||v]|[0-9]{12}" required onChange={(e)=>{
                                                     setNic(e.target.value);
                                                 }}/>
                                                 <label className="form-label" htmlFor="nic">NIC</label>
@@ -97,14 +97,14 @@ export default function SignupBuyer(){
                                             </div>
 
                                             <div className="form-outline form-white mb-4">
-                                                <input type="phone" id="phone" className="form-control form-control-lg" placeholder="Phone No" required onChange={(e)=>{
+                                                <input type="phone" id="phone" className="form-control form-control-lg" placeholder="Phone No" pattern="0[0-9]{9}" required onChange={(e)=>{
                                                     setPhone(e.target.value);
                                                 }}/>
                                                 <label className="form-label" htmlFor="phone">Phone</label>
                                             </div>
 
                                             <div className="form-outline form-white mb-4">
-                                                <input type="password" id="newpassword" className="form-control form-control-lg" placeholder="Password" required onChange={(e)=>{
+                                                <input type="password" id="newpassword" className="form-control form-control-lg" placeholder="Password" minLength="8" required onChange={(e)=>{
                                                     setPassword(e.target.value);
                                                 }}/>
                                                 <label className="form-label" htmlFor="password">New Password</label>
