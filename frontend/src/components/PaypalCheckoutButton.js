@@ -4,17 +4,17 @@ import { PayPalButtons } from "@paypal/react-paypal-js";
 
 //holds logic and styling for checkout button
 const PaypalCheckoutButton = (props) => {
-  //contains price
-  const { newOrder,
-    usdAmount, email } = props.obj;
+  //retreive information from props
+  const { newOrder, usdAmount, email } = props.obj;
 
   const [paidFor, setPaidFor] = useState(false);
   const [error, setError] = useState(null);
 
+  //method to be executed if payment success
   const handleApprove = (orderID) => {
-    //if response is success
     setPaidFor(true);
 
+    //make order if online payment is success
     axios
     .post("http://localhost:8070/order/add", newOrder)
     .then((req, res) => {
@@ -24,22 +24,21 @@ const PaypalCheckoutButton = (props) => {
     })
     .catch((err) => {
       alert(err);
-    });
-
-    //if repsonse returns error
-    
+    });    
   };
 
   if (paidFor) {
-    //success
+    //success notification
     alert("Thankyou for your purchase");
   }
 
   if (error) {
+    //payment unsuccess notification
     alert(error);
   }
 
   return (
+    // button style
     <PayPalButtons
       style={{
         color: "silver",
@@ -74,15 +73,16 @@ const PaypalCheckoutButton = (props) => {
           ],
         });
       }}
-      onCancel={() => {
-        //go back to checkout page
+      onCancel={() => { //executes if payment is cancelled
+        //goes back to checkout page
       }}
-      onApprove={async (data, actions) => {
+      onApprove={async (data, actions) => { //executes if payment is a success
         const order = await actions.order.capture();
         console.log("order", order);
         handleApprove(data.orderID);
       }}
-      onError={(err) => {
+      onError={(err) => { //executes if payment is unsuccess
+        //set error message
         setError(
           "Your payment was not processed successfully. We are unable to fulfill your purchase. Please contact us at spsh@gmail.com for assistance."
         );
