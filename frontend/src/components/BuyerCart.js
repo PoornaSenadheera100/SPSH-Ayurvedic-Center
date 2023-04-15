@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { Buffer } from 'buffer';
 
 export default function BuyerCart() {
-    //session validation
+    // If there is no active session, the buyer is redirected to the buyerlogin page.
     if (sessionStorage.getItem("sAyurCenReyub") === null) {
         window.location.replace("/buyerlogin");
     }
@@ -18,6 +18,7 @@ export default function BuyerCart() {
     const buyerEmail = sessionStorage.getItem("buyerEmail");
     let total = 0;
 
+    // Retrieves the items added to the cart by the buyer
     useEffect(() => {
         console.log(buyerEmail);
         function getItems() {
@@ -41,13 +42,16 @@ export default function BuyerCart() {
         return imageSource;
     };
 
+    // Function that calculates the net value of an item
     function calcNetValue(qty, price){
         total = total + (qty * price);
     }
 
+    // Function that redirects the buyer to the checkout page
     function proceedToCheckout(e){
         e.preventDefault();
 
+        // If the cart is empty, an alert is shown and the checkout process is not allowed.
         if (total === 0){
             alert("Please add items before checkout!");
         } else {
@@ -58,6 +62,7 @@ export default function BuyerCart() {
 
     return (
         <div className="container">
+             {/* Button to go back to the buyer home page */}
             <div><a type="button" href="/buyerhome" class="btn btn-secondary">Back</a></div>
             <table className="table table-borderless">
                 <thead>
@@ -72,6 +77,7 @@ export default function BuyerCart() {
                     </tr>
                 </thead>
                 <tbody>
+                     {/* Map through the items in the cart */}
                     {items.map((item) => (
                         <tr key={buyerEmail}>
                             <td>{item.itemID}</td>
@@ -91,6 +97,7 @@ export default function BuyerCart() {
                                     })
                                 }
                             }}>Remove from cart</button></td>
+                            {/* Calculate the net value of the item */}
                             {calcNetValue(item.productQty, item.price)}
                         </tr>
                     ))}
