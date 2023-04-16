@@ -5,15 +5,17 @@ export default function HomeSeller(){
     }
 
     return(
-    <div>
-        <a href="/" style={{float: "right"}} onClick={()=>{
+        <div>
+            <a href="/" style={{float: "right"}} onClick={()=>{
                 sessionStorage.removeItem("sAyurCenRelles");
                 sessionStorage.removeItem("sellerEmail");
             }}>
-            <button className="btn btn-outline-danger">Signout</button>
+            <button className="btn btn-danger" style={{ marginRight: '10px' }}>Signout</button>
         </a>
+        <div align="center" style={{ border: '1px solid black', borderRadius: '5px', padding: '20px', maxWidth: '500px', margin: '0 auto', background: '#f8f9fa' }}>
         <h1 className="text-center">Seller Home</h1>
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}></div>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <div align="center" style={{ border: '1px solid black', borderRadius: '5px', padding: '20px', maxWidth: '500px', background: '#f8f9fa' }}>  
                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <a href="/sellerhome/item">
@@ -30,7 +32,7 @@ export default function HomeSeller(){
             </div>
         </div>
     </div>
-
+    </div>
 
 
         
