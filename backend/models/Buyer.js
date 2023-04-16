@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// define a new schema for buyer
 const buyerSchema = new Schema({
     name : {
         type : String,
@@ -33,6 +34,8 @@ const buyerSchema = new Schema({
     },
 })
 
+// create a model based on the buyer schema
 const Buyer = mongoose.model("Buyer", buyerSchema);
 
+// export the Buyer model to be used in other parts of the application
 module.exports = Buyer;

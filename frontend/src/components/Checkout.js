@@ -83,22 +83,20 @@ export default function Checkout() {
 
   function calcTotAmount() {
     totalAmount = netAmount + parseFloat(delChrg);
-    usdAmount = parseFloat((totalAmount / 319.67).toFixed(2));
+    usdAmount = parseFloat((totalAmount / 319.67).toFixed(2));  //convert lkr amount to usd
   }
 
+  //logic to set showButton to true or false depending on payment option selected
   function enableCard(res) {
     if (res === "Online Payment") {
       console.log("card");
       setShowButton(true);
-      // document.getElementById("creditCardNo").disabled = false;
-      // document.getElementById("cvc").disabled = false;
     } else {
-      // document.getElementById("creditCardNo").disabled = true;
-      // document.getElementById("cvc").disabled = true;
       setShowButton(false);
     }
   }
 
+  //method to set status
   function setStatusValue(paymentMethod) {
     if (paymentMethod === "Online Payment") {
       setStatus("Paid. Not Delivered.");
@@ -107,6 +105,7 @@ export default function Checkout() {
     }
   }
 
+  //function to add order if Cash On Delivery option is picked
   function proceedToCheckout() {
     if (
       paymentMethod === "Credit / Debit Card (Online)" &&
@@ -128,6 +127,7 @@ export default function Checkout() {
         appStatus,
       };
 
+      //create object to send as props to PayPalCheckoutButton component
       obj = {
         newOrder,
         usdAmount,
@@ -245,14 +245,8 @@ export default function Checkout() {
         <br />
         <br />
         </div>
-        {/* <label for="creditCardNo">Credit Card No : </label> &nbsp;
-            <input type="text" id="creditCardNo" disabled onChange={(e)=>{
-                setCardNo(e.target.value);
-            }}></input> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <label for="cvc">CVC : </label> &nbsp;
-            <input type="number" id="cvc" disabled onChange={(e)=>{
-                setCvc(e.target.value);
-            }}></input> */}
+        
+        {/* condition to display PayPal button depending on payment option selected */}
         {showButton ? (
           <PaypalCheckoutButton
             obj={{
