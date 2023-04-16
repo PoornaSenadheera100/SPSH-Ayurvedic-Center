@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { Buffer } from 'buffer';
 import Rater from 'react-rater'
 import 'react-rater/lib/react-rater.css'
+import Button from 'react-bootstrap/Button';
 
 //Import the axios pacakge to read the data from the backend to the frontend.
 import axios from "axios";
@@ -123,24 +124,22 @@ export default function AllItems() {
             <br></br>
             <table className="table table-borderless">
                 <div className="row">
-                    <div class="btn-group" role="group" aria-label="Basic example">
-
-                    </div>
-                    <div class="btn-group" role="group" aria-label="Basic example">
-                        <button type="button" class="btn btn-dark" onClick={() => {
+                   
+                    {/* <div class="btn-group" role="group" aria-label="Basic example"> */}
+                        <Button variant="dark"onClick={() => {
 
                             //history.push moves from the current page.
                             //history.push(`/update/${student._id}`);
                             //window.location also redirects to another page.(delete page with the ID)
                             window.location.replace(`http://localhost:3000/sellerhome/item/add`);
-                        }}>Add Item</button>
-                        <br></br>
+                        }}>Add Item</Button>
+                        
                        
                        
-                    </div>
                 </div>
+                {/* </div> */}
              
-               
+                <br></br><br></br>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 300px))', gap: '5rem' }}>
 
     {items.map((item) => (
