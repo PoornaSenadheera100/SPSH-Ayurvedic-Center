@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
+import Button from 'react-bootstrap/Button';
 
 export default function SingleOrder(){
 
@@ -37,7 +38,7 @@ export default function SingleOrder(){
 
     return(
         <div className="container">
-            <a href="/buyerhome/myorders"><button className="btn btn-dark">Back</button></a>
+            <a href="/buyerhome/myorders"><Button className="btn btn-dark">Back</Button></a>
             <center><h1>Your Order</h1></center>
             
             <b>Customer Name</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {name}<br/>

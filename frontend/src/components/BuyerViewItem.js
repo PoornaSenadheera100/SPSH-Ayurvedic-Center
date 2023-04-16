@@ -2,8 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { Buffer } from 'buffer';
-import Rater from 'react-rater'
-import 'react-rater/lib/react-rater.css'
+import Rater from 'react-rater';
+import 'react-rater/lib/react-rater.css';
+import Button from 'react-bootstrap/Button';
 
 export default function BuyerViewItem() {
 
@@ -203,8 +204,7 @@ export default function BuyerViewItem() {
             // Sathira's implementation - End
 
             <div className="container">
-                <form onSubmit={add}>
-                 <div style={{padding: '10px'}}><a type="button" href="/buyerhome" className="btn btn-secondary">Back</a></div>
+                 <div style={{padding: '10px'}}><a type="button" href="/buyerhome"><Button variant="dark">Back</Button></a></div>
                     <div align="center" style={{border: '1px solid black', borderRadius: '5px', padding: '10px', maxWidth: '500px', margin: '0 auto'}}>
                         <div align="center">
                             <form onSubmit={add}>
@@ -236,7 +236,6 @@ export default function BuyerViewItem() {
                             </form>
                         </div>
                     </div>
-                    </form>
             </div>
         )
     }

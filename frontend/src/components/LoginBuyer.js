@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import Button from 'react-bootstrap/Button';
 
 export default function LoginBuyer(){
 
@@ -27,9 +28,9 @@ export default function LoginBuyer(){
     }
 
     return(
+        
         <div className="container">
-            <a href="/"><button className="btn btn-primary">Back</button></a>
-
+            <a href="/"><Button variant="dark">Back</Button></a>
             <form onSubmit={validate}>
                 <section className="vh-100 gradient-custom">
                     <div className="container py-5 h-100">

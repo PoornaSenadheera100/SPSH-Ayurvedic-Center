@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-
+import Button from "react-bootstrap/Button";
 export default function ViewSeller(){
 
     if(sessionStorage.getItem("sAyurCenNimda") === null){
@@ -25,18 +25,57 @@ export default function ViewSeller(){
     });
 
     return(
-        <div className="container">
-            <a href="/adminhome/managesellers"><button>Back</button></a>
-            <h1>View Seller</h1>
+      <div>
+        <a href="/adminhome/managesellers"><Button variant="dark" style={{ marginLeft: "50px" }}>Back</Button></a>
+     
+        <div className="container"style={{ margin: "auto", maxWidth: "500px", padding: "20px" }}>
+            
+            
+            <center><h1>View Seller</h1></center>
 
-            Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : {name}
+            <div
+          style={{
+            border: "1px solid black",
+            padding: "10px",
+            textAlign: "justify",
+            borderRadius: "10px",
+            height: "200px",
+          }}
+        >
+          <center>
             <br></br>
-            Email &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : {email}
-            <br></br>
-            Phone &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; : {phone}
-            <br></br>
-            Delivery Charge : Rs.{parseFloat(delChrg).toFixed(2)}
-            <br></br>
+            <table>
+              <tr>
+                <td style={{ width: "200px" }}> <b>Name</b></td>
+
+                <td style={{ width: "200px" }}>:</td>
+
+                <td style={{ width: "200px" }}>{name}</td>
+              </tr>
+
+              <tr></tr>
+
+              <tr></tr>
+              <tr>
+                <td><b>Email</b> </td>
+                <td>:</td>
+                <td>{email}</td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <td><b>Phone</b> </td>
+                <td>:</td>
+                <td>{phone}</td>
+              </tr>
+              <tr>
+                <td><b>Delivery Charge</b> </td>
+                <td>:</td>
+                <td>Rs.{parseFloat(delChrg).toFixed(2)}</td>
+              </tr>
+            </table>
+          </center>
+        </div>
+        </div>
         </div>
     )
 }
