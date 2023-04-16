@@ -30,7 +30,7 @@ export default function LoginBuyer(){
     return(
         
         <div className="container">
-            
+            <a href="/"><Button variant="dark">Back</Button></a>
             <form onSubmit={validate}>
                 <section className="vh-100 gradient-custom">
                     <div className="container py-5 h-100">
