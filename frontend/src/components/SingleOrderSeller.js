@@ -38,17 +38,70 @@ export default function SingleOrderSeller(){
     return(
         <div className="container">
             <a href="/sellerhome/delivery"><button className="btn btn-dark">Back</button></a>
+            
             <center><h1>Order Details</h1></center> <br/>
 
-            <b>Customer Name</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {name}<br/>
-            <b>Customer Address</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {address}<br/>
-            <b>Customer NIC</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {nic}<br/>
-            <b>Customer Phone No.</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {phone}<br/>
-            <b>Bill Amount</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {totAmount}<br/>
-            <b>Delivery Agent</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {delAgent}<br/>
-            <b>Payment Method</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {paymentMethod}<br/>
-            <b>Payment and Delivery Status</b> : {status}<br/>
-            <b>Approval Status</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {appStatus}
+            <div align="center" style={{ border: '1px solid black', borderRadius: '5px', padding: '20px', maxWidth: '500px', margin: '0 auto', background: '#f8f9fa' }}>
+            <table classname="borderless">
+            <tr>
+                <td><b>Customer Name</b></td>
+                <td>  :  </td>
+                <td> {name} </td>
+            </tr>
+
+            <tr>
+                <td><b>Customer Address</b></td>
+                <td>  :  </td>
+                <td> {address} </td>
+            </tr>
+
+            <tr>
+                <td><b>Customer NIC</b></td>
+                <td>  :  </td>
+                <td> {nic} </td>
+            </tr>
+
+            <tr>
+                <td><b>Customer Phone No.</b></td>
+                <td>  :  </td>
+                <td> {phone} </td>
+            </tr>
+
+            <tr>
+                <td><b>Bill Amount</b></td>
+                <td>  :  </td>
+                <td> {totAmount} </td>
+            </tr>
+
+            <tr>
+                <td><b>Delivery Agent</b></td>
+                <td>  :  </td>
+                <td> {delAgent} </td>
+            </tr>
+
+            <tr>
+                <td><b>Payment Method</b></td>
+                <td>  :  </td>
+                <td> {paymentMethod} </td>
+            </tr>
+
+            <tr>
+                <td><b>Payment and Delivery Status</b></td>
+                <td>  :  </td>
+                <td> {status} </td>
+            </tr>
+
+            <tr>
+                <td><b>Approval Status</b></td>
+                <td>  :  </td>
+                <td> {appStatus} </td>
+            </tr>
+
+
+
+            </table>
+            </div>
+          
         </div>
     )
 }
