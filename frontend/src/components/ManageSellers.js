@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import Button from "react-bootstrap/Button";
 
 export default function ManageSellers(){
 
@@ -22,7 +23,7 @@ export default function ManageSellers(){
 
     return(
         <div className="container">
-            <a href="/adminhome"><button className="btn btn-primary">Back</button></a>
+            <a href="/adminhome"><Button variant="dark" style={{ marginLeft: "10px" }}>Back</Button></a>
             <h1><center>Manage Sellers</center></h1>
 
             <a href="/adminhome/managesellers/add" ><button className="btn btn-success"  style={{float: 'right'}}>Add</button></a>
