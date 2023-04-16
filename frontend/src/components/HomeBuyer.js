@@ -8,20 +8,21 @@ import Button from 'react-bootstrap/Button';
 import { Buffer } from 'buffer';
 
 export default function HomeBuyer() {
-    //session validation
+    // Session validation - if the session doesn't exist, redirect the user to the buyer login page
     if (sessionStorage.getItem("sAyurCenReyub") === null) {
         window.location.replace("/buyerlogin");
     }
 
     //Creating variables 
     const [items, setitems] = useState([]);
-    // const [count, setCount] = useState(1);
     let history = useHistory();
 
+    // Get the buyer email from session storage
     const buyerEmail = sessionStorage.getItem("buyerEmail");
 
     const [avgRatings, setAvgRatings] = useState({});
 
+    // Use the useEffect hook to fetch data from API when the component mounts
     useEffect(() => {
         function getItems() {
             axios.get("http://localhost:8070/item/").then((res) => {
@@ -33,6 +34,7 @@ export default function HomeBuyer() {
         }
         getItems();
 
+        // Fetch ratings data and calculate average ratings using the getAverageRatings function
         axios.get("http://localhost:8071/rate").then((res)=>{
             setAvgRatings(getAverageRatings(res.data));
             console.log(getAverageRatings(res.data)['P002']);
@@ -44,12 +46,13 @@ export default function HomeBuyer() {
 
         //Converting the String to an image happens here.
         let imageSource = `data:image/png;base64,${Buffer.from(imageData.data).toString('base64').substring(19)}`;
-        //Hilarina (0,3) --> Hil
+
         //We reduce 2 here --> because, the last 2 values in the basecode is generally of 2 equal characters.(==)
         imageSource = imageSource.slice(0, imageSource.length - 2);
         return imageSource;
     };
 
+    // Function to calculate average ratings for each item using the ratings data fetched from the API
     function getAverageRatings(arr) {
         const itemMap = new Map();
         const result = {};
@@ -71,7 +74,7 @@ export default function HomeBuyer() {
         return result;
     }
 
-
+    // Render the HomeBuyer component
     return (
         <div className="container">
             {/* session used to handle the login  */}
@@ -108,7 +111,6 @@ export default function HomeBuyer() {
                                 <span style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Rs.{item.Price}</span>
                                 {item.Quantity === 0 && <p style={{ color: 'red' }}>Out of Stock</p>}
                                 <Rater total={5} rating={avgRatings[item.ProductId]} interactive={false} style={{ fontSize: '30px' }}/>
-                                {/* <a href="/BuyerViewItem"><button style={{ padding: '0.5rem', backgroundColor: '#008CBA', color: 'white', border: 'none', cursor: 'pointer' }}>View</button></a> */}
                                 <button className="btn btn-success" onClick={() => {
                                     window.location.replace(`http://localhost:3000/buyer/view/item/${item.ProductId}`);
                                 }}>View</button>
@@ -123,40 +125,3 @@ export default function HomeBuyer() {
 
     )
 }
-
-
-
-/*return(
-        <div>
-            <a href="/" onClick={()=>{
-                sessionStorage.removeItem("sAyurCenReyub");
-                sessionStorage.removeItem("buyerEmail");
-            }}><button>Signout</button></a>
-            
-            <h1>Welcome to Buyer Home</h1>
-
-            <div>
-            <center><h1>All featured items</h1></center>
-            <div class="p-3 border bg-light">
-            {
-                    
-                    items.map((item)=>(
-                                
-                        item.ProductId,
-                        item.Name,
-                        item.Description,
-                        item.Price,
-                        item.Quantity,
-                        <input type={'number'} value={count} onChange={(e)=>{
-                            setCount(e.target.value);
-                        }} ></input>,
-                        <button>Add cart</button>
-                    ))
-                    }
-            </div>
-            
-           </div>
-        </div>
-
-        
-    ) */

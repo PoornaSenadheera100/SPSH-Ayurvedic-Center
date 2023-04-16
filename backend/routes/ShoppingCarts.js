@@ -6,6 +6,7 @@ let ShoppingCart=require("../models/ShoppingCart");
 //Data insertion
 router.route("/add").post((req,res)=>{
 
+    // Extract item information from request body
     const buyerEmail = req.body.buyerEmail;
     const itemID = req.body.ProductId;
     const supplierId = req.body.SupplierId;
@@ -14,6 +15,7 @@ router.route("/add").post((req,res)=>{
     const price = req.body.Price;
     const Image = req.body.Image;
 
+    // Create a new ShoppingCart object with extracted item information
 const newShoppingCart = new ShoppingCart({
     buyerEmail,
     itemID,
@@ -24,6 +26,7 @@ const newShoppingCart = new ShoppingCart({
     Image
 })
 
+// Save the new item to the database
 newShoppingCart.save().then(()=>{
     res.json("Item Added to Cart")
 }).catch((err)=>{
@@ -31,7 +34,6 @@ newShoppingCart.save().then(()=>{
     })
 })
 
-//http://localhost:8070/ShoppingCart
 //Read all the Items of shoppingCarts from the database
 router.route("/").get((req,res)=>{
     ShoppingCart.find().then((ShoppingCart)=>{
@@ -53,8 +55,7 @@ router.route("/retrieve/:buyerEmail").get(async(req,res)=>{
     })
 })
 
-//update a specific cart 
-
+// Update the quantity of an item in the shopping cart
 router.route("/update/:buyerEmail/:itemID").put(async(req,res)=> {
     let cartId = req.params.buyerEmail;
     let itemID = req.params.itemID;
@@ -63,6 +64,8 @@ router.route("/update/:buyerEmail/:itemID").put(async(req,res)=> {
     const updateShoppingcart ={
         ProductQty
     }
+
+    // Find and update the item in the database
     const update = await ShoppingCart.findOneAndUpdate({ buyerEmail: cartId, itemID: itemID },
         updateShoppingcart).then(()=>{
         console.log(ProductQty);
@@ -85,7 +88,7 @@ router.route("/delete/:buyerEmail/:itemID").delete(async(req,res)=>{
     })
 })
 
-//Delete a specific item in a cart
+// Delete all items in the shopping cart for a specific buyer
 router.route("/delete/:buyerEmail").delete(async(req,res)=>{
     let cartId = req.params.buyerEmail;
     await ShoppingCart.deleteMany({buyerEmail: cartId}).then(()=>{
