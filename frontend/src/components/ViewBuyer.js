@@ -31,7 +31,7 @@ export default function ViewBuyer() {
   return (
     <div>
       <a href="/adminhome/managebuyers">
-        <Button variant="dark" style={{ marginLeft: "10px" }}>
+        <Button variant="dark" style={{ marginLeft: "100px" }}>
           Back
         </Button>
       </a>
@@ -39,6 +39,7 @@ export default function ViewBuyer() {
         className="container"
         style={{ margin: "auto", maxWidth: "500px", padding: "20px" }}
       >
+      
         <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
           View Buyer
         </h1>
@@ -48,8 +49,7 @@ export default function ViewBuyer() {
             border: "1px solid black",
             padding: "10px",
             textAlign: "justify",
-            backgroundColor: "#f8f8f8",
-            borderRadius: "50px",
+            borderRadius: "10px",
             height: "200px",
           }}
         >
@@ -57,7 +57,7 @@ export default function ViewBuyer() {
             <br></br>
             <table>
               <tr>
-                <td style={{ width: "200px" }}> Name</td>
+                <td style={{ width: "200px" }}><b>Name</b></td>
 
                 <td style={{ width: "200px" }}>:</td>
 
@@ -67,20 +67,20 @@ export default function ViewBuyer() {
               <tr></tr>
 
               <tr>
-                <td> Address</td>
+                <td> <b>Address</b></td>
                 <td>:</td>
                 <td>{address}</td>
               </tr>
 
               <tr></tr>
               <tr>
-                <td> Email</td>
+                <td> <b>Email</b></td>
                 <td>:</td>
                 <td>{email}</td>
               </tr>
               <tr></tr>
               <tr>
-                <td> Phone</td>
+                <td><b>Phone</b> </td>
                 <td>:</td>
                 <td>{phone}</td>
               </tr>
