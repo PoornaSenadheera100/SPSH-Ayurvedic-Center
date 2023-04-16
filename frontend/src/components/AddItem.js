@@ -161,9 +161,10 @@ export default function AddItem() {
 
     return (
         <div className="container">
-             <center><h1>Add Item</h1></center>
-            <form onSubmit={sendData}>
+            <a href = "/sellerhome/item"><Button variant="dark">Back</Button></a> {'  '}
+             <center><h1>Add Item</h1> </center>
             
+            <form onSubmit={sendData}>
                 <div className="form-group"  >
                     <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
                         <label for="name">Item Code</label>
@@ -234,10 +235,12 @@ export default function AddItem() {
             
             </div>
             <br></br>
-                <a href = "/sellerhome/item"><Button variant="dark">Back</Button></a> {'  '}
-                <button type="submit" class="btn btn-success">Submit</button>
+                
+            <button type="submit" class="btn btn-success" style={{float: 'right'}}>Submit</button>
+
                 
             </form>
+           
         </div>
     )
 }
