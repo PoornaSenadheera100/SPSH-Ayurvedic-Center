@@ -22,8 +22,11 @@ export default function ViewSeller(){
     });
 
     return(
-        <div className="container">
-            <a href="/adminhome/managesellers"><Button variant="dark" style={{ marginLeft: "10px" }}>Back</Button></a>
+      <div>
+        <a href="/adminhome/managesellers"><Button variant="dark" style={{ marginLeft: "50px" }}>Back</Button></a>
+     
+        <div className="container"style={{ margin: "auto", maxWidth: "500px", padding: "20px" }}>
+            
             
             <center><h1>View Seller</h1></center>
 
@@ -32,8 +35,7 @@ export default function ViewSeller(){
             border: "1px solid black",
             padding: "10px",
             textAlign: "justify",
-            backgroundColor: "#f8f8f8",
-            borderRadius: "50px",
+            borderRadius: "10px",
             height: "200px",
           }}
         >
@@ -41,7 +43,7 @@ export default function ViewSeller(){
             <br></br>
             <table>
               <tr>
-                <td style={{ width: "200px" }}> Name</td>
+                <td style={{ width: "200px" }}> <b>Name</b></td>
 
                 <td style={{ width: "200px" }}>:</td>
 
@@ -52,18 +54,19 @@ export default function ViewSeller(){
 
               <tr></tr>
               <tr>
-                <td> Email</td>
+                <td><b>Email</b> </td>
                 <td>:</td>
                 <td>{email}</td>
               </tr>
               <tr></tr>
               <tr>
-                <td> Phone</td>
+                <td><b>Phone</b> </td>
                 <td>:</td>
                 <td>{phone}</td>
               </tr>
             </table>
           </center>
+        </div>
         </div>
         </div>
     )
