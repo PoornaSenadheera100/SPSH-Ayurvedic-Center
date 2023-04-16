@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import Button from 'react-bootstrap/Button';
 export default function ManageBuyers(){
 
     if(sessionStorage.getItem("sAyurCenNimda") === null){
@@ -22,7 +22,7 @@ export default function ManageBuyers(){
 
     return(
         <div className="container">
-            <a href="/adminhome"><button className="btn btn-primary">Back</button></a>
+            <a href="/adminhome"><Button variant="dark">Back</Button></a>
 
             <h1 align="Center">Manage Buyers</h1> <br></br>
     
