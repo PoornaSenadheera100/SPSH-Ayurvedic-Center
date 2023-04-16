@@ -17,6 +17,11 @@ const sellerSchema = new Schema({
         required : true
     },
 
+    delChrg : {
+        type : Number,
+        required : true
+    },
+
     password : {
         type : String,
         required : true

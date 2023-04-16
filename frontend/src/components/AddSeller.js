@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import Button from 'react-bootstrap/Button';
 
 export default function AddSeller(){
 
@@ -10,6 +11,7 @@ export default function AddSeller(){
     const [name, setName] = useState({});
     const [email, setEmail] = useState({});
     const [phone, setPhone] = useState({});
+    const [delChrg, setDelChrg] = useState();
     const [password, setPassword] = useState({});
     const [rePassword, setRePassword] = useState({});
 
@@ -27,6 +29,7 @@ export default function AddSeller(){
                         name,
                         email,
                         phone,
+                        delChrg,
                         password
                     }
 
@@ -48,47 +51,54 @@ export default function AddSeller(){
 
     return(
         <div className="container">
-            <a href="/adminhome/managesellers"><button>Back</button></a>
+            <a href="/adminhome/managesellers"><Button variant="dark">Back</Button></a>
             
-            <h1>Create a Seller Account</h1>
+            <center><h1>Create Seller</h1></center>
 
             <form onSubmit={proceed}>
                 <label htmlFor="name">Name</label>
-                <input type="text" id="name" placeholder="Enter your name" required onChange={(e)=>{
+                <input type="text" id="name" class="form-control" placeholder="Enter your name" pattern="[A-Za-z .]{1,100}" required onChange={(e)=>{
                     setName(e.target.value);
                 }}/>
 
                 <br></br>
 
                 <label htmlFor="email">Email</label>
-                <input type="email" id="email" placeholder="abc@gmail.com" required onChange={(e)=>{
+                <input type="email" id="email" class="form-control" placeholder="abc@gmail.com" required onChange={(e)=>{
                     setEmail(e.target.value);
                 }}/>
 
                 <br></br>
 
                 <label htmlFor="phone">Phone</label>
-                <input type="phone" id="phone" placeholder="Phone No" required onChange={(e)=>{
+                <input type="phone" id="phone" class="form-control" placeholder="Phone No" pattern="0[0-9]{9}"  required onChange={(e)=>{
                     setPhone(e.target.value);
                 }}/>
 
                 <br></br>
 
+                <label htmlFor="delChrg">Delivery Charge (Rs.)</label>
+                <input type="number" id="delChrg" placeholder="Delivery Charge" min="0" step="0.01" required onChange={(e)=>{
+                    setDelChrg(e.target.value);
+                }}/>
+
+                <br></br>
+
                 <label htmlFor="newpassword">New Password</label>
-                <input type="password" id="newpassword" placeholder="Password" required onChange={(e)=>{
+                <input type="password" id="newpassword" class="form-control" placeholder="Password" minLength="8" required onChange={(e)=>{
                     setPassword(e.target.value);
                 }}/>
 
                 <br></br>
 
                 <label htmlFor="repassword">Re-enter Password</label>
-                <input type="password" id="repassword" placeholder="Password" required onChange={(e)=>{
+                <input type="password" id="repassword"  class="form-control" placeholder="Password" required onChange={(e)=>{
                     setRePassword(e.target.value);
                 }}/>
 
                 <br></br>
 
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-primary"style={{float:'right'}}>Submit</button>
             </form>
         </div>
     )

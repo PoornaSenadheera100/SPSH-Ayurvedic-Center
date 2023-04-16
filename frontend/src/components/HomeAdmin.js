@@ -1,3 +1,4 @@
+import Button from 'react-bootstrap/Button';
 export default function HomeAdmin(){
 
     if(sessionStorage.getItem("sAyurCenNimda") === null){
@@ -8,13 +9,45 @@ export default function HomeAdmin(){
         <div className="container">
             <a href="/" style={{float: "right"}} onClick={()=>{
                 sessionStorage.removeItem("sAyurCenNimda");
-            }}><button className="btn btn-outline-danger">Signout</button></a>
+            }}>
+                <Button variant="danger">Signout</Button> </a>
+                
+    <br></br>
+                <h1 align="center" style={{fontSize: '36px',justifyContent: 'center'}}>Welcome to Admin Home</h1>
+  
+  <br></br><br></br>
+    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center',  height: '100vh'}}>
+    
+    <a href="/adminhome/managebuyers">
+      <button style={{margin: '10px', padding: '20px 40px', backgroundColor: '#007bff', color: 'white', borderColor: '#007bff', borderWidth: '1px', borderStyle: 'solid', borderRadius: '5px', fontSize: '28px', height: '350px'}}>
+        Manage Buyers
+      </button>
+    </a>
+    <a href="/adminhome/managesellers">
+      <button style={{margin: '10px', padding: '20px 40px', backgroundColor: '#28a745', color: 'white', borderColor: '#28a745', borderWidth: '1px', borderStyle: 'solid', borderRadius: '5px', fontSize: '28px', height: '350px'}}>
+        Manage Sellers
+      </button>
+    </a>
+    <a href="/adminhome/manageorders">
+      <button style={{margin: '10px', padding: '20px 40px', backgroundColor: '#fd7e14', color: 'white', borderColor: '#fd7e14', borderWidth: '1px', borderStyle: 'solid', borderRadius: '5px', fontSize: '28px', height: '350px'}}>
+        Manage Orders
+      </button>
+    </a>
+</div>
 
-            <h1>Welcome to Admin Home</h1>
 
-            <a href="/adminhome/managebuyers"><button>Manage Buyers</button></a>
+
+
+                {/* <button className="btn btn-outline-danger">Signout</button></a>
+
+             <h1 align="Center">Welcome to Admin Home</h1> 
+           
+
+            <a href="/adminhome/managebuyers"><button>Manage Buyers</button></a> 
             <a href="/adminhome/managesellers"><button>Manage Sellers</button></a>
-            <a href="/adminhome/manageorders"><button>Manage Orders</button></a>
+            <a href="/adminhome/manageorders"><button>Manage Orders</button></a>   */}
+            
         </div>
+      
     )
 }

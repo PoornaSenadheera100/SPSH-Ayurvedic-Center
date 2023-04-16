@@ -56,7 +56,7 @@ function UpdateItem() {
             alert("Item  Updated");
             //window.location --> helps the user to navigate(frontend --> so port is 3000)
             //axios --> navigation between frontend and backend --> so port is 8070.
-            window.location.replace("http://localhost:3000/item/");
+            window.location.replace("http://localhost:3000/sellerhome/item/");
 
         }).catch((err) => {
             alert(err);

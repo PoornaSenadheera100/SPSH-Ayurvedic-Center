@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-
 import { Buffer } from 'buffer';
+import Button from 'react-bootstrap/Button';
 
 export default function BuyerCart() {
     //session validation
@@ -12,9 +12,7 @@ export default function BuyerCart() {
 
     //creating variables
     const [items, setItems] = useState([]);
-
     let history = useHistory();
-
     const buyerEmail = sessionStorage.getItem("buyerEmail");
     let total = 0;
 
@@ -33,7 +31,6 @@ export default function BuyerCart() {
 
     //Get the image source.
     const getImageSource = (imageData) => {
-
         //Converting the String to an image happens here.
         let imageSource = `data:image/png;base64,${Buffer.from(imageData.data).toString('base64').substring(19)}`;
         //We reduce 2 here --> because, the last 2 values in the basecode is generally of 2 equal characters.(==)
@@ -56,53 +53,79 @@ export default function BuyerCart() {
         }
     }
 
+    function resetItemQty(itemID, qty){
+        axios.get(`http://localhost:8070/item/getitem/${itemID}`).then((res)=>{
+            const SupplierID = res.data[0].SupplierId;
+            const ProductId = res.data[0].ProductId;
+            const Name = res.data[0].Name;
+            const Description = res.data[0].Description;
+            const Price = res.data[0].Price;
+            const Quantity = res.data[0].Quantity + qty;
+            const Image = res.data[0].Image;
+            axios.put(`http://localhost:8070/item/update/${res.data[0].SupplierId}/${res.data[0].ProductId}`, {
+                SupplierID,
+                ProductId,
+                Name,
+                Description,
+                Price,
+                Quantity,
+                Image
+            })
+        }).catch((err)=>{
+            alert(err);
+        })
+    }
+
     return (
-        <div className="container">
-            <div><a type="button" href="/buyerhome" class="btn btn-secondary">Back</a></div>
-            <table className="table table-borderless">
-                <thead>
-                    <tr>
-                        <th scope="col">Item ID</th>
-                        <th scope="col">Supplier ID</th>
-                        <th scope="col">Product Name</th>
-                        <th scope="col">Quantity</th>
-                        <th scope="col">Price (Rs.)</th>
-                        <th scope="col">Image</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {items.map((item) => (
-                        <tr key={buyerEmail}>
-                            <td>{item.itemID}</td>
-                            <td>{item.supplierId}</td>
-                            <td>{item.productName}</td>
-                            <td>{item.productQty}</td>
-                            <td>{parseFloat(item.price).toFixed(2)}</td>
-                            <td><img src={getImageSource(item.Image)} width="300px" /></td>
-                            <td><button className="btn btn-danger btn-sm" onClick={() => {
-                                var response = window.confirm("Are you sure you want to remove this Item?");
-                                if (response) {
-                                    axios.delete(`http://localhost:8070/ShoppingCart/delete/${buyerEmail}/${item.itemID}`).then(() => {
-                                        alert("Item Deleted");
-                                        window.location.replace("http://localhost:3000/buyer/view/cart");
-                                    }).catch((err) => {
-                                        alert(err);
-                                    })
-                                }
-                            }}>Remove from cart</button></td>
-                            {calcNetValue(item.productQty, item.price)}
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+    <div><a href="/buyerhome" style={{ display: 'inline-block', textAlign: 'left',marginLeft: '10px' }}>
+    <button className="btn btn-dark">Back</button>
+  </a>
 
-            <div style={{ float: "right" }}>
-                <a type="button" class="btn btn-primary" onClick={proceedToCheckout}>Checkout</a>
-            </div>
-            <h3>Total Amount = Rs.{parseFloat(total).toFixed(2)}</h3>
-            <br/><br/><br/><br/><br/><br/>
+    <div className="container">
+        
+      
 
-        </div>
+    
+    <table className="table table-borderless">
+        <tbody>
+            {items.map((item) => (
+                <tr key={buyerEmail} className="border">
+                    <td><img src={getImageSource(item.Image)} width="100" height="100" /></td>
+                    <td>{item.itemID}</td>
+                    <td>{item.supplierId}</td>
+                    <td>{item.productName}</td>
+                    <td>{item.productQty}</td>
+                    <td>{parseFloat(item.price).toFixed(2)}</td>
+                    
+                    <td>
+                        <button className="btn btn-danger btn-lg" style={{fontSize: "20px", padding: "10px 20px"}}  onClick={() => {
+                            var response = window.confirm("Are you sure you want to remove this Item?");
+                            if (response) {
+                                axios.delete(`http://localhost:8070/ShoppingCart/delete/${buyerEmail}/${item.itemID}`).then(() => {
+                                    resetItemQty(item.itemID, item.productQty);
+                                    alert("Item Deleted");
+                                    window.location.replace("http://localhost:3000/buyer/view/cart");
+                                }).catch((err) => {
+                                    alert(err);
+                                })
+                            }
+                        }}>
+                            <i className="fas fa-trash-alt fa-lg"/>
+                        </button>
+                    </td>
+                    {calcNetValue(item.productQty, item.price)}
+                </tr>
+            ))}
+        </tbody>
+    </table>
+
+    <div style={{ float: "right" }}>
+        
+        <a type="button" class="btn btn-primary" onClick={proceedToCheckout}>Checkout</a>
+    </div>
+    <h3>Total Amount = Rs.{parseFloat(total).toFixed(2)}</h3>
+    <br/><br/><br/><br/><br/><br/>
+    </div>
+</div>
     )
 }

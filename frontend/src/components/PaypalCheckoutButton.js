@@ -18,6 +18,9 @@ const PaypalCheckoutButton = (props) => {
     axios
     .post("http://localhost:8070/order/add", newOrder)
     .then((req, res) => {
+      axios.post("http://localhost:8072/email/payment", newOrder).catch((err)=>{
+        alert("Email Service is not available.");
+      });
       alert("Order Submitted Successfully");
       axios.delete(`http://localhost:8070/ShoppingCart/delete/${email}`);
       window.location.replace("http://localhost:3000/buyerhome");

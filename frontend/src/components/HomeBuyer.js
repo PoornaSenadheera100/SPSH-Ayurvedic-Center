@@ -3,6 +3,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 import Rater from 'react-rater'
 import 'react-rater/lib/react-rater.css'
+import Button from 'react-bootstrap/Button';
 
 import { Buffer } from 'buffer';
 
@@ -77,9 +78,15 @@ export default function HomeBuyer() {
             <a href="/" onClick={() => {
                 sessionStorage.removeItem("sAyurCenReyub");
                 sessionStorage.removeItem("buyerEmail");
-            }}><button className="btn btn-outline-danger">Signout</button></a>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="/buyerhome/myorders"><button className="btn btn-primary">My Orders</button></a>
+            }}>
+            
+            {/*Buttons*/}
+            <Button variant="danger">Signout</Button></a>
+            
+            {/* space between two buttons  */}
+             {' '}
+
+            <a href="/buyerhome/myorders"><Button variant="success">My Orders</Button></a>
 
             {/* Adding a cart image  */}
             <div style={{ float: "right" }}>
@@ -89,7 +96,7 @@ export default function HomeBuyer() {
             <div>
                 <center><h1>All featured items</h1></center>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '5rem' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '5rem' }}>
 
                     {items.map((item) => (
 
@@ -99,6 +106,7 @@ export default function HomeBuyer() {
                                 <h3 style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>{item.Name}</h3>
                                 <p style={{ marginBottom: '0.5rem', textAlign: 'center' }}>{item.Description}</p>
                                 <span style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>Rs.{item.Price}</span>
+                                {item.Quantity === 0 && <p style={{ color: 'red' }}>Out of Stock</p>}
                                 <Rater total={5} rating={avgRatings[item.ProductId]} interactive={false} style={{ fontSize: '30px' }}/>
                                 {/* <a href="/BuyerViewItem"><button style={{ padding: '0.5rem', backgroundColor: '#008CBA', color: 'white', border: 'none', cursor: 'pointer' }}>View</button></a> */}
                                 <button className="btn btn-success" onClick={() => {

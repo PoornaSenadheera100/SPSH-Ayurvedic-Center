@@ -5,20 +5,36 @@ export default function HomeSeller(){
     }
 
     return(
-        <div className="container">
+        <div>
             <a href="/" style={{float: "right"}} onClick={()=>{
                 sessionStorage.removeItem("sAyurCenRelles");
                 sessionStorage.removeItem("sellerEmail");
-            }}><button className="btn btn-outline-danger">Signout</button></a>
-            
-            <h1>This is Seller Home</h1>
-            {/* <h1>Hello {sessionStorage.getItem("sellerEmail")}</h1> */}
-
-            <center>
-                <a href="/sellerhome/item"><button className="btn btn-primary btn-lg">Manage Items</button></a>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="/sellerhome/delivery"><button className="btn btn-primary btn-lg">Delivery Requests</button></a>
-            </center>
+            }}>
+            <button className="btn btn-danger" style={{ marginRight: '10px' }}>Signout</button>
+        </a>
+        <div align="center" style={{ border: '1px solid black', borderRadius: '5px', padding: '20px', maxWidth: '500px', margin: '0 auto', background: '#f8f9fa' }}>
+        <h1 className="text-center">Seller Home</h1>
+        <div style={{ display: 'flex', justifyContent: 'center' }}></div>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <div align="center" style={{ border: '1px solid black', borderRadius: '5px', padding: '20px', maxWidth: '500px', background: '#f8f9fa' }}>  
+                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <a href="/sellerhome/item">
+                        <button className="btn btn-primary btn-lg" style={{ width: '200px', height: '200px', backgroundColor: 'blue', marginRight: '10px' }}>
+                        Manage Items
+                        </button>
+                    </a>
+                    <a href="/sellerhome/delivery">
+                        <button className="btn btn-secondary btn-lg" style={{ width: '200px', height: '200px', backgroundColor: 'green' }}>
+                        Delivery Requests
+                        </button>
+                    </a>
+                </div>
+            </div>
         </div>
+    </div>
+    </div>
+
+
+        
     )
 }

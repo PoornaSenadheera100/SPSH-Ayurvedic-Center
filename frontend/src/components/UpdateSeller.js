@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-
+import Button from 'react-bootstrap/Button';
 export default function UpdateSeller(){
 
     if(sessionStorage.getItem("sAyurCenNimda") === null){
@@ -11,6 +11,7 @@ export default function UpdateSeller(){
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
+    const [delChrg, setDelChrg] = useState();
     const [password, setPassword] = useState("");
     const [rePassword, setRePassword] = useState("");
 
@@ -21,6 +22,7 @@ export default function UpdateSeller(){
             setName(res.data[0].name);
             setEmail(res.data[0].email);
             setPhone(res.data[0].phone);
+            setDelChrg(res.data[0].delChrg);
         }).catch((err)=>{
             alert("Network Issue...");
         })
@@ -36,7 +38,8 @@ export default function UpdateSeller(){
             const newSeller = {
                 name,
                 email,
-                phone
+                phone,
+                delChrg
             }
     
             axios.put(`http://localhost:8070/seller/update/${paramemail}`, newSeller).then(()=>{
@@ -51,6 +54,7 @@ export default function UpdateSeller(){
                 name,
                 email,
                 phone,
+                delChrg,
                 password
             }
     
@@ -65,51 +69,62 @@ export default function UpdateSeller(){
 
     return(
         <div className="container">
-            <a href="/adminhome/managesellers"><button>Back</button></a>
+            <a href="/adminhome/managesellers"><Button variant="dark">Back</Button></a>
 
-            <h1>Update Seller</h1>
-
+            <center><h1>Update Seller</h1></center>
+            
             <form onSubmit={proceed}>
                 <label htmlFor="name">Name</label>
-                <input type="text" id="name" placeholder="Enter your name" value={name} required onChange={(e)=>{
+                <input type="text" id="name"   class="form-control" placeholder="Enter your name" pattern="[A-Za-z .]{1,100}" value={name} required onChange={(e)=>{
                     setName(e.target.value);
                 }}/>
 
                 <br></br>
 
-                <label htmlFor="email">Email</label>
-                <input type="email" id="email" placeholder="abc@gmail.com" value={email} required disabled onChange={(e)=>{
+                <label htmlFor="email">Email</label> <br></br>
+                <input type="email" id="email"  class="form-control"placeholder="abc@gmail.com" value={email} required disabled onChange={(e)=>{
                     setEmail(e.target.value);
                 }}/>
 
                 <br></br>
 
-                <label htmlFor="phone">Phone</label>
-                <input type="phone" id="phone" placeholder="Phone No" value={phone} required onChange={(e)=>{
+                <label htmlFor="phone">Phone</label><br></br>
+                <input type="phone" id="phone"  class="form-control" placeholder="Phone No" pattern="0[0-9]{9}" value={phone} required onChange={(e)=>{
                     setPhone(e.target.value);
                 }}/>
 
                 <br></br>
-                <br></br>
-                Leave the fields below blank if you do not want to change the password!
-                <br></br>
-                <br></br>
 
-                <label htmlFor="newpassword">New Password</label>
-                <input type="password" id="newpassword" placeholder="Enter New Password" onChange={(e)=>{
-                    setPassword(e.target.value);
+                <label htmlFor="delChrg">Delivery Charge (Rs.)</label><br></br>
+                <input type="number" id="delChrg" class="form-control" placeholder="Delivery Charge" min="0" step="0.01" value={delChrg} required onChange={(e)=>{
+                    setDelChrg(e.target.value);
                 }}/>
 
                 <br></br>
+                <br></br>
+                <h4>Leave the fields below blank if you do not want to change the password!</h4>
+                <br></br>
+                
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label htmlFor="newpassword">New Password</label>
+                            <input type="password" id="newpassword" class="form-control" placeholder="Enter New Password" minLength="8" onChange={(e)=>{
+                            setPassword(e.target.value);
+                        }}/>
+                    </div>
 
-                <label htmlFor="repassword">Re-enter Password</label>
-                <input type="password" id="repassword" placeholder="Re-Enter New Password" onChange={(e)=>{
-                    setRePassword(e.target.value);
-                }}/>
+                
+                    <div class="form-group col-md-4">
+                        <label htmlFor="repassword">Re-enter Password</label>
+                        <input type="password" id="repassword" class="form-control" placeholder="Re-Enter New Password" onChange={(e)=>{
+                            setRePassword(e.target.value);
+                        }}/>
+                    </div>
 
                 <br></br>
+                </div>
 
-                <button type="submit">Update</button>
+                <button type="submit" class="btn btn-primary"style={{float:'right'}}>Update</button>
             </form>
         </div>
     )

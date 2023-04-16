@@ -20,7 +20,7 @@ export default function ManageOrders(){
 
     return(
         <div className = "container">
-            <a href="/adminhome"><button className="btn btn-primary">Back</button></a>
+            <a href="/adminhome"><button className="btn btn-dark">Back</button></a>
             <center><h1>Manage Customer Orders</h1></center>
 
             {orders.length === 0 && <h1>No Orders</h1>}

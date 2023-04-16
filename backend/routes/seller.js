@@ -5,6 +5,7 @@ router.route("/add").post((req, res)=>{
     const name = req.body.name;
     const email = req.body.email;
     const phone = req.body.phone;
+    const delChrg = Number(req.body.delChrg);
     const password = req.body.password;
 
 
@@ -12,6 +13,7 @@ router.route("/add").post((req, res)=>{
         name,
         email,
         phone,
+        delChrg,
         password
     })
 
@@ -64,10 +66,12 @@ router.route("/get/email/:email").get(async(req, res)=>{
 router.route("/update/:paramemail").put(async(req, res)=>{
     let paramemail = req.params.paramemail;
     const {name, email, phone, password} = req.body;
+    const delChrg = Number(req.body.delChrg);
     const updateSeller = {
         name,
         email,
         phone,
+        delChrg,
         password
     }
 
