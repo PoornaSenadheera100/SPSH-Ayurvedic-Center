@@ -1,3 +1,4 @@
+import Button from 'react-bootstrap/Button';
 export default function HomeAdmin(){
 
     if(sessionStorage.getItem("sAyurCenNimda") === null){
@@ -9,7 +10,7 @@ export default function HomeAdmin(){
             <a href="/" style={{float: "right"}} onClick={()=>{
                 sessionStorage.removeItem("sAyurCenNimda");
             }}>
-                <button style={{margin: '5px', padding: '5px', backgroundColor: 'transparent', color: 'red', borderColor: 'red', borderWidth: '1px', borderStyle: 'solid'}}>Signout</button> </a>
+                <Button variant="danger">Signout</Button> </a>
                 
     <br></br>
                 <h1 align="center" style={{fontSize: '36px',justifyContent: 'center'}}>Welcome to Admin Home</h1>
