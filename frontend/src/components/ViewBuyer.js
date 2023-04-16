@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
+import Button from 'react-bootstrap/Button';
 
 export default function ViewBuyer(){
 
@@ -27,7 +28,7 @@ export default function ViewBuyer(){
 
     return(
         <div >
-             <a href="/adminhome/managebuyers"><button className="btn btn-primary" style={{ marginLeft: '10px' }}>Back</button></a>
+             <a href="/adminhome/managebuyers"><Button variant="dark" style={{ marginLeft: '10px' }}>Back</Button></a>
         <div className="container" style={{ margin: 'auto', maxWidth: '500px', padding: '20px' }}>
  
   <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>View Buyer</h1>
