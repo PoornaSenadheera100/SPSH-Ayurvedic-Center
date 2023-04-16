@@ -73,28 +73,28 @@ function UpdateItem() {
 if (Image !== ""){
     return (
         <div>
-            <h1>Update Item</h1>
-            <form onSubmit={updateData}>
+            <h1 style={{ marginLeft: "50px" }}>Update Item</h1>
+            <form onSubmit={updateData} style={{ marginLeft: "50px" }}>
                 <div className="form-group">
                     <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-                        <label for="name">Product ID</label>
+                        <label for="name">Item Code</label>
                     </div>
 
                     <div class="col-sm-10">
-                    <input type="text" className="form-control" id="code" value={ProductId} placeholder="Enter Product ID" onChange={(e) => {
+                    <input type="text" className="form-control" id="code" pattern ="[P][0-9]{3}" value={ProductId} placeholder="Enter Product ID" onChange={(e) => {
                         setProductId(e.target.value);
                     }} disabled/>
                     </div>
                 </div>
                 <div className="form-group">
                     <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-                        <label for="name">Name</label>
+                        <label for="name">Item Name</label>
                     </div>
 
 
                     {/* using the value --> we can display the values that was previously entered by the user.*/}
                     <div class="col-sm-10">
-                    <input type="text" className="form-control" id="name" value={Name} placeholder="Enter Name" onChange={(e) => {
+                    <input type="text" className="form-control" id="name" value={Name} pattern="[a-zA-Z\s]+" placeholder="Enter Name" onChange={(e) => {
                         console.log("Hi");
                         setName(e.target.value);
                         //console.log(e.target.v)
@@ -103,11 +103,11 @@ if (Image !== ""){
                 </div>
                 <div className="form-group">
                     <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-                        <label for="description">Description</label>
+                        <label for="description">Item Description</label>
                     </div>
 
                     <div class="col-sm-10">
-                    <input type="text" className="form-control" id="description" value={Description} placeholder="Enter Description" onChange={(e) => {
+                    <input type="text" className="form-control" id="description" maxlength="10" pattern="[a-zA-Z\s]+" value={Description} placeholder="Enter Description" onChange={(e) => {
                         setDescription(e.target.value);
                     }} />
                     </div>
@@ -115,11 +115,11 @@ if (Image !== ""){
 
                 <div className="form-group">
                     <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
-                        <label for="price">Price</label>
+                        <label for="price">Item Price</label>
                     </div>
 
                     <div class="col-sm-10">
-                    <input type="number" className="form-control" id="quantity" value={Price} placeholder="Enter quantity" onChange={(e) => {
+                    <input type="number" className="form-control" id="quantity" min="0" value={Price} placeholder="Enter quantity" onChange={(e) => {
                         setPrice(e.target.value);
 
                     }} />
@@ -132,7 +132,7 @@ if (Image !== ""){
                     </div>
 
                     <div class="col-sm-10">
-                    <input type="number" className="form-control" id="quantity" value={Quantity} placeholder="Enter supplier" onChange={(e) => {
+                    <input type="number" className="form-control" min="0" id="quantity" value={Quantity} placeholder="Enter supplier" onChange={(e) => {
                         setQuantity(e.target.value);
                     }} />
                     </div>

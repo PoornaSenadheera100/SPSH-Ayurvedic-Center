@@ -171,7 +171,7 @@ export default function AddItem() {
                     </div>
 
                     <div class="col-sm-10">
-                        <input type="text" className="form-control" required id="code" placeholder="Enter item code" onChange={(e) => {
+                        <input type="text" className="form-control" required pattern ="[P][0-9]{3}" title="Has to be of 4 characters"  id="code" placeholder="Enter item code" onChange={(e) => {
                             setItemCode(e.target.value);
                             checkItemCode(e.target.value);
                         }} />
@@ -184,18 +184,18 @@ export default function AddItem() {
                     </div>
 
                     <div class="col-sm-10">
-                        <input type="text" className="form-control" id="description" required placeholder="Enter Name" onChange={(e) => {
+                        <input type="text" className="form-control" id="name" pattern="[a-zA-Z\s]+" required placeholder="Enter Name" onChange={(e) => {
                             setItemName(e.target.value);
                         }} />
                     </div>
                 </div>
                 <div className="form-group">
-                    <div style={{ marginLeft: "0px", marginRight: "auto", width: "10%" }}>
+                    <div style={{ marginLeft: "0px", marginRight: "auto", width: "30%" }}>
                         <label for="description">Item Description</label>
                     </div>
 
                     <div class="col-sm-10">
-                        <input type="text" className="form-control" required id="description" placeholder="Enter Description" onChange={(e) => {
+                        <input type="text" className="form-control" pattern="[a-zA-Z\s]+" required id="description"  placeholder="Enter Description" onChange={(e) => {
                             setItemDescription(e.target.value);
                         }} />
                     </div>
@@ -207,7 +207,7 @@ export default function AddItem() {
                     </div>
 
                     <div class="col-sm-10">
-                        <input type="number" className="form-control" required id="price" placeholder="Enter Price " onChange={(e) => {
+                        <input type="number" className="form-control" required id="price" min="0" placeholder="Enter Price " onChange={(e) => {
                             setItemPrice(e.target.value);
                             
                         }} />
@@ -220,7 +220,7 @@ export default function AddItem() {
                     </div>
 
                     <div class="col-sm-10">
-                        <input type="number" className="form-control" required id="quantity" placeholder="Enter Quantity " onChange={(e) => {
+                        <input type="number" className="form-control" required id="quantity" min="0" placeholder="Enter Quantity " onChange={(e) => {
                             setItemQty(e.target.value);
                         }}/>
                     </div>
