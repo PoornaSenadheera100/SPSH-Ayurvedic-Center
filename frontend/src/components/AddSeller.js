@@ -50,39 +50,39 @@ export default function AddSeller(){
         <div className="container">
             <a href="/adminhome/managesellers"><button>Back</button></a>
             
-            <h1>Create a Seller Account</h1>
+            <h1>Create Seller</h1>
 
             <form onSubmit={proceed}>
                 <label htmlFor="name">Name</label>
-                <input type="text" id="name" placeholder="Enter your name" required onChange={(e)=>{
+                <input type="text" id="name" class="form-control" placeholder="Enter your name" required onChange={(e)=>{
                     setName(e.target.value);
                 }}/>
 
                 <br></br>
 
                 <label htmlFor="email">Email</label>
-                <input type="email" id="email" placeholder="abc@gmail.com" required onChange={(e)=>{
+                <input type="email" id="email" class="form-control" placeholder="abc@gmail.com" required onChange={(e)=>{
                     setEmail(e.target.value);
                 }}/>
 
                 <br></br>
 
                 <label htmlFor="phone">Phone</label>
-                <input type="phone" id="phone" placeholder="Phone No" required onChange={(e)=>{
+                <input type="phone" id="phone"class="form-control"  placeholder="Phone No" required onChange={(e)=>{
                     setPhone(e.target.value);
                 }}/>
 
                 <br></br>
 
                 <label htmlFor="newpassword">New Password</label>
-                <input type="password" id="newpassword" placeholder="Password" required onChange={(e)=>{
+                <input type="password" id="newpassword" class="form-control" placeholder="Password" required onChange={(e)=>{
                     setPassword(e.target.value);
                 }}/>
 
                 <br></br>
 
                 <label htmlFor="repassword">Re-enter Password</label>
-                <input type="password" id="repassword" placeholder="Password" required onChange={(e)=>{
+                <input type="password" id="repassword"  class="form-control" placeholder="Password" required onChange={(e)=>{
                     setRePassword(e.target.value);
                 }}/>
 
