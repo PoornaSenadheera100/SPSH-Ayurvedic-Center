@@ -155,6 +155,7 @@ export default function BuyerViewItem() {
                                     <div style={{marginTop: '10px', textAlign:"left"}}>
                                         {Description}<br />
                                         PID &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {ProductId}<br />
+                                        Available : {MaxQuantity} <br/> 
                                         Quantity :
                                         <input for = "qunatitytxt" type="number" min="1" defaultValue="1" max={MaxQuantity}  onChange={(e) => { 
                                             setQuantity(e.target.value);
