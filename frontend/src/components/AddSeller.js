@@ -78,7 +78,7 @@ export default function AddSeller(){
                 <br></br>
 
                 <label htmlFor="delChrg">Delivery Charge (Rs.)</label>
-                <input type="number" id="delChrg" placeholder="Delivery Charge" min="0" step="0.01" required onChange={(e)=>{
+                <input type="number" id="delChrg" class="form-control" placeholder="Delivery Charge" min="0" step="0.01" required onChange={(e)=>{
                     setDelChrg(e.target.value);
                 }}/>
 
