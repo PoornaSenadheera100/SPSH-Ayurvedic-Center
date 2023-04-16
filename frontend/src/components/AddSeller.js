@@ -89,7 +89,7 @@ export default function AddSeller(){
 
                 <br></br>
 
-                <button type="submit">Submit</button>
+                <button type="submit" class="btn btn-primary"style={{float:'right'}}>Submit</button>
             </form>
         </div>
     )
