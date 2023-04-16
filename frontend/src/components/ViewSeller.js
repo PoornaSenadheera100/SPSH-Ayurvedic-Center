@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
-
+import Button from "react-bootstrap/Button";
 export default function ViewSeller(){
 
     if(sessionStorage.getItem("sAyurCenNimda") === null){
@@ -23,7 +23,8 @@ export default function ViewSeller(){
 
     return(
         <div className="container">
-            <a href="/adminhome/managesellers"><button>Back</button></a>
+            <a href="/adminhome/managesellers"><Button variant="dark" style={{ marginLeft: "10px" }}>Back</Button></a>
+            
             <center><h1>View Seller</h1></center>
 
             <div
