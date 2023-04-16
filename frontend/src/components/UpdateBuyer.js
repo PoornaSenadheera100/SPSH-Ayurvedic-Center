@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
+import Button from 'react-bootstrap/Button';
 
 export default function UpdateBuyer(){
 
@@ -83,9 +84,9 @@ export default function UpdateBuyer(){
 
     return(
         <div className="container">
-            <a href="/adminhome/managebuyers"><button>Back</button></a>
+            <a href="/adminhome/managebuyers"><Button variant="dark">Back</Button></a>
 
-            <h1>Update Buyer</h1>
+            <center><h1>Update Buyer</h1></center>
 
             <form onSubmit={proceed}>
                 <label htmlFor="name">Name</label>
