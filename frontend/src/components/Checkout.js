@@ -151,49 +151,93 @@ export default function Checkout() {
       <a type="button" href="/buyer/view/cart" class="btn btn-secondary">
         Back
       </a>
-      <h1>Checkout page</h1>
-      <b>Your Details</b>
-      <br />
-      Name : {name} <br />
-      Address : {address} <br />
-      NIC : {nic} <br />
-      Email : {email} <br />
-      Phone : {phone} <br />
-      <br />
-      <b>Net Amount</b> : Rs.{parseFloat(netAmount).toFixed(2)} <br />
-      <b>Delivery Charge</b> : Rs.{parseFloat(delChrg).toFixed(2)} <br />
-      {calcTotAmount()}
-      <b>Total Amount</b> : Rs.{parseFloat(totalAmount).toFixed(2)} <br />
-      <br />
-      <b>Select the delivery agent</b> <br />
-      <select
-        id="delAgents"
-        onChange={(e) => {
-          setDelAgent(e.target.value);
-        }}
-      ></select>{" "}
-      <br />
-      <br />
-      <b>Payment method</b> <br />
-      <select
-        name="paymentMethod"
-        id="paymentMethod"
-        onChange={(e) => {
-          setPaymentMethod(e.target.value);
-          enableCard(e.target.value);
-          setStatusValue(e.target.value);
-        }}
-      >
-        <option value="Cash on Delivery" id="cash" selected>
-          Cash on Delivery
-        </option>
-        <option value="Online Payment" id="card">
-          Online Payment
-        </option>
-      </select>
-      <br />
-      <br />
-      {/* <label for="creditCardNo">Credit Card No : </label> &nbsp;
+      <center>
+        <h1>Checkout page</h1>
+        <b>Your Details</b>
+    <table>
+		<tr> 
+			<td style={{width: "250px"}}>  Name </td>
+			<td style={{width: "100px"}}>  : </td>
+			<td style={{width: "100px"}}> {name} </td>
+		</tr>
+
+		<tr>
+			<td> Address </td>
+			<td> : </td>
+			<td> {address} </td>
+		</tr>
+
+		<tr>
+			<td>NIC</td>
+			<td>:</td>
+			<td>{nic}</td>
+		</tr>
+
+		<tr>
+			<td>Email</td>
+			<td>:</td>
+			<td>{email}</td>
+		</tr>
+		
+    <tr>
+			<td>Phone</td>
+			<td>:</td>
+			<td>{phone}</td>
+		</tr>
+		
+		<tr>
+			<td><b>Net Amount</b></td>
+			<td>:</td>
+			<td>Rs.{parseFloat(netAmount).toFixed(2)}</td>
+		</tr>
+		
+    <tr>
+			<td><b>Delivery Charge</b></td>
+			<td>:</td>
+			<td>Rs.{parseFloat(delChrg).toFixed(2)}{calcTotAmount()}</td>
+		</tr>
+		
+    <tr>
+			<td><b>Total Amount</b></td>
+			<td>:</td>
+			<td>Rs.{parseFloat(totalAmount).toFixed(2)}</td>
+		</tr>
+
+	</table>
+      <br></br>
+      
+        <b>Select the delivery agent</b> <br />
+        <select
+          id="delAgents"
+          onChange={(e) => {
+            setDelAgent(e.target.value);
+          }}
+        ></select>{" "}
+        <br />
+        <br />
+        <div align="center">
+        <b>Payment method</b> <br />
+        <select
+          name="paymentMethod"
+          id="paymentMethod"
+          A
+          onChange={(e) => {
+            setPaymentMethod(e.target.value);
+            enableCard(e.target.value);
+            setStatusValue(e.target.value);
+          }}
+        >
+          <option value="Cash on Delivery" id="cash" selected>
+            Cash on Delivery
+          </option>
+          <option value="Online Payment" id="card">
+            Online Payment
+          </option>
+        </select>
+        <br />
+        <br />
+        </div>
+        {/* <label for="creditCardNo">Credit Card No : </label> &nbsp;
             <input type="text" id="creditCardNo" disabled onChange={(e)=>{
                 setCardNo(e.target.value);
             }}></input> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -201,36 +245,37 @@ export default function Checkout() {
             <input type="number" id="cvc" disabled onChange={(e)=>{
                 setCvc(e.target.value);
             }}></input> */}
-      {showButton ? (
-        <PaypalCheckoutButton
-          obj={{
-            newOrder: {
-              orderRef,
+        {showButton ? (
+          <PaypalCheckoutButton
+            obj={{
+              newOrder: {
+                orderRef,
+                email,
+                name,
+                phone,
+                address,
+                nic,
+                totalAmount,
+                delAgent,
+                paymentMethod,
+                status,
+                appStatus,
+              },
+              usdAmount,
               email,
-              name,
-              phone,
-              address,
-              nic,
-              totalAmount,
-              delAgent,
-              paymentMethod,
-              status,
-              appStatus,
-            },
-            usdAmount,
-            email,
-          }}
-        />
-      ) : (
-        <>
-          <a className="btn btn-success" onClick={proceedToCheckout}>
-            Confirm
-          </a>
-        </>
-      )}
-      <br />
-      <br />
-      <br />
+            }}
+          />
+        ) : (
+          <>
+            <a className="btn btn-success" onClick={proceedToCheckout}>
+              Confirm
+            </a>
+          </>
+        )}
+        <br />
+        <br />
+        <br />
+      </center>
     </div>
   );
 }
