@@ -24,14 +24,46 @@ export default function ViewSeller(){
     return(
         <div className="container">
             <a href="/adminhome/managesellers"><button>Back</button></a>
-            <h1>View Seller</h1>
+            <center><h1>View Seller</h1></center>
 
-            Name &nbsp;&nbsp;&nbsp; : {name}
+            <div
+          style={{
+            border: "1px solid black",
+            padding: "10px",
+            textAlign: "justify",
+            backgroundColor: "#f8f8f8",
+            borderRadius: "50px",
+            height: "200px",
+          }}
+        >
+          <center>
             <br></br>
-            email &nbsp;&nbsp;&nbsp;&nbsp; : {email}
-            <br></br>
-            phone &nbsp;&nbsp;&nbsp; : {phone}
-            <br></br>
+            <table>
+              <tr>
+                <td style={{ width: "200px" }}> Name</td>
+
+                <td style={{ width: "200px" }}>:</td>
+
+                <td style={{ width: "200px" }}>{name}</td>
+              </tr>
+
+              <tr></tr>
+
+              <tr></tr>
+              <tr>
+                <td> Email</td>
+                <td>:</td>
+                <td>{email}</td>
+              </tr>
+              <tr></tr>
+              <tr>
+                <td> Phone</td>
+                <td>:</td>
+                <td>{phone}</td>
+              </tr>
+            </table>
+          </center>
+        </div>
         </div>
     )
 }
