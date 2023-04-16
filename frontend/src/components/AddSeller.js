@@ -50,7 +50,7 @@ export default function AddSeller(){
         <div className="container">
             <a href="/adminhome/managesellers"><button>Back</button></a>
             
-            <h1>Create Seller</h1>
+            <center><h1>Create Seller</h1></center>
 
             <form onSubmit={proceed}>
                 <label htmlFor="name">Name</label>
