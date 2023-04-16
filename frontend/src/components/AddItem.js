@@ -11,6 +11,7 @@ import FileBase64 from 'react-file-base64';
 //Import axios from the axios package we installed.This is needed to move the data from the frontend to the backend via an http request
 import axios from "axios";
 //const fs = require('fs');
+import Button from 'react-bootstrap/Button';
 
 
 export default function AddItem() {
@@ -160,7 +161,7 @@ export default function AddItem() {
 
     return (
         <div className="container">
-             <h1>Add Item</h1>
+             <center><h1>Add Item</h1></center>
             <form onSubmit={sendData}>
             
                 <div className="form-group"  >
@@ -233,8 +234,9 @@ export default function AddItem() {
             
             </div>
             <br></br>
-                <button type="submit" class="btn btn-success">Submit</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a  type="button" href = "/sellerhome/item" class="btn btn-secondary">Back</a>
+                <a href = "/sellerhome/item"><Button variant="dark">Back</Button></a> {'  '}
+                <button type="submit" class="btn btn-success">Submit</button>
+                
             </form>
         </div>
     )
