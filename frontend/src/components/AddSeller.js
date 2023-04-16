@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import Button from 'react-bootstrap/Button';
 
 export default function AddSeller(){
 
@@ -48,7 +49,7 @@ export default function AddSeller(){
 
     return(
         <div className="container">
-            <a href="/adminhome/managesellers"><button>Back</button></a>
+            <a href="/adminhome/managesellers"><Button variant="dark">Back</Button></a>
             
             <center><h1>Create Seller</h1></center>
 
