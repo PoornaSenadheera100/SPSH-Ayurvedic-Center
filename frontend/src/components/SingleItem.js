@@ -67,8 +67,8 @@ export default function SingleItem() {
                         <td class="text-uppercase">{Quantity}</td>
                        <td><img src={getImageSource(Image)} alt={Name}  onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}  style={{
                         transition: 'transform 0.2s ease-in-out',
-                        transform: isHovered ? 'scale(1.2)' : 'scale(1)',
-                        }} width="300px" /></td>
+                        transform: isHovered ? 'scale(1.14)' : 'scale(1)',
+                        }} width="200px" /></td>
                     </tr>
                 </table>
             </div>
