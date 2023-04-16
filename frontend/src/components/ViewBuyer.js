@@ -72,7 +72,11 @@ export default function ViewBuyer() {
                 <td>{address}</td>
               </tr>
 
-              <tr></tr>
+              <tr>
+                <td> <b>NIC</b></td>
+                <td>:</td>
+                <td>{nic}</td>
+              </tr>
               <tr>
                 <td> <b>Email</b></td>
                 <td>:</td>
