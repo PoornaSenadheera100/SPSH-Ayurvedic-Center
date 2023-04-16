@@ -23,7 +23,7 @@ export default function LoginAdmin(){
                 alert("Invalid Credentials!");
             }
         }).catch((err)=>{
-            alert(err.message);
+            alert("Invalid Credentials!");
         })
     }
 
